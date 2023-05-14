@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.languages_tab{
+    display: flex;
+    position: fixed;
+    top: 5;
+    left: 5;
+}
+
+#languages_tab_selection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

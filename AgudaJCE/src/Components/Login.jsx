@@ -10,7 +10,13 @@ function Login() {
 
   const handleLanguageChange = (e) => {
     setCurrentLanguage(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
+    if(currentLanguage == 'he'){
+      document.querySelector('.login_div').style.direction = 'ltr';
+    }
+    else{
+      document.querySelector('.login_div').style.direction = 'rtl';
+    }
   };
 
   const handleSubmit = (e) => {
@@ -18,47 +24,46 @@ function Login() {
     // Perform login logic here
     console.log('Username:', username);
     console.log('Password:', password);
+
+    // validate username - id number
+    if (username.length != 9 || isNaN(username)) {
+      alert('Please enter a valid ID number');
+      return;
+    }
+    
   };
-
+  
   const loginText = languages[currentLanguage].login;
-
-  if(currentLanguage == 'he'){
-    document.querySelector('.login_div').style.direction = 'rtl';
-  }
-  else{
-    document.querySelector('.login_div').style.direction = 'ltr';
-  }
-
   return (
     <>
-    <LanguagesSelection
-        handleLanguageChange={handleLanguageChange} // Pass the event handler as a prop
-        selectedLanguage={currentLanguage} // Pass the selected language as a prop
-      />
-    <div className="login_div">
-      <h1>{loginText.header}</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          {loginText.username}:
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          {loginText.password}:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <br />
-        <button type="submit">{loginText.submit}</button>
-      </form>
-    </div>
+      <LanguagesSelection
+          handleLanguageChange={handleLanguageChange} // Pass the event handler as a prop
+          selectedLanguage={currentLanguage} // Pass the selected language as a prop
+        />
+      <div className="login_div">
+        <h1>{loginText.header}</h1>
+        <form onSubmit={handleSubmit}>
+          <label>
+            {loginText.username}:
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </label>
+          <br />
+          <label>
+            {loginText.password}:
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+          <br />
+          <button type="submit">{loginText.submit}</button>
+        </form>
+      </div>
     </>
   );
 }

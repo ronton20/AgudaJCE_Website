@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import '../css/Login.css';
 import languages from '../modules/languages';
 import LanguagesSelection from './languages_selection';
+import '../css/Login.css';
+
+import {app, auth, db } from '../firebase.js';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [currentLanguage, setCurrentLanguage] = useState('en'); // Set the default language here
 
@@ -19,18 +23,44 @@ function Login() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Perform login logic here
-    console.log('Username:', username);
-    console.log('Password:', password);
 
-    // validate username - id number
-    if (username.length != 9 || isNaN(username)) {
-      alert('Please enter a valid ID number');
-      return;
+    try {
+      // Sign in the user using the custom authentication method
+      const {user} = await signInWithEmailAndPassword(auth, email, password);
+  
+      // Login successful
+      console.log(user);
+      console.log(user.uid);
+
+      /* --------------------------------------------------- ADD AND CHECK WHEN FIRESTORE IS READY ---------------------------------------------------
+       // Check the admin role in Firestore
+       const userRef = db.collection('users').doc(user.uid);
+       const userSnapshot = await userRef.get();
+       const isAdmin = userSnapshot.exists && userSnapshot.data().admin;
+       
+       //TODO: rout to home page
+       if(isAdmin){
+         // goto admin page
+        }
+        else{
+          // goto user page
+        }
+      */
+
+    } catch (error) {
+      // Handle any errors
+      if(error.code == 'auth/user-not-found'){
+        alert(languages[currentLanguage].login.error_user_not_found);
+      }
+      else if(error.code == 'auth/wrong-password'){
+        alert(languages[currentLanguage].login.error_wrong_password);
+      }
+      else{
+        alert(languages[currentLanguage].login.error_general);
+      }
     }
-    
   };
   
   const loginText = languages[currentLanguage].login;
@@ -44,11 +74,12 @@ function Login() {
         <h1>{loginText.header}</h1>
         <form onSubmit={handleSubmit}>
           <label>
-            {loginText.username}:
+            {loginText.email}:
             <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="email"
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
             />
           </label>
           <br />
@@ -57,6 +88,7 @@ function Login() {
             <input
               type="password"
               value={password}
+              required
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>

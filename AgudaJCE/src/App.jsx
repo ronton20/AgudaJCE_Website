@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import LanguagesSelection from "./Components/languages_selection.jsx";
 import Login from "./Components/Login.jsx";
+import UserHandle from "./Components/UserHandle.jsx";
 
 function App() {
 	const [currentLanguage, setCurrentLanguage] = useState("en");
@@ -22,8 +23,13 @@ function App() {
 				handleLanguageChange={handleLanguageChange} // Pass the event handler as a prop
 				selectedLanguage={currentLanguage} // Pass the selected language as a prop
 			/>
-			<div className="login_form">
+			{/* <div id="login_form">
 				<Login
+					currentLanguage={currentLanguage} // Pass the selected language as a prop
+				/>
+			</div> */}
+			<div id="user_handle">
+				<UserHandle
 					currentLanguage={currentLanguage} // Pass the selected language as a prop
 				/>
 			</div>

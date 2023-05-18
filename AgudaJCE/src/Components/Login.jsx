@@ -50,28 +50,28 @@ function Login(props) {
 	return (
 		<div className="login_div">
 			<h1>{loginText.header}</h1>
-			<form onSubmit={handleSubmit}>
-				<label>
-					{loginText.email}:
+			<form className="login_form" onSubmit={handleSubmit}>
+				<div className="login_field">
+					<label>{loginText.email}:</label>
 					<input
 						type="email"
 						value={email}
 						required
 						onChange={(e) => setEmail(e.target.value)}
 					/>
-				</label>
-				<br />
-				<label>
-					{loginText.password}:
+				</div>
+				<div className="login_field">
+					<label>{loginText.password}:</label>
 					<input
 						type="password"
 						value={password}
 						required
 						onChange={(e) => setPassword(e.target.value)}
 					/>
-				</label>
-				<br />
-				<button type="submit">{loginText.submit}</button>
+				</div>
+				<button className="login_submit_button" type="submit">
+					{loginText.submit}
+				</button>
 			</form>
 		</div>
 	);

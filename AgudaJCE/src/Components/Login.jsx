@@ -5,8 +5,9 @@ import "../css/Login.css";
 
 import { app, auth, db } from "../firebase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { collection } from "firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
+// import { collection } from "firebase/firestore";
+// import { doc, getDoc } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 function Login(props) {
 
@@ -24,26 +25,19 @@ function Login(props) {
 
 			//  --------------------------------------------------- ADD AND CHECK WHEN FIRESTORE IS READY ---------------------------------------------------
 			// Check the admin role in Firestore
-			const docRef = doc(db, "Users", user.uid);
-			const docSnap = await getDoc(docRef);
+			const q = query(collection(db, "Users"), where("email", "==", email));
+			const querySnapshot = await getDocs(q);
 
-			if (docSnap.exists()) {
-				console.log("Document data:", docSnap.data());
-			} else {
-			// docSnap.data() will be undefined in this case
-				console.log("No such document!");
-			} 
-
-			snapshot.forEach(doc => {
-				console.log(doc.id, '=>', doc.data());
-			})
+			const isAdmin = querySnapshot.docs[0].data().isAdmin;
 			
 			//TODO: rout to home page
 			if(isAdmin) {
 				// goto admin page
+				console.log("go to admin page");
 			}
 			else {
 			// goto user page
+				console.log("go to user page");
 			}
     
 		} catch (error) {

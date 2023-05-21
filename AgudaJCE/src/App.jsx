@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import LanguagesSelection from "./Components/languages_selection.jsx";
 import Login from "./Components/Login.jsx";
-import UserHandle from "./Components/UserHandle.jsx";
+import SignUp from "./Components/addUsers.jsx";
 
 function App() {
 	const [currentLanguage, setCurrentLanguage] = useState("en");
@@ -28,8 +28,8 @@ function App() {
 					currentLanguage={currentLanguage} // Pass the selected language as a prop
 				/>
 			</div> */}
-			<div id="user_handle">
-				<UserHandle
+			<div id="sign_up">
+				<SignUp
 					currentLanguage={currentLanguage} // Pass the selected language as a prop
 				/>
 			</div>

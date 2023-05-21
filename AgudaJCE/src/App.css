@@ -29,8 +29,9 @@ button {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background: url("https://www.pixelstalk.net/wp-content/uploads/images6/2K-Desktop-Wallpapers.jpg")
-		no-repeat center center fixed;
+	/* background: url("https://www.pixelstalk.net/wp-content/uploads/images6/2K-Desktop-Wallpapers.jpg")
+		no-repeat center center fixed; */
+	background-color: #555;
 	background-size: cover;
 }
 

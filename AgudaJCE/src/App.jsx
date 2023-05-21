@@ -3,6 +3,7 @@ import "./App.css";
 import LanguagesSelection from "./Components/languages_selection.jsx";
 import Login from "./Components/Login.jsx";
 import SignUp from "./Components/addUsers.jsx";
+import AddEvent from "./Components/addEvent.jsx";
 
 function App() {
 	const [currentLanguage, setCurrentLanguage] = useState("en");
@@ -23,16 +24,21 @@ function App() {
 				handleLanguageChange={handleLanguageChange} // Pass the event handler as a prop
 				selectedLanguage={currentLanguage} // Pass the selected language as a prop
 			/>
-			<div id="login_form">
+			{/* <div id="login_form">
 				<Login
 					currentLanguage={currentLanguage} // Pass the selected language as a prop
 				/>
-			</div>
+			</div> */}
 			{/* <div id="sign_up">
 				<SignUp
 					currentLanguage={currentLanguage} // Pass the selected language as a prop
 				/>
 			</div> */}
+      <div id="add_event">
+				<AddEvent
+					currentLanguage={currentLanguage} // Pass the selected language as a prop
+				/>
+			</div>
 		</div>
 	);
 }

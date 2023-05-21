@@ -3,6 +3,7 @@ import React, {useState, useEffect} from "react";
 
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore} from 'firebase/firestore';
+import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,3 +20,5 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 // Get the Firestore instance
 export const db = getFirestore(app);
+// Get the Storage instance
+export const storage = getStorage(app);

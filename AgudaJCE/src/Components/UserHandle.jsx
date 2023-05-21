@@ -6,6 +6,7 @@ import LanguagesSelection from "./languages_selection";
 import { app, auth, db } from "../firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Papa from "papaparse";
+import { addDoc, collection } from "firebase/firestore";
 
 function SignUp() {
 	const [email, setEmail] = useState("");
@@ -23,10 +24,13 @@ function SignUp() {
 			const { uid } = user;
 
 			// Create a user document in the "users" collection with the same UID and isAdmin set to false
-			const userRef = db.collection("users").doc(uid);
-			await userRef.set({
-				isAdmin: false,
-			});
+			const userRef = collection(db, "Users")
+
+			// ------------------ TODO: change the parameters given to database ------------------
+			await addDoc(userRef, {id:uid, email:email, isAdmin:false});
+			// await userRef.set({
+			// 	isAdmin: false,
+			// });
 
 			// User creation successful
 			console.log("User created successfully");
@@ -67,7 +71,8 @@ function SignUp() {
 						console.log(uid);
 
 						// Create a user document in the "users" collection with the same UID and isAdmin set to false
-						const userRef = db.collection("Users").doc(uid);
+						const userRef = collection(db, "Users")
+						await addDoc(userRef, {id:uid, email:user.email, isAdmin:false});
 						await userRef.set({
 							id: user.id,
 							email: user.email,

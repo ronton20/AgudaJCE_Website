@@ -23,16 +23,16 @@ function App() {
 				handleLanguageChange={handleLanguageChange} // Pass the event handler as a prop
 				selectedLanguage={currentLanguage} // Pass the selected language as a prop
 			/>
-			{/* <div id="login_form">
+			<div id="login_form">
 				<Login
 					currentLanguage={currentLanguage} // Pass the selected language as a prop
 				/>
-			</div> */}
-			<div id="sign_up">
+			</div>
+			{/* <div id="sign_up">
 				<SignUp
 					currentLanguage={currentLanguage} // Pass the selected language as a prop
 				/>
-			</div>
+			</div> */}
 		</div>
 	);
 }

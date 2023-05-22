@@ -1,31 +1,37 @@
 import React from "react";
 import "../css/AgudaMember.css";
 
-
+import { db } from "../firebase.js";
+import { doc, deleteDoc } from "firebase/firestore";
 
 function AgudaMember(props) {
 	const deleteMember = async (e) => {
-        e.preventDefault();
-        const first_name = document.getElementById(`input_field_${ids.firstName}`).value;
-        const last_name = document.getElementById(`input_field_${ids.lastName}`).value;
-        
-        const q = query(collection(db, "AgudaMembers"), where("Name", "==", first_name + " " + last_name));
-		const querySnapshot = await getDocs(q);
-        const docId = querySnapshot.docs[0].id;
+		e.preventDefault();
+		const docId = props.data.id;
 
-        try {
-            await deleteDoc(doc(db, "AgudaMembers", docId));
-            console.log("Document successfully deleted!");
-        }
-        catch (error) {
-            console.log(error.message);
-        }
-    };
+		try {
+			await deleteDoc(doc(db, "AgudaMembers", docId));
+			props.updateMembers();
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
 
-	
 	return (
 		<div className="agudaMember">
-			<img src={props.data.Img} alt={props.data.Name} />
+			<div className="agudaMemberOverlay">
+				<img src={props.data.Img} alt={props.data.Name} />
+				{props.removable ? (
+					<button className="remove_aguda_member_button" onClick={deleteMember}>
+						<div className="removeCircle">
+							<div className="removeLine1"></div>
+							<div className="removeLine2"></div>
+						</div>
+					</button>
+				) : (
+					<></>
+				)}
+			</div>
 			<h3>{props.data.Name}</h3>
 			<p>{props.data.Position}</p>
 		</div>

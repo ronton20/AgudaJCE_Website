@@ -1,0 +1,47 @@
+import React, { useEffect, useState } from "react";
+import { db } from "../firebase.js";
+import { collection, getDocs } from "firebase/firestore";
+import "./ManageAgudaMembers.css";
+
+import AddAgudaMembers from "../Components/AddAgudaMembers.jsx";
+import AgudaMember from "../Components/AgudaMember.jsx";
+
+function ManageAgudaMembers(props) {
+	const [agudaMembers, setAgudaMembers] = useState([]);
+
+	async function updateMembers() {
+		const querySnapshot = await getDocs(collection(db, "AgudaMembers"));
+		// const members = querySnapshot.docs.map((doc) => doc.data());
+		const members = querySnapshot.docs.map((doc) => ({
+			id: doc.id,
+			...doc.data(),
+		}));
+		setAgudaMembers(members);
+	}
+	useEffect(() => {
+		updateMembers();
+	}, []);
+
+	return (
+		<div id="manage_aguda_members_page">
+			<div id="addMembers">
+				<AddAgudaMembers
+					currentLanguage={props.currentLanguage}
+					updateMembers={updateMembers}
+				/>
+			</div>
+			<div id="agudaMembers">
+				{agudaMembers.map((member) => (
+					<AgudaMember
+						key={member.id}
+						data={member}
+						removable={true}
+						updateMembers={updateMembers}
+					/>
+				))}
+			</div>
+		</div>
+	);
+}
+
+export default ManageAgudaMembers;

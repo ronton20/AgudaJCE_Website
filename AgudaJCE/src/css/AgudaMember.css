@@ -1,0 +1,30 @@
+.agudaMember {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	background-color: antiquewhite;
+}
+
+.agudaMember > img {
+	width: 70%;
+	max-width: 150px;
+	aspect-ratio: 1;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 50%;
+	border: 2px solid black;
+}
+
+.agudaMember > h3 {
+	font-size: 1.5rem;
+	font-weight: 400;
+}
+
+.agudaMember > p {
+	font-size: 1rem;
+	font-weight: 400;
+}

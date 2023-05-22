@@ -12,6 +12,7 @@
 	padding: 0.5rem 1rem;
 	border-radius: 0 0 1rem 1rem;
 	background-color: #222;
+	z-index: 1000;
 }
 
 #languages_tab_selection {

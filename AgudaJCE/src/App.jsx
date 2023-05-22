@@ -1,12 +1,16 @@
 import { useState } from "react";
 import "./App.css";
 import LanguagesSelection from "./Components/languages_selection.jsx";
+import MainPage from "./pages/mainPage.jsx";
 import Login from "./Components/Login.jsx";
 import AddUsers from "./Components/addUsers.jsx";
 import AddEvent from "./Components/addEvent.jsx";
 
 function App() {
 	const [currentLanguage, setCurrentLanguage] = useState("en");
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isAdmin, setIsAdmin] = useState(false);
+	const [currentUserEmail, setCurrentUserEmail] = useState("");
 
 	const handleLanguageChange = (e) => {
 		setCurrentLanguage(e.target.value);
@@ -19,25 +23,20 @@ function App() {
 	};
 
 	return (
-		<div id="main_page">
+		<div id="app_main_page">
 			<LanguagesSelection
 				handleLanguageChange={handleLanguageChange} // Pass the event handler as a prop
-				selectedLanguage={currentLanguage} // Pass the selected language as a prop
+				selectedLanguage={currentLanguage}
 			/>
-			<div id="login_form">
-				<Login
-					currentLanguage={currentLanguage} // Pass the selected language as a prop
-				/>
-			</div>
+			<MainPage currentLanguage={currentLanguage} />
+			{/* <div id="login_form">
+				<Login currentLanguage={currentLanguage} />
+			</div> */}
 			{/* <div id="add_users_form">
-				<AddUsers
-					currentLanguage={currentLanguage} // Pass the selected language as a prop
-				/>
+				<AddUsers currentLanguage={currentLanguage} />
 			</div> */}
 			{/* <div id="add_event">
-				<AddEvent
-					currentLanguage={currentLanguage} // Pass the selected language as a prop
-				/>
+				<AddEvent currentLanguage={currentLanguage} />
 			</div> */}
 		</div>
 	);

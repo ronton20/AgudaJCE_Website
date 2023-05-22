@@ -1,0 +1,11 @@
+#main_page {
+	width: 100%;
+	min-height: 100vh;
+}
+
+#agudaMembers {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	background-color: aquamarine;
+}

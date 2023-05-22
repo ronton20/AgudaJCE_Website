@@ -12,6 +12,8 @@ import {
 import LanguagesSelection from "./Components/languages_selection.jsx";
 import MainPage from "./pages/mainPage.jsx";
 import ManageAgudaMembers from "./pages/ManageAgudaMembers.jsx";
+import Login from "./Components/Login";
+import AddUsers from "./Components/addUsers";
 
 function App() {
 	const [currentLanguage, setCurrentLanguage] = useState("en");
@@ -26,6 +28,14 @@ function App() {
 				<Route
 					path="/manage_aguda_members"
 					element={<ManageAgudaMembers currentLanguage={currentLanguage} />}
+				/>
+				<Route
+					path="/login"
+					element={<Login currentLanguage={currentLanguage} />}
+				/>
+				<Route
+					path="/add_users"
+					element={<AddUsers currentLanguage={currentLanguage} />}
 				/>
 			</Route>
 		)
@@ -58,8 +68,15 @@ const Root = () => {
 		<>
 			<div id="nav_bar">
 				<h1>AgudaJCE</h1>
-				<Link to="/">Home</Link>
-				<Link to="/manage_aguda_members">Manage Aguda Members</Link>
+				<div className="nav_bar_pages">
+					<Link to="/">Home</Link>
+				</div>
+				<div className="nav_bar_pages">
+					<Link to="/manage_aguda_members">Manage Aguda Members</Link>
+				</div>
+				<div className="nav_bar_pages">
+					<Link to="/add_users">Add Users</Link>
+				</div>
 			</div>
 			<div id="page">
 				<Outlet />

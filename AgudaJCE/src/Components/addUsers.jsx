@@ -52,14 +52,30 @@ function AddUsers(props) {
 			skipEmptyLines: true,
 			complete: async function (results) {
 				for (const user of results.data) {
-					const userId = user.id.length < 9 ? "0" + user.id : user.id;
-					addUser({
-						id: userId,
-						email: user.email,
-						first_name: user.first_name,
-						last_name: user.last_name,
-						phone: "0" + user.phone,
-					});
+					const userId = user.idNumber.length < 9 ? "0" + user.idNumber : user.idNumber;
+
+					try {
+						// Create a new user with the provided email and password
+						await createUserWithEmailAndPassword(auth, user.email, userId);
+			
+						// Create a user document in the "users" collection with the same UID and isAdmin set to false
+						const userRef = collection(db, "Users");
+			
+						await addDoc(userRef, {
+							id: userId,
+							email: user.email,
+							first_name: user.firstName,
+							last_name: user.lastName,
+							phone: "0" + user.phone,
+							isAdmin: user.isAdmin === "TRUE" || user.isAdmin === "true" ? true : false,
+						});
+			
+						// User creation successful
+						console.log("User created successfully");
+					} catch (error) {
+						// Handle any errors
+						console.error("User creation error:", error);
+					}
 				}
 			},
 		});

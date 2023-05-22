@@ -2,3 +2,13 @@
 	width: 100%;
 	min-height: 100vh;
 }
+
+
+.login_button {
+	width: 5%;
+	border: 1px solid black;
+	border-radius: 0.5rem;
+	background-color: var(--JCE-red);
+	font-weight: 500;
+	font-size: 1rem;
+}

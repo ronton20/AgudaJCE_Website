@@ -5,8 +5,6 @@ import "../css/Login.css";
 
 import { app, auth, db } from "../firebase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
-// import { collection } from "firebase/firestore";
-// import { doc, getDoc } from "firebase/firestore";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 function Login(props) {
@@ -21,13 +19,8 @@ function Login(props) {
 		const password = document.getElementById(`input_field_${ids.password}`).value;
 		try {
 			// Sign in the user using the custom authentication method
-			const { user } = await signInWithEmailAndPassword(auth, email, password);
+			await signInWithEmailAndPassword(auth, email, password);
 
-			// Login successful
-			// console.log(user);
-			// console.log(user.uid);
-
-			//  --------------------------------------------------- ADD AND CHECK WHEN FIRESTORE IS READY ---------------------------------------------------
 			// Check the admin role in Firestore
 			const q = query(collection(db, "Users"), where("email", "==", email));
 			const querySnapshot = await getDocs(q);

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { app, db } from "../firebase.js";
-import { collection, doc, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import "./mainPage.css";
 
 import AgudaMember from "../Components/AgudaMember.jsx";
 
-function MainPage(props) {
+function MainPage() {
 	const [agudaMembers, setAgudaMembers] = useState([]);
 
 	useEffect(() => {
@@ -16,12 +16,6 @@ function MainPage(props) {
 		}
 		updateMembers();
 	}, []);
-
-	// const q = query();
-	// const getQuery = async () => {
-	// 	const querySnap = await getDocs(q);
-	// 	setQuerySnapshot(querySnap);
-	// };
 
 	return (
 		<div id="main_page">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import languages from "../modules/languages";
 import InputField from "./InputField.jsx";
 import "../css/addUsers.css";
@@ -6,7 +6,7 @@ import "../css/addUsers.css";
 import Papa from "papaparse";
 import { app, auth, db } from "../firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, doc, addDoc, setDoc, getDocs, query } from "firebase/firestore";
+import { collection, addDoc, } from "firebase/firestore";
 
 function AddUsers(props) {
 	const languageHelper = languages[props.currentLanguage].addUsers;

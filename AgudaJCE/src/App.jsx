@@ -29,7 +29,7 @@ function App() {
 				handleLanguageChange={handleLanguageChange} // Pass the event handler as a prop
 				selectedLanguage={currentLanguage}
 			/>
-			{/* <MainPage currentLanguage={currentLanguage} /> */}
+			<MainPage currentLanguage={currentLanguage} />
 			{/* <div id="login_form">
 				<Login currentLanguage={currentLanguage} />
 			</div> */}
@@ -42,9 +42,9 @@ function App() {
 			{/* <div id="add_aguda_members">
 				<AddAgudaMembers currentLanguage={currentLanguage} />
 			</div> */}
-			<div id="delete_aguda_members">
+			{/* <div id="delete_aguda_members">
 				<DeleteAgudaMembers currentLanguage={currentLanguage} />
-			</div>
+			</div> */}
 
 		</div>
 	);

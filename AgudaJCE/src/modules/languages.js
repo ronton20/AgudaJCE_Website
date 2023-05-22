@@ -19,6 +19,20 @@ const languages = {
 			submit: "Add",
 			chooseFile: "Choose File",
 		},
+		addAgudaMembers: {
+			header: "Add Aguda Members",
+			firstName: "First Name",
+			lastName: "Last Name",
+			position: "Position",
+			img: "Image",
+			submit: "Add",
+		},
+		deleteAgudaMembers: {
+			header: "Delete Aguda Member",
+			firstName: "First Name",
+			lastName: "Last Name",
+			submit: "Delete",
+		},
 	},
 	he: {
 		// Other sections...
@@ -39,6 +53,20 @@ const languages = {
 			phone: "מספר טלפון",
 			submit: "הוסף",
 			chooseFile: "בחר קובץ",
+		},
+		addAgudaMembers: {
+			header: "הוספת חברי אגודה",
+			firstName: "שם פרטי",
+			lastName: "שם משפחה",
+			position: "תפקיד",
+			img: "תמונה",
+			submit: "הוסף",
+		},
+		deleteAgudaMembers: {
+			header: "מחיקת חבר אגודה",
+			firstName: "שם פרטי",
+			lastName: "שם משפחה",
+			submit: "מחק",
 		},
 	},
 };

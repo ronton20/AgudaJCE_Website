@@ -3,9 +3,39 @@
 	min-height: 100vh;
 }
 
-#agudaMembers {
+#blur_background {
+	position: fixed;
+	top: 0;
+	left: 0;
 	width: 100%;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-	background-color: aquamarine;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1;
+	pointer-events: none;
+	opacity: 0;
+	transition: all 0.2s ease-in-out;
+}
+
+#blur_background.active {
+	pointer-events: all;
+	opacity: 1;
+}
+
+#login_div {
+	position: fixed;
+	inset: 0;
+	margin: auto;
+	width: 90%;
+	height: 80%;
+	max-width: 500px;
+	max-height: 500px;
+	z-index: 2;
+	pointer-events: none;
+	scale: 0;
+	transition: all 0.2s ease-in-out;
+}
+
+#login_div.active {
+	pointer-events: all;
+	scale: 1;
 }

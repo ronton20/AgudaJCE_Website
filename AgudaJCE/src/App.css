@@ -8,6 +8,8 @@
 * {
 	font-family: "Poppins", sans-serif;
 	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 button {
@@ -21,7 +23,14 @@ button {
 	text-align: center;
 }
 
-#app_main_page {
+#languageSelection {
+	position: fixed;
+	top: 0;
+	left: 10px;
+	height: 0;
+}
+
+#page {
 	width: 100%;
 	height: 100%;
 	min-height: 100vh;
@@ -35,13 +44,23 @@ button {
 	background-size: cover;
 }
 
-#login_form,
-#add_users_form {
+#nav_bar {
+	position: fixed;
+	top: 0;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	background-color: #8f8c8c;
+}
+
+.nav_bar_pages {
 	width: 100%;
-	max-width: 600px;
-	height: 100%;
-	min-height: 600px;
-	max-height: 800px;
+	height: 7%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .submit_button {

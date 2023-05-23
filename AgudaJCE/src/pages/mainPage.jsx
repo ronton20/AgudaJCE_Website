@@ -1,36 +1,61 @@
 import React, { useEffect, useState } from "react";
 import { app, db } from "../firebase.js";
-import { collection, doc, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import "./mainPage.css";
-
-import AgudaMember from "../Components/AgudaMember.jsx";
+import { Link } from "react-router-dom";
+import Login from "../Components/Login.jsx";
 
 function MainPage(props) {
-	const [agudaMembers, setAgudaMembers] = useState([]);
+	function toggleLogin() {
+		document.getElementById("login_div").classList.toggle("active");
+		document.getElementById("blur_background").classList.toggle("active");
+	}
 
-	useEffect(() => {
-		async function updateMembers() {
-			const querySnapshot = await getDocs(collection(db, "AgudaMembers"));
-			const members = querySnapshot.docs.map((doc) => doc.data());
-			setAgudaMembers(members);
-		}
-		updateMembers();
-	}, []);
+	const handleLogout = () => {
+		props.setUser({});
+		localStorage.clear();
 
-	// const q = query();
-	// const getQuery = async () => {
-	// 	const querySnap = await getDocs(q);
-	// 	setQuerySnapshot(querySnap);
-	// };
+		// refresh page after logout
+		window.location.reload(); //plaster
+	};
 
 	return (
 		<div id="main_page">
-			<h1>AgudaJCE</h1>
-			<div id="agudaMembers">
-				{agudaMembers.map((member, index) => (
-					<AgudaMember key={index} data={member} />
-				))}
+			{props.user ? (
+				<div id="logout_button_div">
+					<button
+						id="logout_button"
+						className="submit_button"
+						onClick={() => {
+							handleLogout();
+						}}
+					>
+						{props.languageHelper.logout.submit}
+					</button>
+				</div>
+			) : (
+				<div id="login_button_div">
+					<button
+						id="login_button"
+						className="submit_button"
+						onClick={() => {
+							toggleLogin();
+						}}
+					>
+						{props.languageHelper.login.submit}
+					</button>
+				</div>
+			)}
+			<h1>Main Page</h1>
+
+			<div id="login_div">
+				<Login
+					languageHelper={props.languageHelper.login}
+					setUser={props.setUser}
+					toggleLogin={toggleLogin}
+				/>
 			</div>
+			<div id="blur_background" onClick={toggleLogin}></div>
 		</div>
 	);
 }

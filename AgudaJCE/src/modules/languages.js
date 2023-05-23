@@ -31,6 +31,14 @@ const languages = {
 			img: "Image",
 			submit: "Add",
 		},
+		addEvent: {
+			header: "Add Event",
+			title: "Title",
+			description: "Description",
+			date: "Date",
+			time: "Time",
+			submit: "Add",
+		},
 		deleteAgudaMembers: {
 			header: "Delete Aguda Member",
 			firstName: "First Name",
@@ -68,6 +76,14 @@ const languages = {
 			lastName: "שם משפחה",
 			position: "תפקיד",
 			img: "תמונה",
+			submit: "הוסף",
+		},
+		addEvent: {
+			header: "הוספת אירוע",
+			title: "כותרת",
+			description: "תיאור",
+			date: "תאריך",
+			time: "שעה",
 			submit: "הוסף",
 		},
 		deleteAgudaMembers: {

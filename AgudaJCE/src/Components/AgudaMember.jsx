@@ -4,6 +4,8 @@ import "../css/AgudaMember.css";
 import { db } from "../firebase.js";
 import { doc, deleteDoc } from "firebase/firestore";
 
+import RemoveButton from "./RemoveButton.jsx";
+
 function AgudaMember(props) {
 	const deleteMember = async (e) => {
 		e.preventDefault();
@@ -21,16 +23,7 @@ function AgudaMember(props) {
 		<div className="agudaMember">
 			<div className="agudaMemberOverlay">
 				<img src={props.data.Img} alt={props.data.Name} />
-				{props.removable ? (
-					<button className="remove_aguda_member_button" onClick={deleteMember}>
-						<div className="removeCircle">
-							<div className="removeLine1"></div>
-							<div className="removeLine2"></div>
-						</div>
-					</button>
-				) : (
-					<></>
-				)}
+				{props.removable ? <RemoveButton onClick={deleteMember} /> : <></>}
 			</div>
 			<h3>{props.data.Name}</h3>
 			<p>{props.data.Position}</p>

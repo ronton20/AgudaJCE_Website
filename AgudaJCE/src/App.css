@@ -52,6 +52,7 @@ button {
 	flex-direction: column;
 	gap: 0.5rem;
 	background-color: #8f8c8c;
+	z-index: 1000;
 }
 
 .nav_bar_pages {

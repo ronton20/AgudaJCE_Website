@@ -13,6 +13,7 @@ import languages from "./modules/languages";
 import LanguagesSelection from "./Components/languages_selection.jsx";
 import MainPage from "./pages/mainPage.jsx";
 import ManageAgudaMembers from "./pages/ManageAgudaMembers.jsx";
+import ManageEvents from "./pages/ManageEvents.jsx";
 import AddUsers from "./Components/addUsers";
 
 function App() {
@@ -47,6 +48,10 @@ function App() {
 				<Route
 					path="/add_users"
 					element={<AddUsers languageHelper={languageHelper.addUsers} />}
+				/>
+				<Route
+					path="/manage_events"
+					element={<ManageEvents languageHelper={languageHelper} />}
 				/>
 			</Route>
 		)
@@ -88,6 +93,9 @@ const Root = (props) => {
 					</div>
 					<div className="nav_bar_pages">
 						<Link to="/add_users">Add Users</Link>
+					</div>
+					<div className="nav_bar_pages">
+						<Link to="/manage_events">Manage Events</Link>
 					</div>
 				</div>
 			) : (

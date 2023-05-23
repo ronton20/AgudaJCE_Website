@@ -1,0 +1,57 @@
+.remove_button {
+	position: absolute;
+	appearance: none;
+	border: none;
+	background-color: transparent;
+	width: 30px;
+	aspect-ratio: 1;
+	top: 0;
+	right: -5%;
+}
+
+.remove_button > .removeCircle {
+	width: 90%;
+	height: 90%;
+	margin: 0 auto;
+	border-radius: 50%;
+	border: 1px solid black;
+	background-color: red;
+	opacity: 0.5;
+	transition: opacity 0.1s ease-in-out;
+}
+
+.remove_button:hover > .removeCircle {
+	opacity: 1;
+	animation: pop 0.2s ease-in-out;
+}
+
+.remove_button > .removeCircle > .removeLine1,
+.remove_button > .removeCircle > .removeLine2 {
+	position: absolute;
+	width: 14px;
+	height: 2px;
+	inset: 0;
+	margin: auto;
+	background-color: white;
+	transition: transform 0.1s ease-in-out;
+}
+
+.remove_button:hover > .removeCircle > .removeLine1 {
+	transform: rotate(45deg);
+}
+
+.remove_button:hover > .removeCircle > .removeLine2 {
+	transform: rotate(-45deg);
+}
+
+@keyframes pop {
+	0% {
+		transform: scale(0.9);
+	}
+	33% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(0.9);
+	}
+}

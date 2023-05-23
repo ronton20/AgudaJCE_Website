@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { app, auth, db, storage } from "../firebase.js";
 import { collection, doc, addDoc, setDoc, getDocs, query} from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
+import InputField from "./InputField.jsx";
 
 
 
@@ -10,20 +11,19 @@ import { ref, uploadBytes } from "firebase/storage";
 function AddEvent(props) {
     // create the upload box
     const [image, setImage] = useState(null);
-    const [url, setUrl] = useState("");
-    const [progress, setProgress] = useState(0);
+    const [imageName, setImageName] = useState("");
 
-    // this function will upload the image to the firebase storage
     const handleChange = (e) => {
         if (e.target.files[0]) {
-            // set the image response to alt="firebase-image" to the image
-            setImage(e.target.files[0]);
+            // set the image to the uploaded image
+            setImage(URL.createObjectURL(e.target.files[0]));
+            // set the image name to the uploaded image name without the file type
+            setImageName(e.target.files[0].name.split(".")[0]);
         }
     };
 
     // this function will upload the image to the firebase storage
     const handleUpload = () => {
-        console.log("handleUpload");
         // alert and return if image is null
         if (image == null) {
             alert("Please select an image to upload");
@@ -35,14 +35,12 @@ function AddEvent(props) {
     // this function will upload the image to the firebase storage
     const addEventToStorage = async (image) => {
         // create a reference to the firebase storage
-        console.log("addEventToStorage");
-        const imageRef = ref(storage, `Events/${image.name + '_' + Date.now()}`);
+        const imageRef = ref(storage, `Events/${imageName + '_' + Date.now()}`);
         // upload the image to the firebase storage
         uploadBytes(imageRef, image).then(() => {
             alert("Image uploaded successfully to the storage");
         })
         // add the image to the Events collection
-        console.log(imageRef.fullPath);
         addEventToCollection(imageRef.fullPath);
     };
 
@@ -51,18 +49,24 @@ function AddEvent(props) {
         const eventRef = collection(db, "Events");
         await addDoc(eventRef, {
             // add the image to the document
-            image: imageUrl,
+            Date: new Date().toLocaleDateString(),
+            Title: document.getElementById("input_field_add_event_title").value,
+            Description: document.getElementById("input_field_add_event_description").value,
+            imgUrl: imageUrl,
         });
     };
 
     return (
         <div>
-            <progress value={progress} max="100" />
-            <br />
+            <div>
+                <InputField _id="add_event_title" type="text" label="Title"/>
+                <InputField _id="add_event_description" type="text" label="Description"/>
+            </div>
+            <div>
             <input type="file" onChange={handleChange} />
+            <img src={image? image : "http://via.placeholder.com/900x500"} alt="firebase-image" />
+            </div>
             <button onClick={handleUpload}>Upload</button>
-            <br />
-            <img src={url || "http://via.placeholder.com/400"} alt="firebase-image" />
         </div>
     );
 }

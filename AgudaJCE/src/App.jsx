@@ -28,7 +28,7 @@ function App() {
 				handleLanguageChange={handleLanguageChange} // Pass the event handler as a prop
 				selectedLanguage={currentLanguage}
 			/>
-			<MainPage currentLanguage={currentLanguage} />
+			<AddEvent currentLanguage={currentLanguage} />
 			{/* <div id="login_form">
 				<Login currentLanguage={currentLanguage} />
 			</div> */}

@@ -7,7 +7,6 @@ import { db } from "../firebase.js";
 import { collection, addDoc } from "firebase/firestore";
 
 function AddAgudaMembers(props) {
-	const languageHelper = languages[props.currentLanguage].addAgudaMembers;
 	const ids = {
 		firstName: "add_aguda_members_first_name",
 		lastName: "add_aguda_members_last_name",
@@ -37,14 +36,18 @@ function AddAgudaMembers(props) {
 
 	return (
 		<div className="add_aguda_members_div">
-			<h2>{languageHelper.header}</h2>
+			<h2>{props.languageHelper.header}</h2>
 			<form className="add_aguda_members_form" onSubmit={addMember}>
-				<InputField _id={ids.firstName} label={languageHelper.firstName} type="text" />
-				<InputField _id={ids.lastName} label={languageHelper.lastName} type="text" />
-				<InputField _id={ids.position} label={languageHelper.position} type="text" />
-				<InputField _id={ids.img} label={languageHelper.img} type="text" />
+				<InputField
+					_id={ids.firstName}
+					label={props.languageHelper.firstName}
+					type="text"
+				/>
+				<InputField _id={ids.lastName} label={props.languageHelper.lastName} type="text" />
+				<InputField _id={ids.position} label={props.languageHelper.position} type="text" />
+				<InputField _id={ids.img} label={props.languageHelper.img} type="text" />
 				<button className="submit_button" type="submit">
-					{languageHelper.submit}
+					{props.languageHelper.submit}
 				</button>
 			</form>
 		</div>

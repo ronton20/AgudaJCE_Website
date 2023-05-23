@@ -11,13 +11,13 @@ function ManageAgudaMembers(props) {
 
 	async function updateMembers() {
 		const querySnapshot = await getDocs(collection(db, "AgudaMembers"));
-		// const members = querySnapshot.docs.map((doc) => doc.data());
 		const members = querySnapshot.docs.map((doc) => ({
 			id: doc.id,
 			...doc.data(),
 		}));
 		setAgudaMembers(members);
 	}
+
 	useEffect(() => {
 		updateMembers();
 	}, []);
@@ -26,7 +26,7 @@ function ManageAgudaMembers(props) {
 		<div id="manage_aguda_members_page">
 			<div id="addMembers">
 				<AddAgudaMembers
-					currentLanguage={props.currentLanguage}
+					languageHelper={props.languageHelper.addAgudaMembers}
 					updateMembers={updateMembers}
 				/>
 			</div>

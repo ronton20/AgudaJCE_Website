@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import {
 	createBrowserRouter,
@@ -9,33 +9,44 @@ import {
 	Outlet,
 } from "react-router-dom";
 
+import languages from "./modules/languages";
 import LanguagesSelection from "./Components/languages_selection.jsx";
 import MainPage from "./pages/mainPage.jsx";
 import ManageAgudaMembers from "./pages/ManageAgudaMembers.jsx";
-import Login from "./Components/Login";
 import AddUsers from "./Components/addUsers";
 
 function App() {
 	const [currentLanguage, setCurrentLanguage] = useState("en");
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [isAdmin, setIsAdmin] = useState(false);
-	const [currentUserEmail, setCurrentUserEmail] = useState("");
+	const [user, setUser] = useState();
+	const [isAdmin, setIsAdmin] = useState();
+	const languageHelper = languages[currentLanguage];
+
+	// Checks if a user is logged in and sets the user state accordingly
+	useEffect(() => {
+		const loggedInUser = localStorage.getItem("user");
+		if (loggedInUser) {
+			const foundUser = JSON.parse(loggedInUser);
+			setUser(foundUser);
+			setIsAdmin(foundUser.isAdmin);
+		}
+	}, []);
 
 	const router = createBrowserRouter(
 		createRoutesFromElements(
-			<Route path="/" element={<Root />}>
-				<Route index element={<MainPage currentLanguage={currentLanguage} />} />
+			<Route path="/" element={<Root isAdmin={isAdmin} />}>
 				<Route
-					path="/manage_aguda_members"
-					element={<ManageAgudaMembers currentLanguage={currentLanguage} />}
+					index
+					element={
+						<MainPage languageHelper={languageHelper} user={user} setUser={setUser} />
+					}
 				/>
 				<Route
-					path="/login"
-					element={<Login currentLanguage={currentLanguage} />}
+					path="/manage_aguda_members"
+					element={<ManageAgudaMembers languageHelper={languageHelper} />}
 				/>
 				<Route
 					path="/add_users"
-					element={<AddUsers currentLanguage={currentLanguage} />}
+					element={<AddUsers languageHelper={languageHelper.addUsers} />}
 				/>
 			</Route>
 		)
@@ -63,21 +74,25 @@ function App() {
 	);
 }
 
-const Root = () => {
+const Root = (props) => {
 	return (
 		<>
-			<div id="nav_bar">
-				<h1>AgudaJCE</h1>
-				<div className="nav_bar_pages">
-					<Link to="/">Home</Link>
+			{props.isAdmin ? (
+				<div id="nav_bar">
+					<h1>AgudaJCE</h1>
+					<div className="nav_bar_pages">
+						<Link to="/">Home</Link>
+					</div>
+					<div className="nav_bar_pages">
+						<Link to="/manage_aguda_members">Manage Aguda Members</Link>
+					</div>
+					<div className="nav_bar_pages">
+						<Link to="/add_users">Add Users</Link>
+					</div>
 				</div>
-				<div className="nav_bar_pages">
-					<Link to="/manage_aguda_members">Manage Aguda Members</Link>
-				</div>
-				<div className="nav_bar_pages">
-					<Link to="/add_users">Add Users</Link>
-				</div>
-			</div>
+			) : (
+				<></>
+			)}
 			<div id="page">
 				<Outlet />
 			</div>

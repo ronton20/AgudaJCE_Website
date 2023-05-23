@@ -9,6 +9,10 @@ const languages = {
 			error_user_not_found: "User not found",
 			error_wrong_password: "Wrong password",
 		},
+		logout: {
+			header: "Logout",
+			submit: "Logout",
+		},
 		addUsers: {
 			header: "Add Users",
 			firstName: "First Name",
@@ -43,6 +47,10 @@ const languages = {
 			submit: "התחבר",
 			error_user_not_found: "משתמש לא נמצא",
 			error_wrong_password: "סיסמה שגויה",
+		},
+		logout: {
+			header: "התנתקות",
+			submit: "התנתק",
 		},
 		addUsers: {
 			header: "הוספת משתמשים",

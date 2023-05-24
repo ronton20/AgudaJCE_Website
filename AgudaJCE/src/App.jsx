@@ -14,6 +14,7 @@ import LanguagesSelection from "./Components/languages_selection.jsx";
 import MainPage from "./pages/mainPage.jsx";
 import ManageAgudaMembers from "./pages/ManageAgudaMembers.jsx";
 import ManageEvents from "./pages/ManageEvents.jsx";
+import ManageMarathons from "./pages/ManageMarathons.jsx";
 import AddUsers from "./Components/addUsers";
 
 function App() {
@@ -37,9 +38,7 @@ function App() {
 			<Route path="/" element={<Root isAdmin={isAdmin} />}>
 				<Route
 					index
-					element={
-						<MainPage languageHelper={languageHelper} user={user} setUser={setUser} />
-					}
+					element={<MainPage languageHelper={languageHelper} user={user} setUser={setUser} />}
 				/>
 				<Route
 					path="/manage_aguda_members"
@@ -52,6 +51,10 @@ function App() {
 				<Route
 					path="/manage_events"
 					element={<ManageEvents languageHelper={languageHelper} />}
+				/>
+				<Route
+					path="/manage_marathons"
+					element={<ManageMarathons languageHelper={languageHelper} />}
 				/>
 			</Route>
 		)
@@ -96,6 +99,9 @@ const Root = (props) => {
 					</div>
 					<div className="nav_bar_pages">
 						<Link to="/manage_events">Manage Events</Link>
+					</div>
+					<div className="nav_bar_pages">
+						<Link to="/manage_marathons">Manage Marathons</Link>
 					</div>
 				</div>
 			) : (

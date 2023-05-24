@@ -66,7 +66,9 @@ function AddEvent(props) {
 				<input type="file" onChange={handleChange} />
 				<img src={image ? image : "http://via.placeholder.com/300"} alt="firebase-image" />
 			</div>
-			<button onClick={handleUpload}>Upload</button>
+			<button className="submit_button" onClick={handleUpload}>
+				Upload
+			</button>
 		</div>
 	);
 }

@@ -1,0 +1,11 @@
+.add_aguda_members_div {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.add_aguda_members_form {
+	width: 70%;
+}

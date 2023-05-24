@@ -1,7 +1,7 @@
 import React from "react";
 import languages from "../modules/languages";
 import InputField from "./InputField.jsx";
-// import "./addAgudaMembers.css";
+import "../css/AddAgudaMembers.css";
 
 import { db } from "../firebase.js";
 import { collection, addDoc } from "firebase/firestore";
@@ -35,17 +35,27 @@ function AddAgudaMembers(props) {
 	};
 
 	return (
-		<div className="add_aguda_members_div">
+		<div className="add_aguda_members_div glassify">
 			<h2>{props.languageHelper.header}</h2>
-			<form className="add_aguda_members_form" onSubmit={addMember}>
-				<InputField
-					_id={ids.firstName}
-					label={props.languageHelper.firstName}
-					type="text"
-				/>
-				<InputField _id={ids.lastName} label={props.languageHelper.lastName} type="text" />
-				<InputField _id={ids.position} label={props.languageHelper.position} type="text" />
-				<InputField _id={ids.img} label={props.languageHelper.img} type="text" />
+			<form className="add_aguda_members_form container" onSubmit={addMember}>
+				<div className="flex">
+					<InputField
+						_id={ids.firstName}
+						label={props.languageHelper.firstName}
+						type="text"
+					/>
+					<InputField
+						_id={ids.lastName}
+						label={props.languageHelper.lastName}
+						type="text"
+					/>
+					<InputField
+						_id={ids.position}
+						label={props.languageHelper.position}
+						type="text"
+					/>
+					<InputField _id={ids.img} label={props.languageHelper.img} type="text" />
+				</div>
 				<button className="submit_button" type="submit">
 					{props.languageHelper.submit}
 				</button>

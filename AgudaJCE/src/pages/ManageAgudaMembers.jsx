@@ -23,14 +23,17 @@ function ManageAgudaMembers(props) {
 	}, []);
 
 	return (
-		<div id="manage_aguda_members_page">
+		<div id="manage_aguda_members_page" className="container">
+			<h1 id="manage_aguda_members_title">
+				{props.languageHelper.manageAgudaMembers.header}
+			</h1>
 			<div id="addMembers">
 				<AddAgudaMembers
 					languageHelper={props.languageHelper.addAgudaMembers}
 					updateMembers={updateMembers}
 				/>
 			</div>
-			<div id="agudaMembers">
+			<div id="agudaMembers" className="glassify">
 				{agudaMembers.map((member) => (
 					<AgudaMember
 						key={member.id}

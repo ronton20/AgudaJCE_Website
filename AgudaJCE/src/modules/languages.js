@@ -37,17 +37,18 @@ const languages = {
 			description: "Description",
 			date: "Date",
 			time: "Time",
+			chooseFile: "Choose File",
 			submit: "Add",
 		},
 		addMarathon: {
 			header: "Add Marathon",
 			department: "Department",
-            course: "Course",
-            lecturer: "Lecturer",
-            date: "Date",
-            price: "Price",
-			currency: "nis",
-            link: "Registration Link",
+			course: "Course",
+			lecturer: "Lecturer",
+			date: "Date",
+			price: "Price",
+			currency: "₪",
+			link: "Registration Link",
 			submit: "Add",
 		},
 		deleteAgudaMembers: {
@@ -58,6 +59,20 @@ const languages = {
 		},
 		manageAgudaMembers: {
 			header: "Manage Aguda Members",
+		},
+		manageEvents: {
+			header: "Manage Events",
+		},
+		manageMarathons: {
+			header: "Manage Marathons",
+		},
+		navBar: {
+			header: "Admin Panel",
+			home: "Home",
+			manageAgudaMembers: "Manage Aguda Members",
+			manageEvents: "Manage Events",
+			manageMarathons: "Manage Marathons",
+			manageUsers: "Manage Users",
 		},
 	},
 	he: {
@@ -98,6 +113,7 @@ const languages = {
 			description: "תיאור",
 			date: "תאריך",
 			time: "שעה",
+			chooseFile: "בחר קובץ",
 			submit: "הוסף",
 		},
 		addMarathon: {
@@ -107,7 +123,7 @@ const languages = {
 			lecturer: "מרצה",
 			date: "תאריך",
 			price: "מחיר",
-			currency: "שח",
+			currency: "₪",
 			link: "קישור להרשמה",
 			submit: "הוסף",
 		},
@@ -119,6 +135,20 @@ const languages = {
 		},
 		manageAgudaMembers: {
 			header: "ניהול חברי אגודה",
+		},
+		manageEvents: {
+			header: "ניהול אירועים",
+		},
+		manageMarathons: {
+			header: "ניהול מרתונים",
+		},
+		navBar: {
+			header: "פאנל ניהול",
+			home: "בית",
+			manageAgudaMembers: "ניהול חברי אגודה",
+			manageEvents: "ניהול אירועים",
+			manageMarathons: "ניהול מרתונים",
+			manageUsers: "ניהול משתמשים",
 		},
 	},
 };

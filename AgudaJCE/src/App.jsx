@@ -11,6 +11,7 @@ import {
 
 import languages from "./modules/languages";
 import LanguagesSelection from "./Components/languages_selection.jsx";
+import NavBar from "./Components/NavBar";
 import MainPage from "./pages/mainPage.jsx";
 import ManageAgudaMembers from "./pages/ManageAgudaMembers.jsx";
 import ManageEvents from "./pages/ManageEvents.jsx";
@@ -35,10 +36,15 @@ function App() {
 
 	const router = createBrowserRouter(
 		createRoutesFromElements(
-			<Route path="/" element={<Root isAdmin={isAdmin} />}>
+			<Route
+				path="/"
+				element={<Root isAdmin={isAdmin} languageHelper={languageHelper.navBar} />}
+			>
 				<Route
 					index
-					element={<MainPage languageHelper={languageHelper} user={user} setUser={setUser} />}
+					element={
+						<MainPage languageHelper={languageHelper} user={user} setUser={setUser} />
+					}
 				/>
 				<Route
 					path="/manage_aguda_members"
@@ -86,24 +92,32 @@ const Root = (props) => {
 	return (
 		<>
 			{props.isAdmin ? (
-				<div id="nav_bar">
-					<h1>AgudaJCE</h1>
-					<div className="nav_bar_pages">
-						<Link to="/">Home</Link>
-					</div>
-					<div className="nav_bar_pages">
-						<Link to="/manage_aguda_members">Manage Aguda Members</Link>
-					</div>
-					<div className="nav_bar_pages">
-						<Link to="/add_users">Add Users</Link>
-					</div>
-					<div className="nav_bar_pages">
-						<Link to="/manage_events">Manage Events</Link>
-					</div>
-					<div className="nav_bar_pages">
-						<Link to="/manage_marathons">Manage Marathons</Link>
-					</div>
-				</div>
+				<NavBar
+					languageHelper={props.languageHelper}
+					links={[
+						{ key: "nav_link_1", name: props.languageHelper.home, path: "/" },
+						{
+							key: "nav_link_2",
+							name: props.languageHelper.manageAgudaMembers,
+							path: "/manage_aguda_members",
+						},
+						{
+							key: "nav_link_3",
+							name: props.languageHelper.manageUsers,
+							path: "/add_users",
+						},
+						{
+							key: "nav_link_4",
+							name: props.languageHelper.manageEvents,
+							path: "/manage_events",
+						},
+						{
+							key: "nav_link_5",
+							name: props.languageHelper.manageMarathons,
+							path: "/manage_marathons",
+						},
+					]}
+				/>
 			) : (
 				<></>
 			)}

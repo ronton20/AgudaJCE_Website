@@ -3,9 +3,9 @@
 	height: fit-content;
 	box-sizing: border-box;
 	padding: 0.5rem 1rem;
-	border-radius: 0 0 1rem 1rem;
+	border-radius: 0 0 10px 10px;
 	background-color: #222;
-	z-index: 100;
+	z-index: 1000;
 }
 
 #languages_tab_selection {
@@ -15,4 +15,15 @@
 	padding: 0.5rem 1rem;
 	font-size: medium;
 	font-weight: 400;
+}
+
+@media screen and (max-width: 600px) {
+	.languages_tab {
+		padding: 0.25rem 0.5rem;
+	}
+
+	#languages_tab_selection {
+		font-size: small;
+		padding: 0.25rem 0.5rem;
+	}
 }

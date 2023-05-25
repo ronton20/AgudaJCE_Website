@@ -1,19 +1,19 @@
 #manage_events_page {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
+		linear-gradient(15deg, #1449aa, #0073df);
+}
+
+#add_event {
+	width: 60%;
+	max-height: 600px;
 }
 
 #event_list {
+	width: 90%;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-	grid-gap: 1rem;
-	width: 100%;
-	height: 100%;
-	padding: 1rem;
-	margin: 0;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	place-items: center;
+	direction: ltr;
 }
 
 #blur_background {
@@ -32,4 +32,15 @@
 #blur_background.active {
 	pointer-events: all;
 	opacity: 1;
+}
+
+@media screen and (max-width: 600px) {
+	#add_event {
+		width: 100%;
+		max-height: none;
+	}
+
+	#event_list {
+		width: 100%;
+	}
 }

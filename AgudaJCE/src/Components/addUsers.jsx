@@ -130,7 +130,7 @@ function AddUsers(props) {
 					{props.languageHelper.submit}
 				</button>
 			</form>
-			<label id={ids.uploadFileLabel} className="submit_button" htmlFor={ids.uploadFile}>
+			<label id={ids.uploadFileLabel} className="choose_file_button" htmlFor={ids.uploadFile}>
 				{props.languageHelper.chooseFile}
 				<input id={ids.uploadFile} type="file" accept=".csv" onChange={handleFileChange} />
 			</label>

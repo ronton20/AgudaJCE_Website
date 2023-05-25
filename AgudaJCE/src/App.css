@@ -3,13 +3,28 @@
 	--JCE-red: #dd0000;
 	--JCE-red-shine: #dd5555;
 	--JCE-white: #eeeeee;
+	--JCE-red-gradient: linear-gradient(
+		159deg,
+		rgba(195, 0, 0, 1) 0%,
+		rgba(255, 46, 46, 1) 25%,
+		rgba(255, 0, 0, 1) 50%,
+		rgba(255, 46, 46, 1) 75%,
+		rgba(195, 0, 0, 1) 100%
+	);
 }
 
-* {
+*,
+*::before,
+*::after {
 	font-family: "Heebo", sans-serif;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+}
+
+h1 {
+	font-size: 3rem;
+	font-weight: 600;
 }
 
 button {
@@ -28,6 +43,7 @@ button {
 	top: 0;
 	left: 10px;
 	height: 0;
+	z-index: 1000;
 }
 
 #page {
@@ -64,7 +80,8 @@ button {
 	justify-content: center;
 }
 
-.submit_button {
+.submit_button,
+.choose_file_button {
 	position: relative;
 	overflow: hidden;
 	width: 50%;
@@ -83,7 +100,8 @@ button {
 	transition: background-color 0.3s;
 }
 
-.submit_button::after {
+.submit_button::after,
+.choose_file_button::after {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -102,12 +120,23 @@ button {
 	pointer-events: none;
 }
 
-.submit_button:hover {
+.submit_button:hover,
+.choose_file_button:hover {
 	background-color: var(--JCE-red);
 }
 
-.submit_button:hover::after {
+.submit_button:hover::after,
+.choose_file_button:hover::after {
 	animation: shine 0.25s linear;
+}
+
+.choose_file_button {
+	cursor: pointer;
+	color: black;
+}
+
+.choose_file_button > input {
+	display: none;
 }
 
 .flex {
@@ -117,6 +146,44 @@ button {
 	justify-content: center;
 	align-items: center;
 	gap: 1rem;
+}
+
+.grid-2 {
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+	h1 {
+		font-size: 2rem;
+	}
+
+	.flex {
+		flex-direction: column;
+	}
+
+	.grid-2 {
+		grid-template-columns: 1fr;
+	}
+
+	.submit_button,
+	.choose_file_button {
+		font-size: 1rem;
+	}
+}
+
+.page {
+	width: 100%;
+	height: 100%;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+	padding: 2rem;
 }
 
 .container {

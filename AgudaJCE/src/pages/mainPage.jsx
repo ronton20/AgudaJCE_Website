@@ -20,7 +20,7 @@ function MainPage(props) {
 	};
 
 	return (
-		<div id="main_page">
+		<div id="main_page" className="page">
 			{props.user ? (
 				<div id="logout_button_div">
 					<button

@@ -23,3 +23,9 @@
 .input_field > input:focus {
 	outline: none;
 }
+
+@media screen and (max-width: 600px) {
+	.input_field {
+		width: 100%;
+	}
+}

@@ -9,3 +9,9 @@
 .add_aguda_members_form {
 	width: 70%;
 }
+
+@media screen and (max-width: 600px) {
+	.add_aguda_members_form {
+		width: 100%;
+	}
+}

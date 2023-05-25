@@ -23,7 +23,7 @@ function ManageAgudaMembers(props) {
 	}, []);
 
 	return (
-		<div id="manage_aguda_members_page" className="container">
+		<div id="manage_aguda_members_page" className="page">
 			<h1 id="manage_aguda_members_title">
 				{props.languageHelper.manageAgudaMembers.header}
 			</h1>

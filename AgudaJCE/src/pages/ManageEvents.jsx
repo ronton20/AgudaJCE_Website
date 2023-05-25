@@ -28,14 +28,14 @@ function ManageEvents(props) {
 	}, []);
 
 	return (
-		<div id="manage_events_page">
+		<div id="manage_events_page" className="page">
 			<div id="add_event">
 				<AddEvent
 					languageHelper={props.languageHelper.addEvent}
 					updateEvents={updateEvents}
 				/>
 			</div>
-			<div id="event_list">
+			<div id="event_list" className="glassify">
 				{events.map((event) => (
 					<Event
 						key={event.id}

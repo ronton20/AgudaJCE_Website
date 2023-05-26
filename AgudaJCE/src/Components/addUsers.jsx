@@ -6,7 +6,9 @@ import "../css/addUsers.css";
 import Papa from "papaparse";
 import { app, auth, db } from "../firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
+
+
 
 function AddUsers(props) {
 	const ids = {
@@ -50,32 +52,75 @@ function AddUsers(props) {
 			header: true,
 			skipEmptyLines: true,
 			complete: async function (results) {
-				for (const user of results.data) {
-					const userId = user.idNumber.length < 9 ? "0" + user.idNumber : user.idNumber;
 
-					try {
-						// Create a new user with the provided email and password
-						await createUserWithEmailAndPassword(auth, user.email, userId);
+				// get all the users IDs from the DB
+				const querySnapshot = await getDocs(collection(db, "Users"));
+				const users = querySnapshot.docs.map((doc) => ({
+					id: doc.id,
+					...doc.data(),
+				}));
+				for (const csvUser of results.data) {
+					const userId = csvUser.idNumber.length < 9 ? "0" + csvUser.idNumber : csvUser.idNumber;
+					// if the user in the CSV and not in the DB already add the user
+					const existingUser = users.find((u) => u.id === userId);
+					if (!existingUser) {
+						try {
+							// Create a new user with the provided email and password
+							await createUserWithEmailAndPassword(auth, csvUser.email, userId);
 
-						// Create a user document in the "users" collection with the same UID and isAdmin set to false
-						const userRef = collection(db, "Users");
+							// Create a user document in the "users" collection with the same UID and isAdmin set to false
+							const userRef = collection(db, "Users");
 
-						await addDoc(userRef, {
-							id: userId,
-							email: user.email,
-							first_name: user.firstName,
-							last_name: user.lastName,
-							phone: "0" + user.phone,
-							isAdmin:
-								user.isAdmin === "TRUE" || user.isAdmin === "true" ? true : false,
-						});
+							await addDoc(userRef, {
+								id: userId,
+								email: csvUser.email,
+								first_name: csvUser.firstName,
+								last_name: csvUser.lastName,
+								phone: "0" + csvUser.phone,
+								isAdmin:
+								csvUser.isAdmin === "TRUE" || csvUser.isAdmin === "true" ? true : false,
+							});
 
-						// User creation successful
-						console.log("User created successfully");
-					} catch (error) {
-						// Handle any errors
-						console.error("User creation error:", error);
+							// User creation successful
+						} catch (error) {
+							// Handle any errors
+							console.error("User creation error:", error);
+						}
 					}
+					// if the user in the CSV and in the DB already update the user and delete the user from users array
+					else {
+						const docId = querySnapshot.docs.find((doc) => doc.data().id === userId).id;
+						// try to update the user
+						try {
+							const userRef = doc(db, "Users", docId);
+							await updateDoc(userRef, {
+								email: csvUser.email,
+								first_name: csvUser.firstName,
+								last_name: csvUser.lastName,
+								phone: "0" + csvUser.phone,
+								isAdmin:
+								csvUser.isAdmin === "TRUE" || csvUser.isAdmin === "true" ? true : false,
+							});
+						} catch (error) {
+							// Handle any errors
+							console.error("User update error:", error);
+						}
+						// delete the user from the users array
+						users.splice(users.indexOf(existingUser), 1);
+					}
+						
+				}
+				// if the user in the DB and not in the CSV delete the user
+				for (const user of users) {
+					const docId = querySnapshot.docs.find((doc) => doc.data().id === user.id).id;
+					const userRef = doc(db, "Users", docId);
+					// delete the document
+					// await deleteDoc(userRef);
+					// get all the users from the authentification
+					// console.log(uid);
+					// delete the user
+					
+					await auth.deleteUser(uid);
 				}
 			},
 		});
@@ -104,9 +149,7 @@ function AddUsers(props) {
 				phone: phone,
 				isAdmin: isAdmin,
 			});
-
 			// User creation successful
-			console.log("User created successfully");
 		} catch (error) {
 			// Handle any errors
 			console.error("User creation error:", error);

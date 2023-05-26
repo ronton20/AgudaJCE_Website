@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import languages from "../modules/languages";
+import React from "react";
 import InputField from "./InputField";
 import "../css/Login.css";
 
-import { app, auth, db } from "../firebase.js";
+import { auth } from "../firebase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { collection, query, where, getDocs } from "firebase/firestore";
 
 function Login(props) {
 	const ids = {
 		email: "login_email",
 		password: "login_password",
 	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const email = document.getElementById(`input_field_${ids.email}`).value;
@@ -19,20 +18,8 @@ function Login(props) {
 		try {
 			// Sign in the user using the custom authentication method
 			await signInWithEmailAndPassword(auth, email, password);
-
-			// Check the admin role in Firestore
-			const q = query(collection(db, "Users"), where("email", "==", email));
-			const querySnapshot = await getDocs(q);
-
-			const isAdmin = querySnapshot.docs[0].data().isAdmin;
-
-			props.setUser({ email: email, password: password, isAdmin: isAdmin });
-			localStorage.setItem(
-				"user",
-				JSON.stringify({ email: email, password: password, isAdmin: isAdmin })
-			);
+			// Close the login modal and refresh the page
 			props.toggleLogin();
-			window.location.reload(); //plaster
 		} catch (error) {
 			// Handle any errors
 			if (error.code == "auth/user-not-found") {

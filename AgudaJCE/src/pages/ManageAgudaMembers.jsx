@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../firebase.js";
+import { db, auth } from "../firebase.js";
 import { collection, getDocs } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import "./ManageAgudaMembers.css";
 
 import AddAgudaMembers from "../Components/AddAgudaMembers.jsx";
 import AgudaMember from "../Components/AgudaMember.jsx";
 
 function ManageAgudaMembers(props) {
+	const [user, loading, error] = useAuthState(auth);
 	const [agudaMembers, setAgudaMembers] = useState([]);
+	const navigate = useNavigate();
 
 	async function updateMembers() {
 		const querySnapshot = await getDocs(collection(db, "AgudaMembers"));
@@ -17,6 +21,11 @@ function ManageAgudaMembers(props) {
 		}));
 		setAgudaMembers(members);
 	}
+
+	useEffect(() => {
+		if (loading) return;
+		if (!user) return navigate("/");
+	}, [user, loading]);
 
 	useEffect(() => {
 		updateMembers();

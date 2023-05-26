@@ -11,6 +11,9 @@
 		rgba(255, 46, 46, 1) 75%,
 		rgba(195, 0, 0, 1) 100%
 	);
+
+	--JCE-BR: 7px;
+	--JCE-Padding: 10px;
 }
 
 *,
@@ -84,12 +87,12 @@ button {
 .choose_file_button {
 	position: relative;
 	overflow: hidden;
-	width: 50%;
-	height: 2rem;
-	padding: 1rem;
+	width: 60%;
+	height: calc(var(--JCE-Padding) * 3);
+	padding: var(--JCE-Padding);
 	text-align: center;
 	border: 1px solid black;
-	border-radius: 0.5rem;
+	border-radius: var(--JCE-BR);
 	font-weight: 500;
 	font-size: 1.25rem;
 	margin: auto;
@@ -100,8 +103,29 @@ button {
 	transition: background-color 0.3s;
 }
 
+.login_button {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	text-align: center;
+	border: none;
+	text-decoration: none;
+	/* height: calc(var(--JCE-Padding) * 3); */
+	border-radius: var(--JCE-BR);
+	padding: 1px var(--JCE-Padding);
+	font-size: calc(var(--JCE-Padding) * 2);
+	font-weight: 400;
+	/* margin: auto; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--JCE-white);
+	transition: background-color 0.3s;
+}
+
 .submit_button::after,
-.choose_file_button::after {
+.choose_file_button::after,
+.login_button::after {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -121,12 +145,14 @@ button {
 }
 
 .submit_button:hover,
-.choose_file_button:hover {
+.choose_file_button:hover,
+.login_button:hover {
 	background-color: var(--JCE-red);
 }
 
 .submit_button:hover::after,
-.choose_file_button:hover::after {
+.choose_file_button:hover::after,
+.login_button:hover::after {
 	animation: shine 0.25s linear;
 }
 

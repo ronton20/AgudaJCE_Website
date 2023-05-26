@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import {
 	createBrowserRouter,
 	createRoutesFromElements,
-	Link,
 	Route,
 	RouterProvider,
 	Outlet,
@@ -20,19 +19,8 @@ import AddUsers from "./Components/addUsers";
 
 function App() {
 	const [currentLanguage, setCurrentLanguage] = useState("en");
-	const [user, setUser] = useState();
 	const [isAdmin, setIsAdmin] = useState();
 	const languageHelper = languages[currentLanguage];
-
-	// Checks if a user is logged in and sets the user state accordingly
-	useEffect(() => {
-		const loggedInUser = localStorage.getItem("user");
-		if (loggedInUser) {
-			const foundUser = JSON.parse(loggedInUser);
-			setUser(foundUser);
-			setIsAdmin(foundUser.isAdmin);
-		}
-	}, []);
 
 	const router = createBrowserRouter(
 		createRoutesFromElements(
@@ -42,9 +30,7 @@ function App() {
 			>
 				<Route
 					index
-					element={
-						<MainPage languageHelper={languageHelper} user={user} setUser={setUser} />
-					}
+					element={<MainPage languageHelper={languageHelper} setIsAdmin={setIsAdmin} />}
 				/>
 				<Route
 					path="/manage_aguda_members"

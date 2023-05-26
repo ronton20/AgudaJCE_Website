@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { db, storage } from "../firebase.js";
+import { db, auth } from "../firebase.js";
 import { collection, getDocs } from "firebase/firestore";
-import { ref, uploadBytes } from "firebase/storage";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
+
 import "./ManageEvents.css";
 
 import AddEvent from "../Components/addEvent.jsx";
 import Event from "../Components/Event.jsx";
 
 function ManageEvents(props) {
+	const [user, loading, error] = useAuthState(auth);
 	const [events, setEvents] = useState([]);
+	const navigate = useNavigate();
 
 	function toggleBackground() {
 		document.getElementById("blur_background").classList.toggle("active");
@@ -22,6 +26,11 @@ function ManageEvents(props) {
 		}));
 		setEvents(eventList);
 	}
+
+	useEffect(() => {
+		if (loading) return;
+		if (!user) return navigate("/");
+	}, [user, loading]);
 
 	useEffect(() => {
 		updateEvents();

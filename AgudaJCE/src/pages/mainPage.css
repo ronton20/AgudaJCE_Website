@@ -39,3 +39,17 @@
 	pointer-events: all;
 	scale: 1;
 }
+
+.login_button_div {
+	position: absolute;
+	top: 0;
+	left: 10rem;
+	width: 130px;
+	height: fit-content;
+	padding: var(--JCE-Padding);
+	background-color: #222;
+	z-index: 3;
+	pointer-events: all;
+	transition: all 0.2s ease-in-out;
+	border-radius: 0 0 var(--JCE-BR) var(--JCE-BR);
+}

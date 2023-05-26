@@ -6,7 +6,7 @@ import "../css/addUsers.css";
 import Papa from "papaparse";
 import { app, auth, db } from "../firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 
 function AddUsers(props) {
 	const ids = {
@@ -50,32 +50,48 @@ function AddUsers(props) {
 			header: true,
 			skipEmptyLines: true,
 			complete: async function (results) {
+
+				// get all the users IDs from the DB
+				const querySnapshot = await getDocs(collection(db, "Users"));
+				const users = querySnapshot.docs.map((doc) => ({
+					id: doc.id,
+					...doc.data(),
+				}));
+				console.log(users);
+
 				for (const user of results.data) {
 					const userId = user.idNumber.length < 9 ? "0" + user.idNumber : user.idNumber;
+					// if the user in the CSV and not in the DB already add the user
+					const existingUser = users.find((u) => u.id === userId);
+					console.log("trying to add user with id: " + userId);
+					if (!existingUser) {
+						try {
+							// Create a new user with the provided email and password
+							await createUserWithEmailAndPassword(auth, user.email, userId);
 
-					try {
-						// Create a new user with the provided email and password
-						await createUserWithEmailAndPassword(auth, user.email, userId);
+							// Create a user document in the "users" collection with the same UID and isAdmin set to false
+							const userRef = collection(db, "Users");
 
-						// Create a user document in the "users" collection with the same UID and isAdmin set to false
-						const userRef = collection(db, "Users");
+							await addDoc(userRef, {
+								id: userId,
+								email: user.email,
+								first_name: user.firstName,
+								last_name: user.lastName,
+								phone: "0" + user.phone,
+								isAdmin:
+									user.isAdmin === "TRUE" || user.isAdmin === "true" ? true : false,
+							});
 
-						await addDoc(userRef, {
-							id: userId,
-							email: user.email,
-							first_name: user.firstName,
-							last_name: user.lastName,
-							phone: "0" + user.phone,
-							isAdmin:
-								user.isAdmin === "TRUE" || user.isAdmin === "true" ? true : false,
-						});
-
-						// User creation successful
-						console.log("User created successfully");
-					} catch (error) {
-						// Handle any errors
-						console.error("User creation error:", error);
+							// User creation successful
+							console.log("User created successfully");
+						} catch (error) {
+							// Handle any errors
+							console.error("User creation error:", error);
+						}
 					}
+					// if the user in the CSV and in the DB already update the user
+
+					// if the user in the DB and not in the CSV delete the user
 				}
 			},
 		});

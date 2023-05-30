@@ -22,3 +22,4 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 // Get the Storage instance
 export const storage = getStorage(app);
+// this is a test

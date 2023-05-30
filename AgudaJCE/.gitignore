@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Exclude firebase.js
-src/firebase.js
+firebase.js

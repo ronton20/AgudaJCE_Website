@@ -73,6 +73,8 @@ const languages = {
 			manageEvents: "Manage Events",
 			manageMarathons: "Manage Marathons",
 			manageUsers: "Manage Users",
+			meetingRooms: "Manage Meeting Rooms",
+
 		},
 	},
 	he: {
@@ -149,6 +151,7 @@ const languages = {
 			manageEvents: "ניהול אירועים",
 			manageMarathons: "ניהול מרתונים",
 			manageUsers: "ניהול משתמשים",
+			meetingRooms: "ניהול חדנים",
 		},
 	},
 };

@@ -16,6 +16,7 @@ import ManageAgudaMembers from "./pages/ManageAgudaMembers.jsx";
 import ManageEvents from "./pages/ManageEvents.jsx";
 import ManageMarathons from "./pages/ManageMarathons.jsx";
 import AddUsers from "./Components/addUsers";
+import MeetingRooms from "./pages/MeetingRooms.jsx";
 
 function App() {
 	const [currentLanguage, setCurrentLanguage] = useState("en");
@@ -47,6 +48,10 @@ function App() {
 				<Route
 					path="/manage_marathons"
 					element={<ManageMarathons languageHelper={languageHelper} />}
+				/>
+				<Route
+					path="/meeting_rooms"
+					element={<MeetingRooms languageHelper={languageHelper} />}
 				/>
 			</Route>
 		)
@@ -101,6 +106,11 @@ const Root = (props) => {
 							key: "nav_link_5",
 							name: props.languageHelper.manageMarathons,
 							path: "/manage_marathons",
+						},
+						{
+							key: "nav_link_6",
+							name: props.languageHelper.meetingRooms,
+							path: "/meeting_rooms",
 						},
 					]}
 				/>

@@ -51,7 +51,7 @@ function App() {
 				/>
 				<Route
 					path="/meeting_rooms"
-					element={<MeetingRooms languageHelper={languageHelper} />}
+					element={<MeetingRooms languageHelper={languageHelper} currentLanguage={currentLanguage} />}
 				/>
 			</Route>
 		)

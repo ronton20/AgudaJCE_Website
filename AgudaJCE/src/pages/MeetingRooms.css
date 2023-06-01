@@ -1,9 +1,10 @@
 #page {
     gap: 150px;
-    direction: rtl;
+    /* direction: rtl; */
 }
 
 .calendar {
+    direction: rtl;
     width: auto;
     background-color: #f4f4f4;
     border-radius: 10px;
@@ -19,19 +20,15 @@
     padding: 10px;
 }
 
-#arrow {
+.arrow {
     width: 25px;
     height: 25px;
     cursor: pointer;
 }
 
-#arrow img {
+.arrow img {
     width: 25px;
     height: 25px;
-}
-
-#left-arrow {
-    rotate: 180deg;
 }
 
 .calendar h2 {
@@ -47,7 +44,7 @@
 
 .calendar .days div {
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     border-radius: 5px;
     background-color: #fff;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
@@ -66,6 +63,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: space-between;
+    gap: 1rem;
     width: 500px;
     background-color: #f4f4f4;
     border-radius: 10px;
@@ -73,24 +71,3 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.button_container {
-    width: 20%;
-    height: 90%;
-}
-
-.button_container button {
-    width: 100%;
-    height: 100%;
-    background-color: #fafafa;
-    border: 1px solid black;
-    border-radius: 10px;
-    color: rgb(0, 0, 0);
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: ease-in-out 0.3s;
-}
-
-.button_container button:hover {
-    background-color: #ec1b31;
-}

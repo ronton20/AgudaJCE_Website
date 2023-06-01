@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import arrow from '../assets/arrow.png'; // Adjust the path as needed
+import arrow from '../assets/arrow.png';
+import leftArrow from '../assets/leftArrow.png';
 import AgudaButtonUI from '../Components/AgudaButton.jsx';
+
 
 import "./MeetingRooms.css";
 
 
-const MeetingRooms = () => {
+const MeetingRooms = (props) => {
     const date = new Date();
     const [currentMonth, setCurrentMonth] = useState(date.getMonth());
     const [currentYear, setCurrentYear] = useState(date.getFullYear());
@@ -27,25 +29,36 @@ const MeetingRooms = () => {
   
     const month = new Date(currentYear, currentMonth);
     const monthNumeric = month.getMonth() + 1;
-    const monthName = month.toLocaleString('default', { month: 'long' });
+    var monthName;
+    if(props.currentLanguage === 'he'){
+      monthName = month.toLocaleString('he', { month: 'long' });
+    }
+    else{
+      monthName = month.toLocaleString('default', { month: 'long' });
+    }
+
+    const fetchRoomsAvilability = (fullDate) => {
+      console.log(document.getElementById(fullDate).value);
+    }
+    
   
     return (
       <>
         <div className="calendar">
           <div className="header">
-            <a id='arrow' rel="right-arrow-container" onClick={handlePrevMonth}>
+            <a className='arrow' rel="right-arrow-container" onClick={handlePrevMonth}>
               <img src={arrow} alt="right-arrow" />
             </a>
             <h2>{monthName} {currentYear}</h2>
-            <a id='arrow' rel="left-arrow-container" onClick={handleNextMonth}>
-              <img id='left-arrow' src={arrow} alt="left-arrow" />
+            <a className='arrow' rel="left-arrow-container" onClick={handleNextMonth}>
+              <img id='left-arrow' src={leftArrow} alt="left-arrow" />
             </a>
           </div>
           <div className="days">
             {days.map(day => {
               const fullDate = `${currentYear}-${monthNumeric}-${day}`;
               return (
-                <div key={day} id={fullDate}>
+                <div key={day} onClick={() => fetchRoomsAvilability(fullDate)} id={fullDate}>
                   {day}
                 </div>
               );

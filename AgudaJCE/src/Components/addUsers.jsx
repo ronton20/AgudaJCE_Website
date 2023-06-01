@@ -1,14 +1,11 @@
 import React from "react";
-import languages from "../modules/languages";
 import InputField from "./InputField.jsx";
 import "../css/addUsers.css";
 
 import Papa from "papaparse";
-import { app, auth, db } from "../firebase.js";
+import { auth, db } from "../firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
-
-
 
 function AddUsers(props) {
 	const ids = {
@@ -53,7 +50,6 @@ function AddUsers(props) {
 			header: true,
 			skipEmptyLines: true,
 			complete: async function (results) {
-
 				// get all the users IDs from the DB
 				const querySnapshot = await getDocs(collection(db, "Users"));
 				const users = querySnapshot.docs.map((doc) => ({
@@ -61,7 +57,8 @@ function AddUsers(props) {
 					...doc.data(),
 				}));
 				for (const csvUser of results.data) {
-					const userId = csvUser.idNumber.length < 9 ? "0" + csvUser.idNumber : csvUser.idNumber;
+					const userId =
+						csvUser.idNumber.length < 9 ? "0" + csvUser.idNumber : csvUser.idNumber;
 					// if the user in the CSV and not in the DB already add the user
 					const existingUser = users.find((u) => u.id === userId);
 					if (!existingUser) {
@@ -79,7 +76,9 @@ function AddUsers(props) {
 								last_name: csvUser.lastName,
 								phone: "0" + csvUser.phone,
 								isAdmin:
-								csvUser.isAdmin === "TRUE" || csvUser.isAdmin === "true" ? true : false,
+									csvUser.isAdmin === "TRUE" || csvUser.isAdmin === "true"
+										? true
+										: false,
 								block: false,
 							});
 
@@ -101,7 +100,9 @@ function AddUsers(props) {
 								last_name: csvUser.lastName,
 								phone: "0" + csvUser.phone,
 								isAdmin:
-								csvUser.isAdmin === "TRUE" || csvUser.isAdmin === "true" ? true : false,
+									csvUser.isAdmin === "TRUE" || csvUser.isAdmin === "true"
+										? true
+										: false,
 								block: false,
 							});
 						} catch (error) {
@@ -111,7 +112,6 @@ function AddUsers(props) {
 						// delete the user from the users array
 						users.splice(users.indexOf(existingUser), 1);
 					}
-						
 				}
 				// if the user in the DB and not in the CSV, block the user
 				for (const user of users) {

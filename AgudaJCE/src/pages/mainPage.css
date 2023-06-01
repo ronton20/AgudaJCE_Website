@@ -1,6 +1,7 @@
 #main_page {
 	width: 100%;
 	min-height: 100vh;
+	scroll-behavior: smooth;
 }
 
 #blur_background {
@@ -41,15 +42,167 @@
 }
 
 .login_button_div {
-	position: absolute;
-	top: 0;
-	left: 10rem;
 	width: 130px;
 	height: fit-content;
-	padding: var(--JCE-Padding);
-	background-color: #222;
-	z-index: 3;
-	pointer-events: all;
+	padding: 2px;
+	background-color: var(--JCE-black);
+	border-radius: calc(var(--JCE-BR) * 1.5);
 	transition: all 0.2s ease-in-out;
-	border-radius: 0 0 var(--JCE-BR) var(--JCE-BR);
+}
+
+#main_page_nav_bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 5rem;
+	z-index: 2;
+	padding: var(--JCE-Padding) calc(var(--JCE-Padding) * 2);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: var(--JCE-red-gradient);
+	transition: all 0.2s ease-in-out;
+}
+
+#logo_div {
+	height: 100%;
+}
+
+#logo_div > img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: var(--JCE-BR);
+}
+
+#main_page_nav_bar > ul {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	list-style: none;
+}
+
+#main_page_nav_bar > ul > li {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#main_page_nav_bar > ul > li > a {
+	position: relative;
+	width: fit-content;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	text-decoration: none;
+	color: var(--JCE-black);
+	font-size: 1.5rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+}
+
+#main_page_nav_bar > ul > li > a:hover {
+	color: var(--JCE-white);
+}
+
+#main_page_nav_bar > ul > li > a::after {
+	content: "";
+	width: 100%;
+	height: 0.2rem;
+	background-color: var(--JCE-white);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	transform: scaleX(0);
+	transition: all 0.2s ease-in-out;
+}
+
+#main_page_nav_bar > ul > li > a.active::after {
+	transform: scaleX(1);
+}
+
+#main_page_content {
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+
+#main_page_content section {
+	min-height: 50vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.section_content {
+	width: 80%;
+	height: 80%;
+	display: flex;
+	flex-direction: row;
+}
+
+.section_content > div {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.section_content h1 {
+	font-size: 4rem;
+	font-weight: 600;
+	text-align: start;
+}
+
+.section_content h2 {
+	font-size: 3rem;
+	font-weight: 500;
+	text-align: start;
+}
+
+.section_content p {
+	font-size: 1.5rem;
+	font-weight: 500;
+	text-align: start;
+}
+
+.section_content img {
+	width: 90%;
+	height: 90%;
+	object-fit: cover;
+	border-radius: var(--JCE-BR);
+}
+
+#section_aguda {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	padding-top: 5rem;
+}
+
+#section_aguda::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: url("https://join.jce.ac.il/wp-content/uploads/2020/12/78A0268-scaled.b197b0.webp");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	z-index: -1;
+}
+
+#section_actions {
+	width: 100%;
+	height: 100vh;
 }

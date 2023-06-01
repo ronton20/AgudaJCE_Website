@@ -4,8 +4,7 @@ import "../css/NavBar.css";
 
 const NavBar = (props) => {
 	return (
-		<nav>
-			{/* <img src="./Assets/Logo1.png" alt="Blup_logo" /> */}
+		<nav className="side_bar">
 			<label className="burger">
 				<input type="checkbox" />
 			</label>

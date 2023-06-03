@@ -34,6 +34,7 @@ function AddUsers(props) {
 			first_name: first_name,
 			last_name: last_name,
 			phone: phone,
+			block: false,
 		});
 	};
 
@@ -79,6 +80,7 @@ function AddUsers(props) {
 								phone: "0" + csvUser.phone,
 								isAdmin:
 								csvUser.isAdmin === "TRUE" || csvUser.isAdmin === "true" ? true : false,
+								block: false,
 							});
 
 							// User creation successful
@@ -100,6 +102,7 @@ function AddUsers(props) {
 								phone: "0" + csvUser.phone,
 								isAdmin:
 								csvUser.isAdmin === "TRUE" || csvUser.isAdmin === "true" ? true : false,
+								block: false,
 							});
 						} catch (error) {
 							// Handle any errors
@@ -110,17 +113,18 @@ function AddUsers(props) {
 					}
 						
 				}
-				// if the user in the DB and not in the CSV delete the user
+				// if the user in the DB and not in the CSV, block the user
 				for (const user of users) {
 					const docId = querySnapshot.docs.find((doc) => doc.data().id === user.id).id;
-					const userRef = doc(db, "Users", docId);
-					// delete the document
-					// await deleteDoc(userRef);
-					// get all the users from the authentification
-					// console.log(uid);
-					// delete the user
-					
-					await auth.deleteUser(uid);
+					try {
+						const userRef = doc(db, "Users", docId);
+						await updateDoc(userRef, {
+							block: true,
+						});
+					} catch (error) {
+						// Handle any errors
+						console.error("User update error:", error);
+					}
 				}
 			},
 		});
@@ -148,6 +152,7 @@ function AddUsers(props) {
 				email: email,
 				phone: phone,
 				isAdmin: isAdmin,
+				block: false,
 			});
 			// User creation successful
 		} catch (error) {

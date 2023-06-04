@@ -96,15 +96,18 @@ const languages = {
 				"The Student Union is responsible for organizing various events in the college, such as: parties, trips, lectures, etc.",
 
 			contactUs: "Contact Us",
-			contactUsText: "You can contact us through the following channels:",
-
-			contactUsEmail: "Email",
-			contactUsPhone: "Phone Number",
-			contactUsName: "Name",
-			contactUsMessage: "Message",
-			contactUsDivision: "Division",
-			contactUsYear: "Year",
-			contactUsSubmit: "Send",
+		},
+		contactUs: {
+			header: "Contact Us",
+			fullName: "Full Name",
+			email: "Email",
+			message: "Message",
+			submit: "Send",
+		},
+		actions: {
+			meetingRooms: "Book a Meeting Room",
+			marathons: "Marathons",
+			materials: "Go To Study Materials",
 		},
 	},
 	he: {
@@ -203,15 +206,18 @@ const languages = {
 				"אגודת הסטודנטים מקיימת אירועים רבים במהלך השנה האקדמית, כגון: סדנאות, סיורים, ימי כיף ועוד.",
 
 			contactUs: "צור קשר",
-
-			contactUsText: "אם יש לכם שאלות או בקשות, אנא צרו קשר עם אחד מחברי האגודה.",
-			contactUsEmail: "אימייל",
-			contactUsPhone: "טלפון",
-			contactUsName: "שם",
-			contactUsMessage: "הודעה",
-			contactUsDivision: "מחלקה",
-			contactUsYear: "שנה",
-			contactUsSubmit: "שלח",
+		},
+		contactUs: {
+			header: "צור קשר",
+			fullName: "שם מלא",
+			email: "אימייל",
+			message: "תוכן ההודעה",
+			submit: "שלח",
+		},
+		actions: {
+			meetingRooms: "הזמן חדר ישיבות",
+			marathons: "מרתונים",
+			materials: "חומרי לימוד",
 		},
 	},
 };

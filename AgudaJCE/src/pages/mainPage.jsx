@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { auth, db } from "../firebase";
 import { signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -9,17 +9,14 @@ import { Link } from "react-scroll";
 import "./mainPage.css";
 
 import Login from "../Components/Login.jsx";
+import ContactUs from "../Components/ContactUs";
+import NavBar from "../Components/NavBar";
+import Action from "../Components/Action";
 
 function MainPage(props) {
 	const [user, loading, error] = useAuthState(auth);
+	const [isAdmin, setIsAdmin] = useState(false);
 	const navigate = useNavigate();
-
-	// set up the section refs
-	const agudaRef = useRef(null);
-	const actionsRef = useRef(null);
-	const agudaMembersRef = useRef(null);
-	const eventsRef = useRef(null);
-	const contactUsRef = useRef(null);
 
 	// Toggles the login form
 	function toggleLogin() {
@@ -34,15 +31,14 @@ function MainPage(props) {
 			const q = query(collection(db, "Users"), where("email", "==", user.email));
 			const querySnapshot = await getDocs(q);
 			const isAdmin = querySnapshot.docs[0].data().isAdmin;
-			props.setIsAdmin(isAdmin);
+			setIsAdmin(isAdmin);
 		}
 
 		if (loading) return;
 		if (user) {
 			// Check the admin role in Firestore
 			setAdmin();
-		}
-		navigate("/");
+		} else navigate("/");
 	}, [user, loading]);
 
 	const handleLogout = () => {
@@ -152,6 +148,7 @@ function MainPage(props) {
 					</div>
 				)}
 			</nav>
+			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
 			{/* MAIN PAGE STARTS HERE */}
 			<main id="main_page_content">
 				<section id="section_aguda">
@@ -173,13 +170,38 @@ function MainPage(props) {
 					<section id="section_actions">
 						<div className="section_content">
 							<h2>{props.languageHelper.navBar.actions}</h2>
-							<div id="actions_div">{/* TODO: add all actions here */}</div>
+							<div id="actions_div">
+								<Action
+									title={props.languageHelper.actions.meetingRooms}
+									img="https://unsplash.it/600/600"
+									onClick={null}
+								/>
+								<Action
+									title={props.languageHelper.actions.marathons}
+									img="https://unsplash.it/700/600"
+									onClick={null}
+								/>
+								<Action
+									title={props.languageHelper.actions.materials}
+									img="https://unsplash.it/600/700"
+									onClick={null}
+								/>
+							</div>
 						</div>
 					</section>
 				)}
 				<section id="section_aguda_members"></section>
 				<section id="section_events"></section>
-				{!user ? <></> : <section id="section_contact_us"></section>}
+				{!user ? (
+					<></>
+				) : (
+					<section id="section_contact_us">
+						<div className="section_content">
+							<h2>{props.languageHelper.navBar.contactUs}</h2>
+							<ContactUs languageHelper={props.languageHelper.contactUs} />
+						</div>
+					</section>
+				)}
 			</main>
 			<div id="login_div">
 				<Login languageHelper={props.languageHelper.login} toggleLogin={toggleLogin} />

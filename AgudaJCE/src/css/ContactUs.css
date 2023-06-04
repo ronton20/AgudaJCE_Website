@@ -1,0 +1,17 @@
+.contact_us_div {
+	width: 80%;
+	height: 100%;
+	display: flex;
+	align-items: start;
+	flex-direction: column;
+}
+
+.contact_us_inputs {
+	width: 80%;
+	height: fit-content;
+	display: flex;
+	justify-content: center;
+	align-items: start;
+	flex-direction: column;
+	gap: 2rem;
+}

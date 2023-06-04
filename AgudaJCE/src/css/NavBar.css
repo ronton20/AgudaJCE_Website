@@ -13,7 +13,7 @@
 	font-size: clamp(1rem, 5vw, 2rem);
 }
 
-nav {
+nav.side_bar {
 	direction: ltr;
 	position: fixed;
 	top: 0;
@@ -25,7 +25,7 @@ nav {
 	z-index: 1;
 }
 
-nav img {
+nav.side_bar img {
 	height: 10vh;
 	position: absolute;
 	justify-self: start;
@@ -68,8 +68,9 @@ nav img {
 .list a {
 	text-decoration: none;
 	color: black;
+	font-family: "Heebo", sans-serif;
 	font-size: clamp(0.5rem, 20vw, 1.75rem);
-	font-weight: 400;
+	font-weight: 500;
 	text-align: right;
 	transition: color 0.2s;
 }
@@ -84,6 +85,7 @@ nav img {
 	cursor: pointer;
 	position: fixed;
 	right: 2rem;
+	top: 7rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

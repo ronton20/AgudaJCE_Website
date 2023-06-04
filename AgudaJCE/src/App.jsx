@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import {
 	createBrowserRouter,
@@ -10,7 +10,6 @@ import {
 
 import languages from "./modules/languages";
 import LanguagesSelection from "./Components/languages_selection.jsx";
-import NavBar from "./Components/NavBar";
 import MainPage from "./pages/mainPage.jsx";
 import ManageAgudaMembers from "./pages/ManageAgudaMembers.jsx";
 import ManageEvents from "./pages/ManageEvents.jsx";
@@ -18,20 +17,13 @@ import ManageMarathons from "./pages/ManageMarathons.jsx";
 import AddUsers from "./Components/addUsers";
 
 function App() {
-	const [currentLanguage, setCurrentLanguage] = useState("en");
-	const [isAdmin, setIsAdmin] = useState();
+	const [currentLanguage, setCurrentLanguage] = useState("he");
 	const languageHelper = languages[currentLanguage];
 
 	const router = createBrowserRouter(
 		createRoutesFromElements(
-			<Route
-				path="/"
-				element={<Root isAdmin={isAdmin} languageHelper={languageHelper.navBar} />}
-			>
-				<Route
-					index
-					element={<MainPage languageHelper={languageHelper} setIsAdmin={setIsAdmin} />}
-				/>
+			<Route path="/" element={<Root />}>
+				<Route index element={<MainPage languageHelper={languageHelper} />} />
 				<Route
 					path="/manage_aguda_members"
 					element={<ManageAgudaMembers languageHelper={languageHelper} />}
@@ -52,13 +44,21 @@ function App() {
 		)
 	);
 
+	useEffect(() => {
+		changeLanguage();
+	}, [currentLanguage]);
+
+	const changeLanguage = () => {
+		if (currentLanguage == "he") {
+			document.getElementById("root").setAttribute("dir", "rtl");
+		} else {
+			document.getElementById("root").setAttribute("dir", "ltr");
+		}
+	};
+
 	const handleLanguageChange = (e) => {
 		setCurrentLanguage(e.target.value);
-		if (currentLanguage == "he") {
-			document.getElementById("root").setAttribute("dir", "ltr");
-		} else {
-			document.getElementById("root").setAttribute("dir", "rtl");
-		}
+		changeLanguage();
 	};
 
 	return (
@@ -74,43 +74,11 @@ function App() {
 	);
 }
 
-const Root = (props) => {
+const Root = () => {
 	return (
-		<>
-			{props.isAdmin ? (
-				<NavBar
-					languageHelper={props.languageHelper}
-					links={[
-						{ key: "nav_link_1", name: props.languageHelper.home, path: "/" },
-						{
-							key: "nav_link_2",
-							name: props.languageHelper.manageAgudaMembers,
-							path: "/manage_aguda_members",
-						},
-						{
-							key: "nav_link_3",
-							name: props.languageHelper.manageUsers,
-							path: "/add_users",
-						},
-						{
-							key: "nav_link_4",
-							name: props.languageHelper.manageEvents,
-							path: "/manage_events",
-						},
-						{
-							key: "nav_link_5",
-							name: props.languageHelper.manageMarathons,
-							path: "/manage_marathons",
-						},
-					]}
-				/>
-			) : (
-				<></>
-			)}
-			<div id="page">
-				<Outlet />
-			</div>
-		</>
+		<div id="page">
+			<Outlet />
+		</div>
 	);
 };
 

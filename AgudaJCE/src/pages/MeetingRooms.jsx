@@ -34,7 +34,7 @@ const MeetingRooms = (props) => {
       monthName = month.toLocaleString('he', { month: 'long' });
     }
     else{
-      monthName = month.toLocaleString('default', { month: 'long' });
+      monthName = month.toLocaleString('en', { month: 'long' });
     }
 
     const fetchRoomsAvilability = (fullDate) => {
@@ -66,9 +66,9 @@ const MeetingRooms = (props) => {
           </div>
         </div>
         <div className="booking_box">
-          <AgudaButtonUI button_text={"בוקר"} value={"Morning"} />
-          <AgudaButtonUI button_text={"צהריים"} value={"Noon"} />
-          <AgudaButtonUI button_text={"ערב"} value={"Evening"} />
+          <AgudaButtonUI button_text={props.languageHelper.morning} value={"Morning"} />
+          <AgudaButtonUI button_text={props.languageHelper.afternoon} value={"Noon"} />
+          <AgudaButtonUI button_text={props.languageHelper.evening} value={"Evening"} />
         </div>
       </>
     );

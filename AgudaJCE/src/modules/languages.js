@@ -57,6 +57,11 @@ const languages = {
 			lastName: "Last Name",
 			submit: "Delete",
 		},
+		meetingRooms: {
+			morning: "Morning",
+			afternoon: "Afternoon",
+			evening: "Evening",
+		},
 		manageAgudaMembers: {
 			header: "Manage Aguda Members",
 		},
@@ -134,6 +139,11 @@ const languages = {
 			firstName: "שם פרטי",
 			lastName: "שם משפחה",
 			submit: "מחק",
+		},
+		meetingRooms: {
+			morning: "בוקר",
+			afternoon: "צהריים",
+			evening: "ערב",
 		},
 		manageAgudaMembers: {
 			header: "ניהול חברי אגודה",

@@ -58,6 +58,9 @@ const languages = {
 			submit: "Delete",
 		},
 		meetingRooms: {
+			meeting_room_1 : "Room 1",
+			meeting_room_2 : "Room 2",
+			meeting_room_3 : "Room 3",
 			morning: "Morning",
 			afternoon: "Afternoon",
 			evening: "Evening",
@@ -141,6 +144,9 @@ const languages = {
 			submit: "מחק",
 		},
 		meetingRooms: {
+			meeting_room_1 : "חדר ישיבות 1",
+			meeting_room_2 : "חדר ישיבות 2",
+			meeting_room_3 : "חדר ישיבות 3",
 			morning: "בוקר",
 			afternoon: "צהריים",
 			evening: "ערב",

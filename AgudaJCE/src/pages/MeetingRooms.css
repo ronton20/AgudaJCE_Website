@@ -1,5 +1,5 @@
 #page {
-    gap: 150px;
+    gap: 1rem;
     /* direction: rtl; */
 }
 
@@ -55,6 +55,10 @@
     background-color: #ec1b31;
     transition: ease-in-out 0.3s;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.calendar .days div.selected {
+    background-color: #ec1b31;
 }
 
 /* Booking component css */

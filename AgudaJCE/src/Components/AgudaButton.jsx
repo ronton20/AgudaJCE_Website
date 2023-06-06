@@ -1,11 +1,9 @@
 import React from "react";
 
-import '../pages/MeetingRooms.css';
-
-function AgudaButtonUI({ button_text, value }) {
+function AgudaButtonUI(props) {
     return (
-        <button className="submit_button" value={value}>
-            {button_text}
+        <button className="submit_button" id={props._id} value={props.value} onClick={props.onClick} disabled={props.disabled}>
+            {props.button_text}
         </button>
     );
 }

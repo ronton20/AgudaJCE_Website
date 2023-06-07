@@ -65,9 +65,9 @@ const MeetingRooms = (props) => {
     monthName = month.toLocaleString('en', { month: 'long' });
   }
 
-  const check_avilability_time_frame = async (time_frame) => {
-    console.log(meetingRoom , "-", currentDate , "-" , time_frame);
-    const docRef = doc(db, meetingRoom, currentDate + "_" + time_frame);
+  const check_avilability_time_frame = async (room, time_frame) => {
+    console.log(room , "-", currentDate , "-" , time_frame);
+    const docRef = doc(db, room, currentDate + "_" + time_frame);
     const docSnap = await getDoc(docRef);
     if(docSnap.exists()){
       return false;
@@ -92,11 +92,11 @@ const MeetingRooms = (props) => {
     setMeetingRoom(meetingRoom);
     const roomSelected = document.querySelector(".booking_box .submit_button.selected");
     if(roomSelected)
-      roomSelected.classList.remove("selected");
+    roomSelected.classList.remove("selected");
     document.getElementById(meetingRoom).classList.add("selected");
-    setIsMorningAvailable(await check_avilability_time_frame("morning"));
-    setIsNoonAvailable(await check_avilability_time_frame("noon"));
-    setIsEveningAvailable(await check_avilability_time_frame("evening"));
+    setIsMorningAvailable(await check_avilability_time_frame(meetingRoom, "morning"));
+    setIsNoonAvailable(await check_avilability_time_frame(meetingRoom, "noon"));
+    setIsEveningAvailable(await check_avilability_time_frame(meetingRoom, "evening"));
   }
   
 

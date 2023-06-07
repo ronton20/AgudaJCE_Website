@@ -51,6 +51,18 @@ const languages = {
 			link: "Registration Link",
 			submit: "Add",
 		},
+		marathon: {
+			department: "Department",
+			course: "Course",
+			lecturer: "Lecturer",
+			date: "Date",
+			price: "Price",
+			currency: "₪",
+			link: "Register",
+		},
+		marathons: {
+			header: "Marathons",
+		},
 		deleteAgudaMembers: {
 			header: "Delete Aguda Member",
 			firstName: "First Name",
@@ -210,8 +222,20 @@ const languages = {
 			date: "תאריך",
 			price: "מחיר",
 			currency: "₪",
-			link: "קישור להרשמה",
+			link: "להרשמה",
 			submit: "הוסף",
+		},
+		marathon: {
+			department: "מחלקה",
+			course: "קורס",
+			lecturer: "מרצה",
+			date: "תאריך",
+			price: "מחיר",
+			currency: "₪",
+			link: "להרשמה",
+		},
+		marathons: {
+			header: "הרשמה למרתונים",
 		},
 		deleteAgudaMembers: {
 			header: "מחיקת חבר אגודה",

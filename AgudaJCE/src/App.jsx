@@ -10,12 +10,14 @@ import {
 
 import languages from "./modules/languages";
 import LanguagesSelection from "./Components/languages_selection.jsx";
+import AddUsers from "./Components/addUsers";
+
 import MainPage from "./pages/mainPage.jsx";
 import ManageAgudaMembers from "./pages/ManageAgudaMembers.jsx";
 import ManageEvents from "./pages/ManageEvents.jsx";
 import ManageMarathons from "./pages/ManageMarathons.jsx";
-import AddUsers from "./Components/addUsers";
 import MeetingRooms from "./pages/MeetingRooms.jsx";
+import Marathons from "./pages/Marathons.jsx";
 
 function App() {
 	const [currentLanguage, setCurrentLanguage] = useState("he");
@@ -40,6 +42,10 @@ function App() {
 				<Route
 					path="/manage_marathons"
 					element={<ManageMarathons languageHelper={languageHelper} />}
+				/>
+				<Route
+					path="/marathons"
+					element={<Marathons languageHelper={languageHelper}/>}
 				/>
 				<Route
 					path="/meeting_rooms"

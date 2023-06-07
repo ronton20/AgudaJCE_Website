@@ -197,7 +197,7 @@ function MainPage(props) {
 								<Action
 									title={props.languageHelper.actions.marathons}
 									img="https://unsplash.it/700/600"
-									onClick={null}
+									onClick={() => goTo("/marathons")}
 								/>
 								<Action
 									title={props.languageHelper.actions.materials}

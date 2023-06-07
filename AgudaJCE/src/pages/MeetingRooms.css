@@ -1,77 +1,82 @@
 #page {
-    gap: 1rem;
-    /* direction: rtl; */
+	gap: 1rem;
+	/* direction: rtl; */
 }
 
 .calendar {
-    direction: rtl;
-    width: auto;
-    background-color: #f4f4f4;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	direction: rtl;
+	width: auto;
+	background-color: #f4f4f4;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
 }
 
 .arrow {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
 }
 
 .arrow img {
-    width: 25px;
-    height: 25px;
+	width: 25px;
+	height: 25px;
 }
 
 .calendar h2 {
-    text-align: center;
-    color: #333;
+	text-align: center;
+	color: #333;
 }
 
 .calendar .days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 10px;
 }
 
 .calendar .days div {
-    text-align: center;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
+	text-align: center;
+	padding: 20px;
+	border-radius: 5px;
+	background-color: #fff;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
 }
 
 .calendar .days div:hover {
-    background-color: #ec1b31;
-    transition: ease-in-out 0.3s;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	background-color: #ec1b31;
+	transition: ease-in-out 0.3s;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .calendar .days div.selected {
-    background-color: #ec1b31;
+	background-color: #ec1b31;
 }
 
 /* Booking component css */
 .booking_box {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: space-between;
-    gap: 1rem;
-    width: 500px;
-    background-color: #f4f4f4;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: space-between;
+	gap: 1rem;
+	width: 500px;
+	background-color: #f4f4f4;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	transform: scaleY(0);
+	transition: transform 0.3s;
 }
 
+.booking_box.active {
+	transform: scaleY(1);
+}

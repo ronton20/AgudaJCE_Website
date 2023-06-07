@@ -47,6 +47,10 @@ function MainPage(props) {
 		window.location.reload();
 	};
 
+	function goTo(path) {
+		navigate(path);
+	}
+
 	return (
 		<div id="main_page" className="page">
 			<nav id="main_page_nav_bar">
@@ -174,7 +178,7 @@ function MainPage(props) {
 								<Action
 									title={props.languageHelper.actions.meetingRooms}
 									img="https://unsplash.it/600/600"
-									onClick={null}
+									onClick={() => goTo("/meeting_rooms")}
 								/>
 								<Action
 									title={props.languageHelper.actions.marathons}

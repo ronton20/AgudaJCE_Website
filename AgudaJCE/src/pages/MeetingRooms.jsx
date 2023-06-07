@@ -2,14 +2,20 @@ import React, { useState, useEffect } from "react";
 import arrow from "../assets/arrow.png";
 import leftArrow from "../assets/leftArrow.png";
 import AgudaButtonUI from "../Components/AgudaButton.jsx";
-import { db } from "../firebase";
-import { collection, getDoc, setDoc, doc, query } from "firebase/firestore";
+import { db, auth } from "../firebase";
+import { collection, getDoc, getDocs, setDoc, doc, query, where } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 
 import SchedualMeetingRoom from "../Components/SchedualMeetingRoom";
+import NavBar from "../Components/NavBar";
 
 import "./MeetingRooms.css";
 
 const MeetingRooms = (props) => {
+	const [user, loading, error] = useAuthState(auth);
+	const [isAdmin, setIsAdmin] = useState(false);
+	const navigate = useNavigate();
 	const date = new Date();
 	const [currentMonth, setCurrentMonth] = useState(date.getMonth());
 	const [currentYear, setCurrentYear] = useState(date.getFullYear());
@@ -25,6 +31,21 @@ const MeetingRooms = (props) => {
 		room2: "meetingRoom2",
 		room3: "meetingRoom3",
 	};
+
+	useEffect(() => {
+		async function setAdmin() {
+			const q = query(collection(db, "Users"), where("email", "==", user.email));
+			const querySnapshot = await getDocs(q);
+			const isAdmin = querySnapshot.docs[0].data().isAdmin;
+			setIsAdmin(isAdmin);
+		}
+
+		if (loading) return;
+		if (user) {
+			// Check the admin role in Firestore
+			setAdmin();
+		} else navigate("/");
+	}, [user, loading]);
 
 	useEffect(() => {
 		const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -115,6 +136,7 @@ const MeetingRooms = (props) => {
 
 	return (
 		<>
+			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
 			<div className="calendar">
 				<div className="header">
 					<a className="arrow" rel="right-arrow-container" onClick={handlePrevMonth}>
@@ -141,21 +163,21 @@ const MeetingRooms = (props) => {
 			<div id="meeting_rooms_box" className="booking_box">
 				<AgudaButtonUI
 					_id={meetingRooms.room1}
-					button_text={props.languageHelper.meeting_room_1}
+					button_text={props.languageHelper.meetingRooms.meeting_room_1}
 					disabled={false}
 					onClick={() => setRoom(meetingRooms.room1)}
 					value={meetingRooms.room1}
 				/>
 				<AgudaButtonUI
 					_id={meetingRooms.room2}
-					button_text={props.languageHelper.meeting_room_2}
+					button_text={props.languageHelper.meetingRooms.meeting_room_2}
 					disabled={false}
 					onClick={() => setRoom(meetingRooms.room2)}
 					value={meetingRooms.room2}
 				/>
 				<AgudaButtonUI
 					_id={meetingRooms.room3}
-					button_text={props.languageHelper.meeting_room_3}
+					button_text={props.languageHelper.meetingRooms.meeting_room_3}
 					disabled={false}
 					onClick={() => setRoom(meetingRooms.room3)}
 					value={meetingRooms.room3}
@@ -163,19 +185,19 @@ const MeetingRooms = (props) => {
 			</div>
 			<div id="time_frame_box" className="booking_box">
 				<AgudaButtonUI
-					button_text={props.languageHelper.morning}
+					button_text={props.languageHelper.meetingRooms.morning}
 					disabled={!isMorningAvailable}
 					onClick={SchedualMeetingRoom}
 					value={"morning"}
 				/>
 				<AgudaButtonUI
-					button_text={props.languageHelper.afternoon}
+					button_text={props.languageHelper.meetingRooms.afternoon}
 					disabled={!isNoonAvailable}
 					onClick={SchedualMeetingRoom}
 					value={"noon"}
 				/>
 				<AgudaButtonUI
-					button_text={props.languageHelper.evening}
+					button_text={props.languageHelper.meetingRooms.evening}
 					disabled={!isEveningAvailable}
 					onClick={SchedualMeetingRoom}
 					value={"evening"}

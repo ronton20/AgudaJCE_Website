@@ -177,6 +177,10 @@ button {
 	animation: shine 0.25s linear;
 }
 
+.submit_button.selected {
+	background-color: var(--JCE-red);
+}
+
 .choose_file_button {
 	cursor: pointer;
 	color: black;

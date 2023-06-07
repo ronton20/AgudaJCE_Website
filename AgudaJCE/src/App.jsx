@@ -15,6 +15,7 @@ import ManageAgudaMembers from "./pages/ManageAgudaMembers.jsx";
 import ManageEvents from "./pages/ManageEvents.jsx";
 import ManageMarathons from "./pages/ManageMarathons.jsx";
 import AddUsers from "./Components/addUsers";
+import MeetingRooms from "./pages/MeetingRooms.jsx";
 
 function App() {
 	const [currentLanguage, setCurrentLanguage] = useState("he");
@@ -39,6 +40,10 @@ function App() {
 				<Route
 					path="/manage_marathons"
 					element={<ManageMarathons languageHelper={languageHelper} />}
+				/>
+				<Route
+					path="/meeting_rooms"
+					element={<MeetingRooms languageHelper={languageHelper.meetingRooms} currentLanguage={currentLanguage} />}
 				/>
 			</Route>
 		)

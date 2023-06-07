@@ -9,6 +9,14 @@
 	--burger-height: calc(var(--bar-height) * 3 + var(--burger-gap) * 2);
 }
 
+@media screen and (max-width: 768px) {
+	:root {
+		--bar-width: 32px;
+		--bar-height: 4px;
+		--burger-gap: 6px;
+	}
+}
+
 #nav_bar_header {
 	font-size: clamp(1rem, 5vw, 2rem);
 }
@@ -85,12 +93,16 @@ nav.side_bar img {
 	cursor: pointer;
 	position: fixed;
 	right: 2rem;
-	top: 7rem;
+	top: 2rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	gap: var(--burger-gap);
 	z-index: 10;
+}
+
+.burger.lower {
+	top: 6rem;
 }
 
 .burger::before,

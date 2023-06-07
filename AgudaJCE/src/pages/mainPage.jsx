@@ -9,16 +9,20 @@ import { Link } from "react-scroll";
 import "./mainPage.css";
 import loginImg from "../assets/login.png";
 import logoutImg from "../assets/logout.png";
+import contactUsImg from "../assets/contact_us_2.jpg";
 
 import Login from "../Components/Login.jsx";
 import ContactUs from "../Components/ContactUs";
 import NavBar from "../Components/NavBar";
 import Action from "../Components/Action";
+import AgudaMember from "../Components/AgudaMember.jsx";
 
 function MainPage(props) {
 	const [user, loading, error] = useAuthState(auth);
 	const [isAdmin, setIsAdmin] = useState(false);
 	const navigate = useNavigate();
+
+	const [agudaMembers, setAgudaMembers] = useState([]);
 
 	// Toggles the login form
 	function toggleLogin() {
@@ -27,7 +31,6 @@ function MainPage(props) {
 	}
 
 	// Checks if a user is logged in and sets the user state accordingly
-
 	useEffect(() => {
 		async function setAdmin() {
 			const q = query(collection(db, "Users"), where("email", "==", user.email));
@@ -42,6 +45,19 @@ function MainPage(props) {
 			setAdmin();
 		} else navigate("/");
 	}, [user, loading]);
+
+	// Get the aguda members from the database
+	useEffect(() => {
+		async function updateMembers() {
+			const querySnapshot = await getDocs(collection(db, "AgudaMembers"));
+			const members = querySnapshot.docs.map((doc) => ({
+				id: doc.id,
+				...doc.data(),
+			}));
+			setAgudaMembers(members);
+		}
+		updateMembers();
+	}, []);
 
 	const handleLogout = () => {
 		signOut(auth);
@@ -155,7 +171,7 @@ function MainPage(props) {
 					</div>
 				)}
 			</nav>
-			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
+			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} lower={true} /> : <></>}
 			{/* MAIN PAGE STARTS HERE */}
 			<main id="main_page_content">
 				<section id="section_aguda">
@@ -164,11 +180,6 @@ function MainPage(props) {
 							<h1>{props.languageHelper.mainPage.header}</h1>
 							<p>{props.languageHelper.mainPage.aboutText}</p>
 						</div>
-						{/* <img
-							id="aguda_image"
-							src="https://firebasestorage.googleapis.com/v0/b/agudajce-51667.appspot.com/o/Assets%2Fcover_photo.png?alt=media&token=f72d9261-1db4-413b-84f4-e0b2c4a2eaf9&_gl=1*1b6zpkt*_ga*MTE4Mzc5OTA2NS4xNjg0NDIzMzAy*_ga_CW55HF8NVT*MTY4NTYyMzY3My4xMS4xLjE2ODU2MjM3MjguMC4wLjA."
-							alt="aguda"
-						/> */}
 					</div>
 				</section>
 				{!user ? (
@@ -197,7 +208,21 @@ function MainPage(props) {
 						</div>
 					</section>
 				)}
-				<section id="section_aguda_members"></section>
+				<section id="section_aguda_members">
+					<div className="section_content">
+						<h2>{props.languageHelper.navBar.agudaMembers}</h2>
+						<div id="aguda_members_div">
+							{agudaMembers.map((member) => (
+								<AgudaMember
+									key={member.id}
+									data={member}
+									removable={false}
+									updateMembers={null}
+								/>
+							))}
+						</div>
+					</div>
+				</section>
 				<section id="section_events"></section>
 				{!user ? (
 					<></>
@@ -207,7 +232,7 @@ function MainPage(props) {
 							<h2>{props.languageHelper.navBar.contactUs}</h2>
 							<div id="contact_us_div">
 								<ContactUs languageHelper={props.languageHelper.contactUs} />
-								<img src="https://unsplash.it/600/600" alt="contact-us-image" />
+								<img src={contactUsImg} alt="contact-us-image" />
 							</div>
 						</div>
 					</section>

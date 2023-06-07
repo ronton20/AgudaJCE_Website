@@ -19,3 +19,14 @@
 	place-items: center;
 	direction: ltr;
 }
+
+@media screen and (max-width: 768px) {
+	#addMembers,
+	#agudaMembers {
+		width: 100%;
+	}
+
+	#agudaMembers {
+		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	}
+}

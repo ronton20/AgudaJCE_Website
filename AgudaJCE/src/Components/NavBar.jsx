@@ -29,7 +29,7 @@ const NavBar = (props) => {
 
 	return (
 		<nav className="side_bar">
-			<label className="burger">
+			<label className={props.lower ? "burger lower" : "burger"}>
 				<input type="checkbox" />
 			</label>
 			<li className="list">

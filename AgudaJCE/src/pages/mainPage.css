@@ -144,6 +144,12 @@
 	transform: scaleX(1);
 }
 
+@media screen and (max-width: 768px) {
+	#main_page_nav_bar > ul {
+		display: none;
+	}
+}
+
 #main_page_content {
 	width: 100%;
 	height: 100%;
@@ -165,11 +171,19 @@
 	gap: var(--JCE-gap);
 }
 
+@media screen and (max-width: 768px) {
+	.section_content {
+		width: 100%;
+		height: 100%;
+		padding: 1rem;
+	}
+}
+
 #section_aguda .section_content {
 	flex-direction: row;
 }
 
-.section_content > div {
+#aguda_text {
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -199,13 +213,6 @@
 	text-align: start;
 }
 
-.section_content > img {
-	width: 90%;
-	height: 90%;
-	object-fit: cover;
-	border-radius: var(--JCE-BR);
-}
-
 #section_aguda {
 	position: relative;
 	width: 100%;
@@ -230,6 +237,14 @@
 	margin-inline: calc(var(--JCE-gap) * 5) auto;
 }
 
+@media screen and (max-width: 768px) {
+	#section_aguda_content {
+		width: 90%;
+		height: 80%;
+		margin: auto;
+	}
+}
+
 #section_actions {
 	width: 100%;
 	height: 100vh;
@@ -251,9 +266,43 @@
 	gap: clamp(1rem, 5vw, 5rem);
 }
 
+@media screen and (max-width: 768px) {
+	#actions_div {
+		grid-template-columns: 1fr;
+	}
+}
+
+#section_aguda_members {
+	width: 100%;
+	height: fit-content;
+	padding: 8rem 4rem;
+}
+
+#aguda_members_div {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	place-items: center;
+	direction: ltr;
+}
+
+@media screen and (max-width: 768px) {
+	#aguda_members_div {
+		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	}
+}
+
+#section_contact_us {
+	width: 100%;
+	min-height: 100vh;
+	height: auto;
+	padding: 4rem;
+	padding-bottom: 12rem;
+}
+
 #contact_us_div {
 	width: 100%;
-	height: 100%;
+	height: auto;
 	padding: var(--JCE-gap);
 	display: grid;
 	grid-template-columns: 2fr 1fr;
@@ -267,4 +316,18 @@
 	height: 100%;
 	object-fit: cover;
 	border-radius: var(--JCE-BR);
+}
+
+@media screen and (max-width: 768px) {
+	#section_contact_us {
+		padding: 1rem;
+	}
+
+	#contact_us_div {
+		grid-template-columns: 1fr;
+	}
+
+	#contact_us_div > img {
+		display: none;
+	}
 }

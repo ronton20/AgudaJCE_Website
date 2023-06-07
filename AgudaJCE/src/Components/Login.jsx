@@ -4,6 +4,8 @@ import "../css/Login.css";
 
 import { auth } from "../firebase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase.js";
 
 function Login(props) {
 	const ids = {
@@ -16,6 +18,13 @@ function Login(props) {
 		const email = document.getElementById(`input_field_${ids.email}`).value;
 		const password = document.getElementById(`input_field_${ids.password}`).value;
 		try {
+			// check if user is blocked
+			const querySnapshot = await getDocs(collection(db, "Users"));
+			const userDoc = querySnapshot.docs.find((doc) => doc.data().email == email);
+			if (userDoc.data().block) {
+				alert(props.languageHelper.error_user_not_found);
+				return;
+			}
 			// Sign in the user using the custom authentication method
 			await signInWithEmailAndPassword(auth, email, password);
 			// Close the login modal and refresh the page

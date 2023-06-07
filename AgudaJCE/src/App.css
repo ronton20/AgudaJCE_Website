@@ -1,8 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap");
 :root {
-	--JCE-red: #dd0000;
-	--JCE-red-shine: #dd5555;
+	--JCE-color-main-1: #ec1b31;
+	--JCE-color-main-2: #697072;
+	--JCE-color-main-3: #b4b8b9;
+	--JCE-color-sub-1: #091d68;
+	--JCE-color-sub-2: #5271ff;
+	--JCE-color-sub-3: #8c52ff;
+
+	--JCE-red: #ec1b31;
 	--JCE-white: #eeeeee;
+	--JCE-black: #222222;
 	--JCE-red-gradient: linear-gradient(
 		159deg,
 		rgba(195, 0, 0, 1) 0%,
@@ -10,6 +17,14 @@
 		rgba(255, 0, 0, 1) 50%,
 		rgba(255, 46, 46, 1) 75%,
 		rgba(195, 0, 0, 1) 100%
+	);
+	--JCE-gradient-dark-gray: linear-gradient(
+		159deg,
+		rgb(88, 91, 92, 0.9) 0%,
+		rgba(117, 124, 126, 0.9) 25%,
+		rgba(105, 112, 114, 0.9) 50%,
+		rgba(117, 124, 126, 0.9) 75%,
+		rgba(88, 91, 92, 0.9) 100%
 	);
 
 	--JCE-BR: 7px;
@@ -43,8 +58,8 @@ button {
 
 #languageSelection {
 	position: fixed;
-	top: 0;
-	left: 10px;
+	top: 6rem;
+	left: 0px;
 	height: 0;
 	z-index: 1000;
 }
@@ -57,9 +72,7 @@ button {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	/* background: url("https://www.pixelstalk.net/wp-content/uploads/images6/2K-Desktop-Wallpapers.jpg")
-		no-repeat center center fixed; */
-	background-color: #555;
+	background-color: var(--JCE-color-main-3);
 	background-size: cover;
 }
 
@@ -70,7 +83,6 @@ button {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
-	background-color: #8f8c8c;
 	z-index: 1000;
 }
 
@@ -103,6 +115,13 @@ button {
 	transition: background-color 0.3s;
 }
 
+.glow {
+	position: relative;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+}
+
 .login_button {
 	position: relative;
 	overflow: hidden;
@@ -123,6 +142,7 @@ button {
 	transition: background-color 0.3s;
 }
 
+.glow::after,
 .submit_button::after,
 .choose_file_button::after,
 .login_button::after {
@@ -150,6 +170,7 @@ button {
 	background-color: var(--JCE-red);
 }
 
+.glow:hover::after,
 .submit_button:hover::after,
 .choose_file_button:hover::after,
 .login_button:hover::after {
@@ -213,7 +234,6 @@ button {
 	flex-direction: column;
 	align-items: center;
 	gap: 2rem;
-	padding: 2rem;
 }
 
 .container {
@@ -228,11 +248,10 @@ button {
 .glassify {
 	width: 100%;
 	height: 100%;
-	background-color: rgba(255, 255, 255, 0.25);
+	background-color: rgba(255, 255, 255, 0.5);
 	border: 1px solid rgba(255, 255, 255, 0.25);
 	box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.37);
 	backdrop-filter: blur(5px);
-	border-radius: 0.5rem;
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;

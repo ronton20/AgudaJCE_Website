@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/InputField.css";
 
-const InputField = ({ label, type, _id }) => {
+const InputField = ({ label, type, _id, _name = "" }) => {
 	const [value, setValue] = useState("");
 	const id = `input_field_${_id}`;
 
@@ -12,6 +12,7 @@ const InputField = ({ label, type, _id }) => {
 				id={id}
 				type={type}
 				value={value}
+				name={_name}
 				required
 				onChange={(e) => setValue(e.target.value)}
 			/>

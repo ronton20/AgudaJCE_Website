@@ -82,11 +82,87 @@ const languages = {
 			manageMarathons: "Manage Marathons",
 			manageUsers: "Manage Users",
 			meetingRooms: "Manage Meeting Rooms",
+			aguda: "Aguda",
+			actions: "Actions",
+			agudaMembers: "Aguda Members",
+			events: "Events",
+			contactUs: "Contact Us",
+		},
+		mainPage: {
+			header: "Welcome to Azrielli's Student Union",
+			about: "About",
+			aboutText:
+				"The Azrieli College of Engineering Jerusalem Student Union is a student organization that works for the benefit of the students of the college.",
+			aboutText2:
+				"The Student Union is the official representative of the students in the college and is responsible for the welfare of the students and their rights.",
+			aboutText3:
+				"The Student Union is the body that organizes the social life of the students in the college and is responsible for the various events that take place in the college.",
 
+			agudaMembers: "Aguda Members",
+
+			events: "Events",
+			eventsText:
+				"The Student Union is responsible for organizing various events in the college, such as: parties, trips, lectures, etc.",
+
+			contactUs: "Contact Us",
+		},
+		contactUs: {
+			header: "Contact Us",
+			fullName: "Full Name",
+			email: "Email",
+			message: "Message",
+			submit: "Send",
+		},
+		actions: {
+			meetingRooms: "Book a Meeting Room",
+			marathons: "Marathons",
+			materials: "Go To Study Materials",
+		},
+		contactUs: {
+			header: "Contact Us",
+			fullName: "Full Name",
+			email: "Email",
+			phone: "Phone Number",
+
+			department: "Department",
+			departments: {
+				software: "Software",
+				industry_and_management: "Industry and Management",
+				mechanical: "Mechanical",
+				electrical_and_electronics: "Electrical and Electronics",
+				pharma: "Pharma",
+				materials: "Materials",
+				civil: "Civil",
+				pre_academic: "Pre Academic",
+				masters: "Masters",
+			},
+			year: "Year",
+			years: {
+				first: "1st",
+				second: "2nd",
+				third: "3rd",
+				fourth: "4th",
+				other: "Other",
+			},
+
+			subject_area: "Subject Area",
+			subjects: {
+				academy: "Academy",
+				colture: "Colture",
+				sport: "Sport",
+				industry: "Industry",
+				welfare: "Welfare",
+				population: "Population",
+				suggestions: "Suggestions",
+				other: "Other",
+			},
+			subject: "Subject",
+
+			message: "Message",
+			submit: "Submit",
 		},
 	},
 	he: {
-		// Other sections...
 		login: {
 			header: "התחברות",
 			email: "אימייל",
@@ -168,6 +244,84 @@ const languages = {
 			manageMarathons: "ניהול מרתונים",
 			manageUsers: "ניהול משתמשים",
 			meetingRooms: "ניהול חדנים",
+			aguda: "האגודה",
+			actions: "פעולות",
+			agudaMembers: "חברי אגודה",
+			events: "אירועים",
+			contactUs: "צור קשר",
+		},
+		mainPage: {
+			header: "ברוכים הבאים לאתר אגודת הסטודנטים של עזריאלי",
+			about: "אודות",
+			aboutText:
+				"אגודת הסטודנטים של מכללת עזריאלי ירושלים היא ארגון סטודנטים הפועל למען תועלת הסטודנטים במכללה.",
+			aboutText2:
+				"אגודת הסטודנטים היא הנציגה הרשמית של הסטודנטים במכללה ואחראית לרווחת הסטודנטים ולזכויותיהם.",
+			aboutText3:
+				"אגודת הסטודנטים מספקת שירותים ופעילויות לסטודנטים ומקדמת את ענייני הסטודנטים במכללה.",
+
+			agudaMembers: "חברי אגודה",
+
+			events: "אירועים",
+			eventsText:
+				"אגודת הסטודנטים מקיימת אירועים רבים במהלך השנה האקדמית, כגון: סדנאות, סיורים, ימי כיף ועוד.",
+
+			contactUs: "צור קשר",
+		},
+		contactUs: {
+			header: "צור קשר",
+			fullName: "שם מלא",
+			email: "אימייל",
+			message: "תוכן ההודעה",
+			submit: "שלח",
+		},
+		actions: {
+			meetingRooms: "הזמן חדר ישיבות",
+			marathons: "מרתונים",
+			materials: "חומרי לימוד",
+		},
+		contactUs: {
+			header: "צור קשר",
+			fullName: "שם מלא",
+			email: "אימייל",
+			phone: "מספר טלפון",
+
+			department: "מחלקה",
+			departments: {
+				software: "תוכנה",
+				industry_and_management: "תעשיה וניהול",
+				mechanical: "מכונות",
+				electrical_and_electronics: "חשמל ואלקטרוניקה",
+				pharma: "פארמצבטיקה",
+				materials: "חומרים",
+				civil: "אזרחית",
+				pre_academic: "מכינה קדם אקדמאית",
+				masters: "תואר שני",
+			},
+			year: "שנה",
+			years: {
+				first: "א",
+				second: "ב",
+				third: "ג",
+				fourth: "ד",
+				other: "אחר",
+			},
+
+			subject_area: "תחום",
+			subjects: {
+				academy: "אקדמיה",
+				colture: "תרבות",
+				sport: "ספורט",
+				industry: "תעשיה",
+				welfare: "רווחה",
+				population: "אוכלוסיה",
+				suggestions: "הצעות",
+				other: "אחר",
+			},
+			subject: "נושא",
+
+			message: "תוכן ההודעה",			
+			submit: "שלח",
 		},
 	},
 };

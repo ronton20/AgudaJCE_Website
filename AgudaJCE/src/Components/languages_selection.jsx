@@ -10,8 +10,8 @@ function LanguagesSelection(props) {
 				onChange={props.handleLanguageChange}
 				value={props.currentLanguage}
 			>
-				<option value="en">English</option>
 				<option value="he">עברית</option>
+				<option value="en">English</option>
 			</select>
 		</div>
 	);

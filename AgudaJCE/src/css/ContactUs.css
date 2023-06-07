@@ -1,0 +1,51 @@
+.contact_us_div {
+    width: 50%;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    background-color: var(--JCE-color-main-2)
+    ;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contact_us_form {
+    width: 80%;
+}
+
+.form_row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    gap: 2rem;
+}
+
+.form_row select {
+    width: 100%;
+    height: 2rem;
+    border-radius: 10px;
+    border: 1px solid #000000;
+}
+
+.contact_us_div textarea {
+    width: 100%;
+    min-height: 5rem;
+    max-height: 10rem;
+    border-radius: 7px;
+    border: 1px solid #000000;
+    margin-bottom: 1rem;
+    align-self: flex-start;
+    font-size: large;
+    resize: none;
+}
+
+.contact_us_div button {
+    width: 30%;
+    border: 1px solid #000000;
+    margin-bottom: 0.5rem;
+}
+

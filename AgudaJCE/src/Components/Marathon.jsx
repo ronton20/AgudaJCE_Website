@@ -21,18 +21,33 @@ function Marathon(props) {
     };
 
     return (
-        <div className="marathon">
-            {props.removable ? <RemoveButton onClick={deleteMarathon} /> : <></>}
-            <div className="marathonOverlay">
-                <h3>{props.data.department}</h3>
-                <h3>{props.data.course}</h3>
-                <h3>{props.data.lecturer}</h3>
-                <h3>{props.data.date}</h3>
-                <h3>{props.data.price} {props.languageHelper.currency}</h3>
-            </div>
-            <a href={props.data.link}>{props.languageHelper.link}</a>
-        </div>
+        <tr className="marathon">
+            <td>{props.data.department}</td>
+            <td>{props.data.course}</td>
+            <td>{props.data.lecturer}</td>
+            <td>{props.data.date}</td>
+            <td>{props.data.price} {props.languageHelper.currency}</td>
+            <td>
+                <a href={props.data.link}>{props.languageHelper.link}</a>
+            </td>
+            {props.removable ? <RemoveButton onClick={deleteMarathon}/> : <></>}
+        </tr>
     );
 }
 
 export default Marathon;
+
+
+
+
+        // <div className="marathon">
+        //     {props.removable ? <RemoveButton onClick={deleteMarathon} /> : <></>}
+        //     <div className="marathonOverlay">
+        //         <h3>{props.data.department}</h3>
+        //         <h3>{props.data.course}</h3>
+        //         <h3>{props.data.lecturer}</h3>
+        //         <h3>{props.data.date}</h3>
+        //         <h3>{props.data.price} {props.languageHelper.currency}</h3>
+        //     </div>
+        //     <a href={props.data.link}>{props.languageHelper.link}</a>
+        // </div>

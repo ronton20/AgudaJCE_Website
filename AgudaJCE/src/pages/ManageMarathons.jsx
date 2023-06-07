@@ -4,7 +4,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
-import "./ManageAgudaMembers.css";
+import "./ManageMarathons.css";
 
 import AddMarathon from "../Components/AddMarathon.jsx";
 import Marathon from "../Components/Marathon.jsx";
@@ -53,17 +53,29 @@ function ManageMarathons(props) {
 					updateMarathons={updateMarathons}
 				/>
 			</div>
-			<div id="marathons">
-				{marathons.map((marathon) => (
-					<Marathon
-						key={marathon.id}
+
+			<table id="marathons_table">
+				<thead>
+					<tr>
+						<th>{props.languageHelper.marathon.department}</th>
+						<th>{props.languageHelper.marathon.course}</th>
+						<th>{props.languageHelper.marathon.lecturer}</th>
+						<th>{props.languageHelper.marathon.date}</th>
+						<th>{props.languageHelper.marathon.price}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{marathons.map((marathon, index) => (
+						<Marathon
+						key={index}
 						data={marathon}
 						removable={true}
 						updateMarathons={updateMarathons}
 						languageHelper={props.languageHelper.addMarathon}
-					/>
-				))}
-			</div>
+						/>
+					))}
+				</tbody>
+			</table>
 		</div>
 	);
 }

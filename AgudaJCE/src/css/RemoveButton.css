@@ -1,10 +1,14 @@
 .remove_button {
-	position: absolute;
+	position: relative;
 	appearance: none;
 	border: none;
 	background-color: transparent;
 	width: 30px;
 	aspect-ratio: 1;
+}
+
+.remove_button.absolute {
+	position: absolute;
 	top: 0;
 	right: -5%;
 }

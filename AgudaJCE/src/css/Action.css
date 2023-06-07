@@ -3,6 +3,7 @@
 	height: 100%;
 	position: relative;
 	cursor: pointer;
+	text-decoration: none;
 }
 
 .action_title {
@@ -15,6 +16,7 @@
 	text-align: start;
 	font-size: 3rem;
 	font-weight: 600;
+	color: black;
 	text-shadow: 1px 0px 0px white, -1px 0px 0px white, 0px 1px 0px white, 0px -1px 0px white;
 }
 

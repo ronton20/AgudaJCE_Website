@@ -61,7 +61,7 @@ function MainPage(props) {
 
 	const handleLogout = () => {
 		signOut(auth);
-		props.setIsAdmin(false);
+		setIsAdmin(false);
 		window.location.reload();
 	};
 
@@ -202,7 +202,7 @@ function MainPage(props) {
 								<Action
 									title={props.languageHelper.actions.materials}
 									img="https://unsplash.it/600/700"
-									onClick={null}
+									href="https://www.dropbox.com/sh/yt2y1sdmx55tlju/AAAkccJEqrUckSbvVo4lQpRra?dl=0"
 								/>
 							</div>
 						</div>

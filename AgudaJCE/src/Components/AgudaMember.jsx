@@ -23,7 +23,7 @@ function AgudaMember(props) {
 		<div className="agudaMember">
 			<div className="agudaMemberOverlay">
 				<img src={props.data.Img} alt={props.data.Name} />
-				{props.removable ? <RemoveButton onClick={deleteMember} /> : <></>}
+				{props.removable ? <RemoveButton onClick={deleteMember} absolute={true} /> : <></>}
 			</div>
 			<h3>{props.data.Name}</h3>
 			<p>{props.data.Position}</p>

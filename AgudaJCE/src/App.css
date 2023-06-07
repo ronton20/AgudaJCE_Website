@@ -32,6 +32,8 @@
 	--JCE-BR: 7px;
 	--JCE-gap: 2rem;
 	--JCE-Padding: 10px;
+
+	--JCE-transition: all 0.2s ease;
 }
 
 *,
@@ -131,30 +133,9 @@ button {
 	margin: 0;
 }
 
-.login_button {
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-	text-align: center;
-	border: none;
-	text-decoration: none;
-	/* height: calc(var(--JCE-Padding) * 3); */
-	border-radius: var(--JCE-BR);
-	padding: 1px var(--JCE-Padding);
-	font-size: calc(var(--JCE-Padding) * 2);
-	font-weight: 400;
-	/* margin: auto; */
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: var(--JCE-white);
-	transition: background-color 0.3s;
-}
-
 .glow::after,
 .submit_button::after,
-.choose_file_button::after,
-.login_button::after {
+.choose_file_button::after {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -174,15 +155,13 @@ button {
 }
 
 .submit_button:not(:disabled):hover,
-.choose_file_button:not(:disabled):hover,
-.login_button:not(:disabled):hover {
+.choose_file_button:not(:disabled):hover {
 	background-color: var(--JCE-red);
 }
 
 .glow:not(:disabled):hover::after,
 .submit_button:not(:disabled):hover::after,
-.choose_file_button:not(:disabled):hover::after,
-.login_button:not(:disabled):hover::after {
+.choose_file_button:not(:disabled):hover::after {
 	animation: shine 0.25s linear;
 }
 

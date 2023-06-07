@@ -7,6 +7,8 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { Link } from "react-scroll";
 
 import "./mainPage.css";
+import loginImg from "../assets/login.png";
+import logoutImg from "../assets/logout.png";
 
 import Login from "../Components/Login.jsx";
 import ContactUs from "../Components/ContactUs";
@@ -126,6 +128,7 @@ function MainPage(props) {
 						</li>
 					)}
 				</ul>
+				{/* Login/Logout button */}
 				{user ? (
 					<div className="login_button_div">
 						<button
@@ -135,7 +138,7 @@ function MainPage(props) {
 								handleLogout();
 							}}
 						>
-							{props.languageHelper.logout.submit}
+							<img src={logoutImg} alt="logout" />
 						</button>
 					</div>
 				) : (
@@ -147,7 +150,7 @@ function MainPage(props) {
 								toggleLogin();
 							}}
 						>
-							{props.languageHelper.login.submit}
+							<img src={loginImg} alt="login" />
 						</button>
 					</div>
 				)}
@@ -156,16 +159,16 @@ function MainPage(props) {
 			{/* MAIN PAGE STARTS HERE */}
 			<main id="main_page_content">
 				<section id="section_aguda">
-					<div className="section_content glassify">
+					<div id="section_aguda_content" className="section_content glassify">
 						<div id="aguda_text">
 							<h1>{props.languageHelper.mainPage.header}</h1>
 							<p>{props.languageHelper.mainPage.aboutText}</p>
 						</div>
-						<img
+						{/* <img
 							id="aguda_image"
 							src="https://firebasestorage.googleapis.com/v0/b/agudajce-51667.appspot.com/o/Assets%2Fcover_photo.png?alt=media&token=f72d9261-1db4-413b-84f4-e0b2c4a2eaf9&_gl=1*1b6zpkt*_ga*MTE4Mzc5OTA2NS4xNjg0NDIzMzAy*_ga_CW55HF8NVT*MTY4NTYyMzY3My4xMS4xLjE2ODU2MjM3MjguMC4wLjA."
 							alt="aguda"
-						/>
+						/> */}
 					</div>
 				</section>
 				{!user ? (

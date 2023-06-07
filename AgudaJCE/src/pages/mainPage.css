@@ -14,7 +14,7 @@
 	z-index: 1;
 	pointer-events: none;
 	opacity: 0;
-	transition: all 0.2s ease-in-out;
+	transition: all var(--JCE-transition);
 }
 
 #blur_background.active {
@@ -33,7 +33,7 @@
 	z-index: 2;
 	pointer-events: none;
 	scale: 0;
-	transition: all 0.2s ease-in-out;
+	transition: var(--JCE-transition);
 }
 
 #login_div.active {
@@ -42,12 +42,27 @@
 }
 
 .login_button_div {
-	width: 130px;
-	height: fit-content;
-	padding: 2px;
-	background-color: var(--JCE-black);
-	border-radius: calc(var(--JCE-BR) * 1.5);
-	transition: all 0.2s ease-in-out;
+	width: 40px;
+	aspect-ratio: 1;
+	transition: var(--JCE-transition);
+}
+
+.login_button {
+	width: 100%;
+	height: 100%;
+	background: none;
+	border: none;
+}
+
+.login_button > img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	transition: var(--JCE-transition);
+}
+
+.login_button:hover > img {
+	filter: invert(1);
 }
 
 #main_page_nav_bar {
@@ -62,7 +77,7 @@
 	justify-content: space-between;
 	align-items: center;
 	background: var(--JCE-red-gradient);
-	transition: all 0.2s ease-in-out;
+	transition: var(--JCE-transition);
 }
 
 #logo_div {
@@ -106,7 +121,7 @@
 	font-size: 1.5rem;
 	font-weight: 500;
 	cursor: pointer;
-	transition: all 0.2s ease-in-out;
+	transition: var(--JCE-transition);
 }
 
 #main_page_nav_bar > ul > li > a:hover {
@@ -122,7 +137,7 @@
 	bottom: 0;
 	left: 0;
 	transform: scaleX(0);
-	transition: all 0.2s ease-in-out;
+	transition: var(--JCE-transition);
 }
 
 #main_page_nav_bar > ul > li > a.active::after {
@@ -165,18 +180,20 @@
 }
 
 .section_content h1 {
-	font-size: 4rem;
+	font-size: clamp(2rem, 3vw, 4rem);
 	font-weight: 600;
 	text-align: start;
 }
 
 .section_content h2 {
-	font-size: 3rem;
+	font-size: clamp(1.5rem, 3vw, 3rem);
+	/* font-size: 3rem; */
 	font-weight: 500;
 	text-align: start;
 }
 
 .section_content p {
+	font-size: clamp(1rem, 3vw, 1.5rem);
 	font-size: 1.5rem;
 	font-weight: 500;
 	text-align: start;
@@ -205,6 +222,12 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	z-index: -1;
+}
+
+#section_aguda_content {
+	width: 50%;
+	padding: var(--JCE-gap);
+	margin-inline: calc(var(--JCE-gap) * 5) auto;
 }
 
 #section_actions {

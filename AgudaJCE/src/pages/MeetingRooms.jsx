@@ -64,7 +64,7 @@ const MeetingRooms = (props) => {
 	}
 
 	const check_availability_time_frame = async (room, time_frame) => {
-		console.log(room, "-", currentDate, "-", time_frame);
+		// console.log(room, "-", currentDate, "-", time_frame);
 		const docRef = doc(db, room, currentDate + "_" + time_frame);
 		const docSnap = await getDoc(docRef);
 		if (docSnap.exists()) {

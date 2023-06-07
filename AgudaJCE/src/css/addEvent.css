@@ -7,15 +7,6 @@
 	border-radius: 10px;
 }
 
-.input_field > textarea {
-	width: 100%;
-	height: 100%;
-	border: 1px solid black;
-	border-radius: 0.5rem;
-	padding: 0.5rem;
-	resize: none;
-}
-
 .image_preview_div {
 	width: 80%;
 	height: 100%;

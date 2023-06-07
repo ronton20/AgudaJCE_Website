@@ -202,7 +202,10 @@ function MainPage(props) {
 					<section id="section_contact_us">
 						<div className="section_content">
 							<h2>{props.languageHelper.navBar.contactUs}</h2>
-							<ContactUs languageHelper={props.languageHelper.contactUs} />
+							<div id="contact_us_div">
+								<ContactUs languageHelper={props.languageHelper.contactUs} />
+								<img src="https://unsplash.it/600/600" alt="contact-us-image" />
+							</div>
 						</div>
 					</section>
 				)}

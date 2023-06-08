@@ -37,7 +37,7 @@ function Event(props) {
 	return (
 		<div className="event">
 			<img src={imgUrl} alt={props.data.title} />
-			{props.removable ? <RemoveButton onClick={deleteEvent} /> : <></>}
+			{props.removable ? <RemoveButton absolute={true} onClick={deleteEvent} /> : <></>}
 		</div>
 	);
 }

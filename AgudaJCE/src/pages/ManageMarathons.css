@@ -1,15 +1,21 @@
-#marathons_table {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-collapse: collapse;
+#manage_marathons_page {
+	padding: var(--JCE-gap);
+	background: var(--JCE-gradient-dark-gray);
 }
 
-#marathons_table td {
-    border: 1px solid black;
-    padding: 0.5rem;
+#addMarathons,
+.marathons_table {
+	width: 90%;
 }
 
-#marathons_table tbody tr:nth-child(odd) {
-    background-color: rgb(0, 0, 0, 0.2);
+@media screen and (max-width: 768px) {
+	#addMarathons,
+	.marathons_table {
+		width: 100%;
+	}
 }
 
+.marathons_table table {
+	width: 100%;
+	border-collapse: collapse;
+}

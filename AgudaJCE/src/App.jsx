@@ -43,10 +43,7 @@ function App() {
 					path="/manage_marathons"
 					element={<ManageMarathons languageHelper={languageHelper} />}
 				/>
-				<Route
-					path="/marathons"
-					element={<Marathons languageHelper={languageHelper}/>}
-				/>
+				<Route path="/marathons" element={<Marathons languageHelper={languageHelper} />} />
 				<Route
 					path="/meeting_rooms"
 					element={
@@ -72,8 +69,12 @@ function App() {
 		}
 	};
 
-	const handleLanguageChange = (e) => {
-		setCurrentLanguage(e.target.value);
+	const toggleLanguage = () => {
+		if (currentLanguage == "he") {
+			setCurrentLanguage("en");
+		} else {
+			setCurrentLanguage("he");
+		}
 		changeLanguage();
 	};
 
@@ -81,7 +82,7 @@ function App() {
 		<>
 			<div id="languageSelection">
 				<LanguagesSelection
-					handleLanguageChange={handleLanguageChange}
+					toggleLanguage={toggleLanguage}
 					selectedLanguage={currentLanguage}
 				/>
 			</div>

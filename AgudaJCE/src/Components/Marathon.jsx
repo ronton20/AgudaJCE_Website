@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/Marathon.css";
+import linkBtn from "../assets/external-link.png";
 
 import { db } from "../firebase.js";
 import { doc, deleteDoc } from "firebase/firestore";
@@ -26,10 +27,13 @@ function Marathon(props) {
 			<td>{props.data.lecturer}</td>
 			<td>{props.data.date}</td>
 			<td>
-				{props.data.price} {props.languageHelper.currency}
+				{props.data.price}
+				{props.languageHelper.currency}
 			</td>
 			<td>
-				<a href={props.data.link}>{props.languageHelper.link}</a>
+				<a href={props.data.link} target="_blank">
+					<img src={linkBtn} alt="sign up" />
+				</a>
 			</td>
 			{props.removable ? (
 				<td>

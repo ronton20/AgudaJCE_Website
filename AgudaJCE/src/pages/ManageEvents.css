@@ -1,11 +1,10 @@
 #manage_events_page {
 	padding: var(--JCE-gap);
-	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
-		linear-gradient(15deg, #1449aa, #0073df);
+	background: var(--JCE-gradient-dark-gray);
 }
 
 #add_event {
-	width: 60%;
+	width: 90%;
 	max-height: 600px;
 }
 

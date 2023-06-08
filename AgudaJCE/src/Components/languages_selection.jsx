@@ -1,18 +1,26 @@
-import React from "react";
+import { React, useState } from "react";
 import "../css/languages_selection.css";
 
+import hebrewFlag from "../assets/israel.png";
+import englishFlag from "../assets/usa.png";
+
 function LanguagesSelection(props) {
+	const [language, setLanguage] = useState("he");
+
+	// Toggles the language
+	function toggleLanguage() {
+		if (language === "he") setLanguage("en");
+		else setLanguage("he");
+		props.toggleLanguage();
+	}
+
 	return (
 		<div className="languages_tab">
-			<select
-				name="languages_tab_selection"
-				id="languages_tab_selection"
-				onChange={props.handleLanguageChange}
-				value={props.currentLanguage}
-			>
-				<option value="he">עברית</option>
-				<option value="en">English</option>
-			</select>
+			<img
+				src={language === "he" ? hebrewFlag : englishFlag}
+				alt={props.currentLanguage}
+				onClick={toggleLanguage}
+			/>
 		</div>
 	);
 }

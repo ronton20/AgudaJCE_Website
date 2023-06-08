@@ -8,11 +8,11 @@ import Marathon from "../Components/Marathon.jsx";
 import "./Marathons.css";
 
 function Marathons(props) {
-    const [user, loading] = useAuthState(auth);
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [marathons, setMarathons] = useState([]);
+	const [user, loading] = useAuthState(auth);
+	const [isAdmin, setIsAdmin] = useState(false);
+	const [marathons, setMarathons] = useState([]);
 
-    async function updateMarathons() {
+	async function updateMarathons() {
 		const querySnapshot = await getDocs(collection(db, "Marathons"));
 		const marathons = querySnapshot.docs.map((doc) => ({
 			id: doc.id,
@@ -21,11 +21,11 @@ function Marathons(props) {
 		setMarathons(marathons);
 	}
 
-    useEffect(() => {
+	useEffect(() => {
 		updateMarathons();
 	}, []);
 
-    useEffect(() => {
+	useEffect(() => {
 		async function setAdmin() {
 			const q = query(collection(db, "Users"), where("email", "==", user.email));
 			const querySnapshot = await getDocs(q);
@@ -40,32 +40,36 @@ function Marathons(props) {
 		} else navigate("/");
 	}, [user, loading]);
 
-    return (
-        <div id="marathons_page">
-            {isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
+	return (
+		<div id="marathons_page" className="page">
+			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
 
-            <h2>{props.languageHelper.marathons.header}</h2>
-            <table id="marathons_table">
-                <thead>
-                    <tr>
-                        <th>{props.languageHelper.marathon.department}</th>
-                        <th>{props.languageHelper.marathon.course}</th>
-                        <th>{props.languageHelper.marathon.lecturer}</th>
-                        <th>{props.languageHelper.marathon.date}</th>
-                        <th>{props.languageHelper.marathon.price}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {marathons.map((marathon) => (
-                        <Marathon
-                            key={marathon.id}
-                            data={marathon}
-                            languageHelper={props.languageHelper.marathon}/>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+			<h1>{props.languageHelper.marathons.header}</h1>
+			<div className="marathons_table glassify">
+				<table>
+					<thead>
+						<tr>
+							<th>{props.languageHelper.marathon.department}</th>
+							<th>{props.languageHelper.marathon.course}</th>
+							<th>{props.languageHelper.marathon.lecturer}</th>
+							<th>{props.languageHelper.marathon.date}</th>
+							<th>{props.languageHelper.marathon.price}</th>
+							<th>{props.languageHelper.marathon.link}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{marathons.map((marathon) => (
+							<Marathon
+								key={marathon.id}
+								data={marathon}
+								languageHelper={props.languageHelper.marathon}
+							/>
+						))}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	);
 }
 
 export default Marathons;

@@ -7,13 +7,13 @@
 	--animation-time: 0.3s;
 	--burger-animation-time: var(--animation-time) ease;
 	--burger-height: calc(var(--bar-height) * 3 + var(--burger-gap) * 2);
+
+	--burger-inset: 2rem;
 }
 
 @media screen and (max-width: 768px) {
 	:root {
-		--bar-width: 32px;
-		--bar-height: 4px;
-		--burger-gap: 6px;
+		--burger-inset: 1rem;
 	}
 }
 
@@ -92,8 +92,8 @@ nav.side_bar img {
 	--x-width: calc(var(--burger-height) * 1.41421356237);
 	cursor: pointer;
 	position: fixed;
-	right: 2rem;
-	top: 2rem;
+	right: var(--burger-inset);
+	top: var(--burger-inset);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

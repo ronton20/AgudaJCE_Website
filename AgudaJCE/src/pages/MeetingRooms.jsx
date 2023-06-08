@@ -55,10 +55,7 @@ const MeetingRooms = (props) => {
 	}, [currentMonth, currentYear]);
 
 	const handlePrevMonth = () => {
-		const selected = document.querySelector(".calendar .days div.selected");
-		document.getElementById("meeting_rooms_box").classList.remove("active");
-		document.querySelector("#time_frame_box").classList.remove("active");
-		if (selected) selected.classList.remove("selected");
+		cleanSelections({ calendar: true, meetingRoom: true, timeSlot: true, ids: true });
 		if (currentMonth === 12) {
 			setCurrentYear(currentYear - 1);
 		}
@@ -66,10 +63,7 @@ const MeetingRooms = (props) => {
 	};
 
 	const handleNextMonth = () => {
-		const selected = document.querySelector(".calendar .days div.selected");
-		document.getElementById("meeting_rooms_box").classList.remove("active");
-		document.querySelector("#time_frame_box").classList.remove("active");
-		if (selected) selected.classList.remove("selected");
+		cleanSelections({ calendar: true, meetingRoom: true, timeSlot: true, ids: true });
 		if (currentMonth === 11) {
 			setCurrentYear(currentYear + 1);
 		}
@@ -98,23 +92,16 @@ const MeetingRooms = (props) => {
 
 	function setDate(date) {
 		setCurrentDate(date);
+		cleanSelections({ calendar: true, meetingRoom: true, timeSlot: true, ids: true });
 		document.getElementById("meeting_rooms_box").classList.add("active");
-		document.querySelector("#time_frame_box").classList.remove("active");
-		document.getElementById("id_box").classList.remove("active");
-		const selected = document.querySelector(".calendar .days div.selected");
-		const roomSelected = document.querySelector(".booking_box .submit_button.selected");
-		if (selected) selected.classList.remove("selected");
-		if (roomSelected) roomSelected.classList.remove("selected");
 		document.getElementById(date).classList.add("selected");
-
 	}
 
 	async function setRoom(meetingRoom) {
 		setMeetingRoom(meetingRoom);
+		cleanSelections({ calendar: false, meetingRoom: true, timeSlot: true, ids: true });
+		document.getElementById("meeting_rooms_box").classList.add("active");
 		document.querySelector("#time_frame_box").classList.add("active");
-		document.getElementById("id_box").classList.remove("active");
-		const roomSelected = document.querySelector(".booking_box .submit_button.selected");
-		if (roomSelected) roomSelected.classList.remove("selected");
 		document.getElementById(meetingRoom).classList.add("selected");
 		setIsMorningAvailable(await check_availability_time_frame(meetingRoom, "morning"));
 		setIsNoonAvailable(await check_availability_time_frame(meetingRoom, "noon"));
@@ -123,80 +110,119 @@ const MeetingRooms = (props) => {
 
 	const timeSlotClicked = (time_frame) => {
 		setSelectedTimeSlot(time_frame);
+		cleanSelections({ calendar: false, meetingRoom: false, timeSlot: true, ids: true });
+		document.querySelector("#time_frame_box").classList.add("active");
+		document.getElementById(time_frame).classList.add("selected");
 		document.getElementById("id_box").classList.add("active");
-	}
+	};
+
+	const cleanSelections = ({
+		calendar = true,
+		meetingRoom = true,
+		timeSlot = true,
+		ids = true,
+	}) => {
+		if (calendar) {
+			const dateSelected = document.querySelector(".calendar .selected");
+			if (dateSelected) dateSelected.classList.remove("selected");
+		}
+		if (meetingRoom) {
+			document.querySelector("#meeting_rooms_box").classList.remove("active");
+			const roomSelected = document.querySelector(".booking_box .submit_button.selected");
+			if (roomSelected) roomSelected.classList.remove("selected");
+		}
+		if (timeSlot) {
+			document.querySelector("#time_frame_box").classList.remove("active");
+			const timeSlotSelected = document.querySelector(
+				"#time_frame_box .submit_button.selected"
+			);
+			if (timeSlotSelected) timeSlotSelected.classList.remove("selected");
+		}
+		if (ids) {
+			document.querySelector("#id_box").classList.remove("active");
+		}
+	};
 
 	return (
-		<>
+		<div id="meeting_room_page" className="page">
 			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
-			<div className="calendar">
-				<div className="header">
-					<a className="arrow" rel="right-arrow-container" onClick={handlePrevMonth}>
-						<img src={arrow} alt="right-arrow" />
-					</a>
-					<h2>
-						{monthName} {currentYear}
-					</h2>
-					<a className="arrow" rel="left-arrow-container" onClick={handleNextMonth}>
-						<img id="left-arrow" src={leftArrow} alt="left-arrow" />
-					</a>
+			<div className="meeting_room_booking_container">
+				<div className="calendar">
+					<div className="header">
+						<a className="arrow" rel="right-arrow-container" onClick={handlePrevMonth}>
+							<img src={arrow} alt="right-arrow" />
+						</a>
+						<h2>
+							{monthName} {currentYear}
+						</h2>
+						<a className="arrow" rel="left-arrow-container" onClick={handleNextMonth}>
+							<img id="left-arrow" src={leftArrow} alt="left-arrow" />
+						</a>
+					</div>
+					<div className="days">
+						{days.map((day) => {
+							const fullDate = `${currentYear}-${monthNumeric}-${day}`;
+							return (
+								<div key={day} onClick={() => setDate(fullDate)} id={fullDate}>
+									{day}
+								</div>
+							);
+						})}
+					</div>
 				</div>
-				<div className="days">
-					{days.map((day) => {
-						const fullDate = `${currentYear}-${monthNumeric}-${day}`;
-						return (
-							<div key={day} onClick={() => setDate(fullDate)} id={fullDate}>
-								{day}
-							</div>
-						);
-					})}
+				<div id="meeting_rooms_box" className="booking_box">
+					<AgudaButtonUI
+						_id={meetingRooms.room1}
+						button_text={props.languageHelper.meetingRooms.meeting_room_1}
+						disabled={false}
+						onClick={() => setRoom(meetingRooms.room1)}
+						value={meetingRooms.room1}
+					/>
+					<AgudaButtonUI
+						_id={meetingRooms.room2}
+						button_text={props.languageHelper.meetingRooms.meeting_room_2}
+						disabled={false}
+						onClick={() => setRoom(meetingRooms.room2)}
+						value={meetingRooms.room2}
+					/>
+					<AgudaButtonUI
+						_id={meetingRooms.room3}
+						button_text={props.languageHelper.meetingRooms.meeting_room_3}
+						disabled={false}
+						onClick={() => setRoom(meetingRooms.room3)}
+						value={meetingRooms.room3}
+					/>
 				</div>
-			</div>
-			<div id="meeting_rooms_box" className="booking_box">
-				<AgudaButtonUI
-					_id={meetingRooms.room1}
-					button_text={props.languageHelper.meetingRooms.meeting_room_1}
-					disabled={false}
-					onClick={() => setRoom(meetingRooms.room1)}
-					value={meetingRooms.room1}
-				/>
-				<AgudaButtonUI
-					_id={meetingRooms.room2}
-					button_text={props.languageHelper.meetingRooms.meeting_room_2}
-					disabled={false}
-					onClick={() => setRoom(meetingRooms.room2)}
-					value={meetingRooms.room2}
-				/>
-				<AgudaButtonUI
-					_id={meetingRooms.room3}
-					button_text={props.languageHelper.meetingRooms.meeting_room_3}
-					disabled={false}
-					onClick={() => setRoom(meetingRooms.room3)}
-					value={meetingRooms.room3}
-				/>
-			</div>
-			<div id="time_frame_box" className="booking_box">
-				<AgudaButtonUI
-					button_text={props.languageHelper.meetingRooms.morning}
-					disabled={!isMorningAvailable}
-					onClick={() => timeSlotClicked("morning")}
-					value={"morning"}
-				/>
-				<AgudaButtonUI
-					button_text={props.languageHelper.meetingRooms.afternoon}
-					disabled={!isNoonAvailable}
-					onClick={() => timeSlotClicked("noon")}
-					value={"noon"}
-				/>
-				<AgudaButtonUI
-					button_text={props.languageHelper.meetingRooms.evening}
-					disabled={!isEveningAvailable}
-					onClick={() => timeSlotClicked("evening")}
-					value={"evening"}
+				<div id="time_frame_box" className="booking_box">
+					<AgudaButtonUI
+						_id={"morning"}
+						button_text={props.languageHelper.meetingRooms.morning}
+						disabled={!isMorningAvailable}
+						onClick={() => timeSlotClicked("morning")}
+						value={"morning"}
+					/>
+					<AgudaButtonUI
+						_id={"noon"}
+						button_text={props.languageHelper.meetingRooms.afternoon}
+						disabled={!isNoonAvailable}
+						onClick={() => timeSlotClicked("noon")}
+						value={"noon"}
+					/>
+					<AgudaButtonUI
+						_id={"evening"}
+						button_text={props.languageHelper.meetingRooms.evening}
+						disabled={!isEveningAvailable}
+						onClick={() => timeSlotClicked("evening")}
+						value={"evening"}
+					/>
+				</div>
+				<SchedualMeetingRoom
+					selectedDate={currentDate}
+					selectedRoom={meetingRoom}
+					selectedTimeSlot={selectedTimeSlot}
 				/>
 			</div>
-			<SchedualMeetingRoom selectedDate={currentDate} selectedRoom= {meetingRoom} selectedTimeSlot={selectedTimeSlot}/>
-		</>
+		</div>
 	);
 };
 

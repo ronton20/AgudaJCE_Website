@@ -21,16 +21,16 @@ const MeetingRooms = (props) => {
 	const [currentYear, setCurrentYear] = useState(date.getFullYear());
 	const [days, setDays] = useState([]);
 	const [currentDate, setCurrentDate] = useState();
-	const [meetingRoom, setMeetingRoom] = useState("hadan_test");
+	const [meetingRoom, setMeetingRoom] = useState("MeetingRoom1");
 	const [selectedTimeSlot, setSelectedTimeSlot] = useState();
 	const [isMorningAvailable, setIsMorningAvailable] = useState(false);
 	const [isNoonAvailable, setIsNoonAvailable] = useState(false);
 	const [isEveningAvailable, setIsEveningAvailable] = useState(false);
 
 	const meetingRooms = {
-		room1: "hadan_test",
-		room2: "meetingRoom2",
-		room3: "meetingRoom3",
+		room1: "MeetingRoom1",
+		room2: "MeetingRoom2",
+		room3: "MeetingRoom3",
 	};
 
 	useEffect(() => {
@@ -125,23 +125,6 @@ const MeetingRooms = (props) => {
 		setSelectedTimeSlot(time_frame);
 		document.getElementById("id_box").classList.add("active");
 	}
-
-	const schedualHadan = async ({
-		date = "",
-		ids = [(id1 = ""), (id2 = ""), (id3 = "")],
-		meeting_room = "",
-		time_frame = "",
-	}) => {
-		try {
-			// Creats an schedual meeting room
-			const userSchedual = collection(db, meeting_room);
-			await setDoc(doc(db, userSchedual, date + "_" + time_frame), ids);
-			//Schedual Meeting room successful
-		} catch (error) {
-			// Handle any errors
-			console.error("Schedual meeting room error:", error);
-		}
-	};
 
 	return (
 		<>

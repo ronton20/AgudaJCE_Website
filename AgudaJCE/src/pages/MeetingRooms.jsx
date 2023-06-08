@@ -21,15 +21,16 @@ const MeetingRooms = (props) => {
 	const [currentYear, setCurrentYear] = useState(date.getFullYear());
 	const [days, setDays] = useState([]);
 	const [currentDate, setCurrentDate] = useState();
-	const [meetingRoom, setMeetingRoom] = useState("hadan_test");
+	const [meetingRoom, setMeetingRoom] = useState("MeetingRoom1");
+	const [selectedTimeSlot, setSelectedTimeSlot] = useState();
 	const [isMorningAvailable, setIsMorningAvailable] = useState(false);
 	const [isNoonAvailable, setIsNoonAvailable] = useState(false);
 	const [isEveningAvailable, setIsEveningAvailable] = useState(false);
 
 	const meetingRooms = {
-		room1: "hadan_test",
-		room2: "meetingRoom2",
-		room3: "meetingRoom3",
+		room1: "MeetingRoom1",
+		room2: "MeetingRoom2",
+		room3: "MeetingRoom3",
 	};
 
 	useEffect(() => {
@@ -99,16 +100,19 @@ const MeetingRooms = (props) => {
 		setCurrentDate(date);
 		document.getElementById("meeting_rooms_box").classList.add("active");
 		document.querySelector("#time_frame_box").classList.remove("active");
+		document.getElementById("id_box").classList.remove("active");
 		const selected = document.querySelector(".calendar .days div.selected");
 		const roomSelected = document.querySelector(".booking_box .submit_button.selected");
 		if (selected) selected.classList.remove("selected");
 		if (roomSelected) roomSelected.classList.remove("selected");
 		document.getElementById(date).classList.add("selected");
+
 	}
 
 	async function setRoom(meetingRoom) {
 		setMeetingRoom(meetingRoom);
 		document.querySelector("#time_frame_box").classList.add("active");
+		document.getElementById("id_box").classList.remove("active");
 		const roomSelected = document.querySelector(".booking_box .submit_button.selected");
 		if (roomSelected) roomSelected.classList.remove("selected");
 		document.getElementById(meetingRoom).classList.add("selected");
@@ -117,22 +121,10 @@ const MeetingRooms = (props) => {
 		setIsEveningAvailable(await check_availability_time_frame(meetingRoom, "evening"));
 	}
 
-	const schedualHadan = async ({
-		date = "",
-		ids = [(id1 = ""), (id2 = ""), (id3 = "")],
-		meeting_room = "",
-		time_frame = "",
-	}) => {
-		try {
-			// Creats an schedual meeting room
-			const userSchedual = collection(db, meeting_room);
-			await setDoc(doc(db, userSchedual, date + "_" + time_frame), ids);
-			//Schedual Meeting room successful
-		} catch (error) {
-			// Handle any errors
-			console.error("Schedual meeting room error:", error);
-		}
-	};
+	const timeSlotClicked = (time_frame) => {
+		setSelectedTimeSlot(time_frame);
+		document.getElementById("id_box").classList.add("active");
+	}
 
 	return (
 		<>
@@ -187,22 +179,23 @@ const MeetingRooms = (props) => {
 				<AgudaButtonUI
 					button_text={props.languageHelper.meetingRooms.morning}
 					disabled={!isMorningAvailable}
-					onClick={SchedualMeetingRoom}
+					onClick={() => timeSlotClicked("morning")}
 					value={"morning"}
 				/>
 				<AgudaButtonUI
 					button_text={props.languageHelper.meetingRooms.afternoon}
 					disabled={!isNoonAvailable}
-					onClick={SchedualMeetingRoom}
+					onClick={() => timeSlotClicked("noon")}
 					value={"noon"}
 				/>
 				<AgudaButtonUI
 					button_text={props.languageHelper.meetingRooms.evening}
 					disabled={!isEveningAvailable}
-					onClick={SchedualMeetingRoom}
+					onClick={() => timeSlotClicked("evening")}
 					value={"evening"}
 				/>
 			</div>
+			<SchedualMeetingRoom selectedDate={currentDate} selectedRoom= {meetingRoom} selectedTimeSlot={selectedTimeSlot}/>
 		</>
 	);
 };

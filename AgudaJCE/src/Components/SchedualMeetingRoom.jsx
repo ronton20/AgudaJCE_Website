@@ -12,7 +12,7 @@ function SchedualMeetingRoom(props) {
     const selectedDate = props.selectedDate;
     const selectedRoom = props.selectedRoom;
     const selectedTimeSlot = props.selectedTimeSlot;
-    
+
 
     const validateStudentId = async (studentId) => {
         const querySnapshot = await getDocs(collection(db, "Users"));
@@ -115,34 +115,51 @@ function SchedualMeetingRoom(props) {
     };
     
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Access the input field values using their ids
         const firstStudentId = document.getElementById("input_field_student_id_1");
         const secondStudentId = document.getElementById("input_field_student_id_2");
         const thirdStudentId = document.getElementById("input_field_student_id_3");
-        
+      
         const studentsIdList = [firstStudentId, secondStudentId, thirdStudentId];
+      
         // validate that the students id are unique and print any not unique
-        if (!validateOnlyUniqueStudents(studentsIdList)) { return;}
-        // validate that each of the students id is in the DB
-        studentsIdList.forEach((studentId) => {
-            validateStudentId(studentId.value).then((isValid) => {
-                if (!isValid) {
-                    studentId.style.border = "2px solid red";
-                    return;
-                }
-            });
-            studentId.style.border = "2px solid green";
-        });
-        
-        // validate that the max bookings for the current week is not exceeded this is async
-        validateMaxBookingsNotExceeded(studentsIdList).then((isValid) => {
-            if (!isValid) { return; }
-            bookMeetingRoom(studentsIdList);
+        if (!validateOnlyUniqueStudents(studentsIdList)) {
+          return;
         }
+      
+        // Validate each of the students id is in the DB
+        const validatePromises = studentsIdList.map((studentId) =>
+          validateStudentId(studentId.value)
         );
-    };
+      
+        try {
+          const validationResults = await Promise.all(validatePromises);
+          const isAllValid = validationResults.every((isValid) => isValid);
+      
+          if (isAllValid) {
+            studentsIdList.forEach((studentId) => {
+              studentId.style.border = "2px solid green";
+            });
+      
+            // Validate that the max bookings for the current week is not exceeded
+            const isMaxBookingsValid = await validateMaxBookingsNotExceeded(
+              studentsIdList
+            );
+      
+            if (isMaxBookingsValid) {
+              bookMeetingRoom(studentsIdList);
+              console.log("booked");
+            }
+          } else {
+            console.log("not booked");
+          }
+        } catch (error) {
+          console.log("An error occurred during student ID validation:", error);
+        }
+      };
+      
   
     return (
       <div id="id_box" className="booking_box">

@@ -5,6 +5,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 
 import NavBar from "../Components/NavBar";
 import Marathon from "../Components/Marathon.jsx";
+import BackToHomeButton from "../Components/BackToHomeButton.jsx";
 import "./Marathons.css";
 
 function Marathons(props) {
@@ -43,7 +44,6 @@ function Marathons(props) {
 	return (
 		<div id="marathons_page" className="page">
 			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
-
 			<h1>{props.languageHelper.marathons.header}</h1>
 			<div className="marathons_table glassify">
 				<table>
@@ -68,6 +68,7 @@ function Marathons(props) {
 					</tbody>
 				</table>
 			</div>
+			<BackToHomeButton />
 		</div>
 	);
 }

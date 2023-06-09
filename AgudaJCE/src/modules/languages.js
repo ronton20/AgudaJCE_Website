@@ -70,9 +70,10 @@ const languages = {
 			submit: "Delete",
 		},
 		meetingRooms: {
-			meeting_room_1 : "Room 1",
-			meeting_room_2 : "Room 2",
-			meeting_room_3 : "Room 3",
+			header: "Meeting Rooms",
+			meeting_room_1: "Room 1",
+			meeting_room_2: "Room 2",
+			meeting_room_3: "Room 3",
 			morning: "Morning",
 			afternoon: "Afternoon",
 			evening: "Evening",
@@ -173,6 +174,13 @@ const languages = {
 			message: "Message",
 			submit: "Submit",
 		},
+		scheduleMeetingRoom: {
+			header: "Schedule Meeting Room",
+			id1: "First Student ID",
+			id2: "Second Student ID",
+			id3: "Third Student ID",
+			submit: "Book",
+		},
 	},
 	he: {
 		login: {
@@ -244,9 +252,10 @@ const languages = {
 			submit: "מחק",
 		},
 		meetingRooms: {
-			meeting_room_1 : "חדר ישיבות 1",
-			meeting_room_2 : "חדר ישיבות 2",
-			meeting_room_3 : "חדר ישיבות 3",
+			header: "הזמנת חדר ישיבות",
+			meeting_room_1: "חדר ישיבות 1",
+			meeting_room_2: "חדר ישיבות 2",
+			meeting_room_3: "חדר ישיבות 3",
 			morning: "בוקר",
 			afternoon: "צהריים",
 			evening: "ערב",
@@ -344,8 +353,15 @@ const languages = {
 			},
 			subject: "נושא",
 
-			message: "תוכן ההודעה",			
+			message: "תוכן ההודעה",
 			submit: "שלח",
+		},
+		scheduleMeetingRoom: {
+			header: "קביעת חדר ישיבות",
+			id1: 'ת"ז סטודנט ראשון',
+			id2: 'ת"ז סטודנט שני',
+			id3: 'ת"ז סטודנט שלישי',
+			submit: "קבע",
 		},
 	},
 };

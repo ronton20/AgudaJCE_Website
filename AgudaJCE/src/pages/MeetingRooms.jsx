@@ -11,6 +11,7 @@ import SchedualMeetingRoom from "../Components/SchedualMeetingRoom";
 import NavBar from "../Components/NavBar";
 
 import "./MeetingRooms.css";
+import BackToHomeButton from "../Components/BackToHomeButton";
 
 const MeetingRooms = (props) => {
 	const [user, loading, error] = useAuthState(auth);
@@ -146,6 +147,7 @@ const MeetingRooms = (props) => {
 	return (
 		<div id="meeting_room_page" className="page">
 			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
+			<h1>{props.languageHelper.meetingRooms.header}</h1>
 			<div className="meeting_room_booking_container">
 				<div className="calendar">
 					<div className="header">
@@ -220,8 +222,10 @@ const MeetingRooms = (props) => {
 					selectedDate={currentDate}
 					selectedRoom={meetingRoom}
 					selectedTimeSlot={selectedTimeSlot}
+					languageHelper={props.languageHelper}
 				/>
 			</div>
+			<BackToHomeButton />
 		</div>
 	);
 };

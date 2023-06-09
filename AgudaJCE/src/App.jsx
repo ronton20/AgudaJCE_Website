@@ -26,7 +26,12 @@ function App() {
 	const router = createBrowserRouter(
 		createRoutesFromElements(
 			<Route path="/" element={<Root />}>
-				<Route index element={<MainPage languageHelper={languageHelper} />} />
+				<Route
+					index
+					element={
+						<MainPage languageHelper={languageHelper} currLang={currentLanguage} />
+					}
+				/>
 				<Route
 					path="/manage_aguda_members"
 					element={<ManageAgudaMembers languageHelper={languageHelper} />}

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { Link } from "react-scroll";
 
+import Carousel from "../Components/Carousel";
+
 import "./mainPage.css";
 import loginImg from "../assets/login.png";
 import logoutImg from "../assets/logout.png";
@@ -23,6 +25,7 @@ function MainPage(props) {
 	const navigate = useNavigate();
 
 	const [agudaMembers, setAgudaMembers] = useState([]);
+	const [events, setEvents] = useState([]);
 
 	// Toggles the login form
 	function toggleLogin() {
@@ -45,6 +48,19 @@ function MainPage(props) {
 			setAdmin();
 		} else navigate("/");
 	}, [user, loading]);
+
+	useEffect(() => {
+		async function updateEvents() {
+			const querySnapshot = await getDocs(collection(db, "Events"));
+			const eventList = querySnapshot.docs.map((doc) => ({
+				id: doc.id,
+				...doc.data(),
+			}));
+			setEvents(eventList);
+		}
+
+		updateEvents();
+	}, []);
 
 	// Get the aguda members from the database
 	useEffect(() => {
@@ -108,17 +124,6 @@ function MainPage(props) {
 					)}
 					<li>
 						<Link
-							to="section_aguda_members"
-							spy={true}
-							smooth={true}
-							offset={-80}
-							duration={500}
-						>
-							{props.languageHelper.navBar.agudaMembers}
-						</Link>
-					</li>
-					<li>
-						<Link
 							to="section_events"
 							spy={true}
 							smooth={true}
@@ -126,6 +131,17 @@ function MainPage(props) {
 							duration={500}
 						>
 							{props.languageHelper.navBar.events}
+						</Link>
+					</li>
+					<li>
+						<Link
+							to="section_aguda_members"
+							spy={true}
+							smooth={true}
+							offset={-80}
+							duration={500}
+						>
+							{props.languageHelper.navBar.agudaMembers}
 						</Link>
 					</li>
 					{!user ? (
@@ -185,7 +201,7 @@ function MainPage(props) {
 				{!user ? (
 					<></>
 				) : (
-					<section id="section_actions">
+					<section id="section_actions" className="main-page-padding">
 						<div className="section_content">
 							<h2>{props.languageHelper.navBar.actions}</h2>
 							<div id="actions_div">
@@ -208,7 +224,15 @@ function MainPage(props) {
 						</div>
 					</section>
 				)}
-				<section id="section_aguda_members">
+				<section id="section_events" className="main-page-padding">
+					<div className="section_content">
+						<h2>{props.languageHelper.navBar.events}</h2>
+						<div id="events_div">
+							<Carousel events={events} currLang={props.currLang} />
+						</div>
+					</div>
+				</section>
+				<section id="section_aguda_members" className="main-page-padding">
 					<div className="section_content">
 						<h2>{props.languageHelper.navBar.agudaMembers}</h2>
 						<div id="aguda_members_div">
@@ -223,11 +247,10 @@ function MainPage(props) {
 						</div>
 					</div>
 				</section>
-				<section id="section_events"></section>
 				{!user ? (
 					<></>
 				) : (
-					<section id="section_contact_us">
+					<section id="section_contact_us" className="main-page-padding">
 						<div className="section_content">
 							<h2>{props.languageHelper.navBar.contactUs}</h2>
 							<div id="contact_us_div">

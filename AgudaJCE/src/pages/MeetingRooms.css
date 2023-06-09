@@ -1,5 +1,6 @@
 #meeting_room_page {
 	background: var(--JCE-gradient-light-gray);
+	padding: var(--JCE-gap);
 }
 
 .meeting_room_booking_container {

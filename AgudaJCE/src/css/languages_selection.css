@@ -18,6 +18,10 @@
 	cursor: pointer;
 }
 
+.languages_tab > img:hover {
+	animation: pop 0.2s;
+}
+
 @media screen and (max-width: 600px) {
 	.languages_tab {
 		padding: 0.25rem;

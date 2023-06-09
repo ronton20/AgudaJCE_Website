@@ -20,8 +20,7 @@
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^6.11.2",
-    "react-scroll": "^1.8.9",
-    "require": "^0.4.4"
+    "react-scroll": "^1.8.9"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

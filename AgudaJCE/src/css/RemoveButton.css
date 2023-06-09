@@ -47,15 +47,3 @@
 .remove_button:hover > .removeCircle > .removeLine2 {
 	transform: rotate(-45deg);
 }
-
-@keyframes pop {
-	0% {
-		transform: scale(0.9);
-	}
-	33% {
-		transform: scale(1.1);
-	}
-	100% {
-		transform: scale(0.9);
-	}
-}

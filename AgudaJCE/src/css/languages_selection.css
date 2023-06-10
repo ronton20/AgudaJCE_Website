@@ -22,7 +22,7 @@
 	animation: pop 0.2s;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
 	.languages_tab {
 		padding: 0.25rem;
 	}

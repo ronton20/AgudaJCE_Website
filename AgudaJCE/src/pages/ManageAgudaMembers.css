@@ -19,7 +19,7 @@
 	direction: ltr;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
 	#addMembers,
 	#agudaMembers {
 		width: 100%;

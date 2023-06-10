@@ -38,7 +38,7 @@
 	opacity: 1;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
 	#add_event {
 		width: 100%;
 		max-height: none;

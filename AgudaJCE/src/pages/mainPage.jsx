@@ -12,6 +12,10 @@ import "./mainPage.css";
 import loginImg from "../assets/login.png";
 import logoutImg from "../assets/logout.png";
 import contactUsImg from "../assets/contact_us_2.jpg";
+import facebookIcon from "../assets/facebook.png";
+import instagramIcon from "../assets/instagram.png";
+import linkedinIcon from "../assets/linkedin.png";
+import whatsAppIcon from "../assets/whatsapp.png";
 
 import Login from "../Components/Login.jsx";
 import ContactUs from "../Components/ContactUs";
@@ -280,6 +284,38 @@ function MainPage(props) {
 					</section>
 				)}
 			</main>
+			<footer>
+				<div className="footer_content">
+					<a
+						className="social-link"
+						href="https://www.instagram.com/aguda.jce/"
+						target="_blank"
+					>
+						<img src={instagramIcon} alt="instagram" />
+					</a>
+					<a
+						className="social-link"
+						href="https://www.facebook.com/aguda.jce"
+						target="_blank"
+					>
+						<img src={facebookIcon} alt="facebook" />
+					</a>
+					<a
+						className="social-link"
+						href="https://www.linkedin.com/company/jce-student-union/"
+						target="_blank"
+					>
+						<img src={linkedinIcon} alt="linkedIn" />
+					</a>
+					<a
+						className="social-link"
+						href="https://chat.whatsapp.com/HuDON7etCAg49uuWlm49fz"
+						target="_blank"
+					>
+						<img src={whatsAppIcon} alt="whatsApp" />
+					</a>
+				</div>
+			</footer>
 			<div id="login_div">
 				<Login languageHelper={props.languageHelper.login} toggleLogin={toggleLogin} />
 			</div>

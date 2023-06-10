@@ -11,7 +11,7 @@
 	--burger-inset: 2rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
 	:root {
 		--burger-inset: 1rem;
 	}

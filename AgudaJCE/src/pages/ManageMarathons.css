@@ -8,7 +8,7 @@
 	width: 90%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
 	#addMarathons,
 	.marathons_table {
 		width: 100%;

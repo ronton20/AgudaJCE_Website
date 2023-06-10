@@ -32,7 +32,7 @@
 	margin: var(--JCE-gap) 0 0 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
 	.form_row {
 		flex-direction: column;
 	}

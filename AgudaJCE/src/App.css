@@ -44,7 +44,7 @@
 	--JCE-transition: all 0.2s ease;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
 	:root {
 		--JCE-gap: 1rem;
 	}
@@ -83,7 +83,7 @@ button {
 	z-index: 1000;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
 	#languageSelection {
 		top: 1.5%;
 	}
@@ -216,7 +216,7 @@ button {
 	gap: 1rem;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
 	h1 {
 		font-size: 2rem;
 	}

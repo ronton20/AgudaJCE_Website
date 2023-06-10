@@ -51,9 +51,15 @@ function AddEvent(props) {
 	const addEventToCollection = async (imageUrl = "") => {
 		// create a new document in the Events collection
 		const eventRef = collection(db, "Events");
+		const date = new Date();
+		const year = date.getFullYear();
+		const month = String(date.getMonth() + 1).padStart(2, "0");
+		const day = String(date.getDate()).padStart(2, "0");
+
+		const formattedDate = `${year}-${month}-${day}`;
 		await addDoc(eventRef, {
 			// add the image to the document
-			Date: new Date().toLocaleDateString(),
+			Date: formattedDate,
 			Title: document.getElementById("input_field_add_event_title").value,
 			Description: document.getElementById("add_event_description").value,
 			imgUrl: imageUrl,

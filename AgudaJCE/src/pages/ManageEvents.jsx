@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db, auth } from "../firebase.js";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -22,12 +22,28 @@ function ManageEvents(props) {
 
 	async function updateEvents() {
 		const querySnapshot = await getDocs(collection(db, "Events"));
-		const eventList = querySnapshot.docs.map((doc) => ({
+		var eventList = querySnapshot.docs.map((doc) => ({
 			id: doc.id,
 			...doc.data(),
 		}));
+
+		// sort eventList by date descending according to the event's date field that is formatted as: "yyyy-mm-dd_hh:mm:ss"
+		eventList = sortEvents(eventList);
 		setEvents(eventList);
 	}
+
+	const sortEvents = (events) => {
+		const sortedEvents = events.sort((a, b) => {
+			const aDate = a.Date.split("_")[0].split("-");
+			const bDate = b.Date.split("_")[0].split("-");
+			const aTime = a.Date.split("_")[1].split(":");
+			const bTime = b.Date.split("_")[1].split(":");
+			const aDateTime = new Date(aDate[0], aDate[1], aDate[2], aTime[0], aTime[1], aTime[2]);
+			const bDateTime = new Date(bDate[0], bDate[1], bDate[2], bTime[0], bTime[1], bTime[2]);
+			return bDateTime - aDateTime;
+		});
+		return sortedEvents;
+	};
 
 	useEffect(() => {
 		async function setAdmin() {

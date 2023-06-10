@@ -12,7 +12,7 @@ const Carousel = (props) => {
 		translateValue: 0,
 	});
 
-	const { currentIndex, translateValue } = state;
+	const { currentIndex } = state;
 
 	useEffect(() => {
 		setState({
@@ -30,8 +30,8 @@ const Carousel = (props) => {
 			currentIndex: currentIndex - 1,
 			translateValue:
 				props.currLang === "he"
-					? translateValue - slideWidth()
-					: translateValue + slideWidth(),
+					? state.translateValue - slideWidth()
+					: state.translateValue + slideWidth(),
 		});
 	};
 
@@ -43,8 +43,8 @@ const Carousel = (props) => {
 			currentIndex: currentIndex + 1,
 			translateValue:
 				props.currLang === "he"
-					? translateValue + slideWidth()
-					: translateValue - slideWidth(),
+					? state.translateValue + slideWidth()
+					: state.translateValue - slideWidth(),
 		});
 	};
 
@@ -52,12 +52,29 @@ const Carousel = (props) => {
 		return document.querySelector(".carousel__slide").clientWidth;
 	};
 
+	useEffect(() => {
+		const handleResize = () => {
+			setState((prevState) => ({
+				...prevState,
+				translateValue:
+					props.currLang === "he"
+						? slideWidth() * prevState.currentIndex
+						: -(slideWidth() * prevState.currentIndex),
+			}));
+		};
+
+		window.addEventListener("resize", handleResize);
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+	}, [props.currLang]);
+
 	return (
 		<div className={`carousel`}>
 			<div
 				className="carousel__wrapper"
 				style={{
-					transform: `translateX(${translateValue}px)`,
+					transform: `translateX(${state.translateValue}px)`,
 					transition: "transform ease-out 0.45s",
 				}}
 			>
@@ -68,28 +85,36 @@ const Carousel = (props) => {
 				))}
 			</div>
 
-			<button
-				className="carousel__btn next"
-				onClick={goToPrevSlide}
-				style={props.currLang === "he" ? { right: "0" } : { left: "0" }}
-			>
-				<img
-					src={arrow}
-					alt="next"
-					style={props.currLang === "he" ? {} : { transform: "scaleX(-1)" }}
-				/>
-			</button>
-			<button
-				className="carousel__btn prev"
-				onClick={goToNextSlide}
-				style={props.currLang === "he" ? { left: "0" } : { right: "0" }}
-			>
-				<img
-					src={arrow}
-					alt="prev"
-					style={props.currLang === "he" ? { transform: "scaleX(-1)" } : {}}
-				/>
-			</button>
+			{state.currentIndex === 0 ? (
+				<></>
+			) : (
+				<button
+					className="carousel__btn prev"
+					onClick={goToPrevSlide}
+					style={props.currLang === "he" ? { right: "0" } : { left: "0" }}
+				>
+					<img
+						src={arrow}
+						alt="prev"
+						style={props.currLang === "he" ? {} : { transform: "scaleX(-1)" }}
+					/>
+				</button>
+			)}
+			{state.currentIndex === items.length - 1 ? (
+				<></>
+			) : (
+				<button
+					className="carousel__btn next"
+					onClick={goToNextSlide}
+					style={props.currLang === "he" ? { left: "0" } : { right: "0" }}
+				>
+					<img
+						src={arrow}
+						alt="next"
+						style={props.currLang === "he" ? { transform: "scaleX(-1)" } : {}}
+					/>
+				</button>
+			)}
 		</div>
 	);
 };

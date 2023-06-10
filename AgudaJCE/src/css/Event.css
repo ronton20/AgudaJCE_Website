@@ -1,4 +1,5 @@
 .event {
+	position: relative;
 	width: 100%;
 	/* max-width: 400px; */
 	height: 100%;
@@ -9,14 +10,18 @@
 	align-items: center;
 }
 
-@media screen and (max-width: 768px) {
-	.event {
-		/* max-width: 250px; */
-		/* aspect-ratio: 2/3; */
-	}
+.event > .event-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: blur(8px);
+	z-index: -1;
 }
 
-.event > img {
+.event > .event-img {
 	width: 100%;
 	height: 100%;
 	object-fit: contain;

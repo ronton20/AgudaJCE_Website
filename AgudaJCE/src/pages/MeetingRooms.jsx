@@ -240,6 +240,7 @@ const MeetingRooms = (props) => {
 					selectedDate={currentDate}
 					selectedRoom={meetingRoom}
 					selectedTimeSlot={selectedTimeSlot}
+					meetingRooms={meetingRooms}
 					languageHelper={props.languageHelper}
 				/>
 			</div>

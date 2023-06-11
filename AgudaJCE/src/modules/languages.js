@@ -184,6 +184,10 @@ const languages = {
 			id2: "Second Student ID",
 			id3: "Third Student ID",
 			submit: "Book",
+			not_available: "Oops! it seems like someone managed to book this room before you did",
+			error_duplicate_id: "Duplicate ID",
+			error_invalid_id: "Invalid ID",
+			error_exceed_limit: "Weekly booking limit exceeded",
 		},
 	},
 	he: {
@@ -370,6 +374,10 @@ const languages = {
 			id2: 'ת"ז סטודנט שני',
 			id3: 'ת"ז סטודנט שלישי',
 			submit: "קבע",
+			not_available: "אופס! נראה כי מישהו תפס את החדר לפניך",
+			error_duplicate_id: "תעודת זהות כפולה",
+			error_invalid_id: "תעודת זהות לא תקינה",
+			error_exceed_limit: "סטודנט זה עבר את המכסה השבועית",
 		},
 	},
 };

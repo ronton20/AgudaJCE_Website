@@ -8,6 +8,7 @@ function SchedualMeetingRoom(props) {
 	const selectedDate = props.selectedDate;
 	const selectedRoom = props.selectedRoom;
 	const selectedTimeSlot = props.selectedTimeSlot;
+	const meetingRooms = props.meetingRooms;
 
 	const validateStudentId = async (studentId) => {
 		const id = studentId.value;
@@ -18,10 +19,15 @@ function SchedualMeetingRoom(props) {
 		}));
 		// return boolean value
 		const returnValue = students.some((student) => student.id === id);
-		if (!returnValue) 
-			studentId.style.border = "2px solid red";
+		if (!returnValue)
+			invalidIdForBooking(studentId, props.languageHelper.scheduleMeetingRoom.error_invalid_id);
 		return returnValue;
 	};
+
+	const invalidIdForBooking = (studentId, errorMessage) => {
+		studentId.style.border = "2px solid red";
+		console.log(errorMessage);
+	}
 
 	const validateOnlyUniqueStudents = (studentsIdList) => {
 		const uniqueStudentsIdList = [
@@ -31,7 +37,7 @@ function SchedualMeetingRoom(props) {
 		if (uniqueStudentsIdList.length !== studentsIdList.length) {
 			studentsIdList.forEach((studentId) => {
 				if (studentsIdList.filter((id) => id.value === studentId.value).length > 1) {
-					studentId.style.border = "2px solid red";
+					invalidIdForBooking(studentId, props.languageHelper.scheduleMeetingRoom.error_duplicate_id);
 				}
 			});
 			return false;
@@ -41,9 +47,9 @@ function SchedualMeetingRoom(props) {
 
 	const validateMaxBookingsNotExceeded = async (studentsIdList) => {
 		// get all the bookings for the current week of all meeting rooms, all the documents id are in this form: "yyyy-mm-dd_(time_slot)"
-		const querySnapshot = await getDocs(collection(db, "MeetingRoom1"));
-		const querySnapshot2 = await getDocs(collection(db, "MeetingRoom2"));
-		const querySnapshot3 = await getDocs(collection(db, "MeetingRoom3"));
+		const querySnapshot = await getDocs(collection(db, meetingRooms.room1));
+		const querySnapshot2 = await getDocs(collection(db, meetingRooms.room2));
+		const querySnapshot3 = await getDocs(collection(db, meetingRooms.room3));
 		// merge all the bookings into one array
 		const bookings = querySnapshot.docs.map((doc) => ({
 			id: doc.id,
@@ -70,7 +76,7 @@ function SchedualMeetingRoom(props) {
 		// iterate all currentWeekBookings and check id1, id2, id3 fields for each booking
 		let studentsExceededMaxBookings = false;
 		let counter = 0;
-
+		
 		studentsIdList.forEach((studentId) => {
 			currentWeekBookings.forEach((booking) => {
 				if (
@@ -82,7 +88,7 @@ function SchedualMeetingRoom(props) {
 					if (counter >= 2) {
 						// if one of the students already exceeded the max bookings for the current week (2 bookings) print error
 						studentsExceededMaxBookings = true;
-						studentId.style.border = "2px solid red";
+						invalidIdForBooking(studentId, props.languageHelper.scheduleMeetingRoom.error_exceed_limit);
 					}
 				}
 			});
@@ -114,6 +120,20 @@ function SchedualMeetingRoom(props) {
 		});
 	};
 
+	// validate that the room is available for the selected date and time slot
+	const validateMeetingRoomAvailability = async () => {
+		const querySnapshot = await getDocs(collection(db, selectedRoom));
+		const bookings = querySnapshot.docs.map((doc) => ({
+			id: doc.id,
+			...doc.data(),
+		}));
+		const booking = bookings.find((booking) => booking.id === `${selectedDate}_${selectedTimeSlot}`);
+		if (booking) 
+			return false;
+		return true;
+	};
+
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		// Access the input field values using their ids
@@ -123,7 +143,7 @@ function SchedualMeetingRoom(props) {
 
 		const studentsIdList = [firstStudentId, secondStudentId, thirdStudentId];
 
-		// validate that the students id are unique and print any not unique
+		// validate that the students id are unique
 		if (!validateOnlyUniqueStudents(studentsIdList)) {
 			return;
 		}
@@ -146,8 +166,12 @@ function SchedualMeetingRoom(props) {
 				const isMaxBookingsValid = await validateMaxBookingsNotExceeded(studentsIdList);
 
 				if (isMaxBookingsValid) {
-					bookMeetingRoom(studentsIdList);
-					console.log("booked");
+					// check if the meeting room is available, then book
+					const isAvailable = await validateMeetingRoomAvailability();
+					if (isAvailable)
+						await bookMeetingRoom(studentsIdList);
+					else 
+						alert(props.languageHelper.scheduleMeetingRoom.not_available);
 				}
 			}
 		} catch (error) {

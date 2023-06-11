@@ -1,5 +1,4 @@
 #manage_events_page {
-	padding: var(--JCE-gap);
 	background: var(--JCE-gradient-dark-gray);
 }
 
@@ -12,13 +11,13 @@
 #event_list {
 	width: 90%;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 	place-items: center;
-	/* place-content: center; */
 	align-items: center;
 }
 
 #event_list > * {
+	width: 100%;
 	max-width: 400px;
 }
 

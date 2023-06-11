@@ -1,16 +1,15 @@
 #manage_members_page {
-	padding: var(--JCE-gap);
 	background: var(--JCE-gradient-dark-gray);
 }
 
 #add_member,
 #update_members {
-    width: 90%;
+	width: 90%;
 }
 
 @media screen and (max-width: 1000px) {
 	#add_member,
-    #update_members {
+	#update_members {
 		width: 100%;
 	}
 }

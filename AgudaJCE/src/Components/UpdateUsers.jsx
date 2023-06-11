@@ -7,10 +7,9 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
 
 function UpdateUsers(props) {
-
-    const ids = {
-        uploadFileLabel: "add_users_upload_file_label",
-    }
+	const ids = {
+		uploadFileLabel: "add_users_upload_file_label",
+	};
 
 	const handleFileChange = (e) => {
 		const file = e.target.files[0];
@@ -21,6 +20,8 @@ function UpdateUsers(props) {
 	};
 
 	const parseCSV = (file) => {
+		const currentUser = auth.currentUser;
+		console.log(currentUser);
 		const reader = new FileReader();
 
 		Papa.parse(file, {
@@ -64,6 +65,7 @@ function UpdateUsers(props) {
 							// Handle any errors
 							console.error("User creation error:", error);
 						}
+						await auth.updateCurrentUser(currentUser);
 					}
 					// if the user in the CSV and in the DB already update the user and delete the user from users array
 					else {

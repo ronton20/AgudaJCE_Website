@@ -2,10 +2,9 @@ import React from "react";
 import InputField from "./InputField.jsx";
 import "../css/addUsers.css";
 
-import Papa from "papaparse";
 import { auth, db } from "../firebase.js";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
 
 function AddUser(props) {
 	const ids = {
@@ -42,6 +41,7 @@ function AddUser(props) {
 		phone = "",
 		isAdmin = false,
 	}) => {
+		const currentUser = auth.currentUser;
 		try {
 			// Create a new user with the provided email and password
 			await createUserWithEmailAndPassword(auth, email, id);
@@ -63,6 +63,7 @@ function AddUser(props) {
 			// Handle any errors
 			console.error("User creation error:", error);
 		}
+		auth.updateCurrentUser(currentUser);
 	};
 
 	return (
@@ -79,7 +80,11 @@ function AddUser(props) {
 						label={props.languageHelper.firstName}
 						type="text"
 					/>
-					<InputField _id={ids.lastName} label={props.languageHelper.lastName} type="text" />
+					<InputField
+						_id={ids.lastName}
+						label={props.languageHelper.lastName}
+						type="text"
+					/>
 					<InputField _id={ids.phone} label={props.languageHelper.phone} type="text" />
 				</div>
 				<button className="submit_button" type="submit">

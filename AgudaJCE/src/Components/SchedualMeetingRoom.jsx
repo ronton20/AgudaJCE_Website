@@ -115,11 +115,11 @@ function SchedualMeetingRoom(props) {
 
 	const bookMeetingRoom = async (studentsIdList) => {
 		// create a new document in the DB with the selected date and time slot
-		// const docRef = await setDoc(doc(db, selectedRoom, `${selectedDate}_${selectedTimeSlot}`), {
-		// 	id1: studentsIdList[0].value,
-		// 	id2: studentsIdList[1].value,
-		// 	id3: studentsIdList[2].value,
-		// });
+		const docRef = await setDoc(doc(db, selectedRoom, `${selectedDate}_${selectedTimeSlot}`), {
+			id1: studentsIdList[0].value,
+			id2: studentsIdList[1].value,
+			id3: studentsIdList[2].value,
+		});
 		// send confirmation mail to the current user
 		const currentUserEmail = auth.currentUser.email;
 		// send confirmation mail to the currentUserEmail

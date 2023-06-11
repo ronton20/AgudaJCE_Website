@@ -30,14 +30,7 @@ function Login(props) {
 			// Close the login modal and refresh the page
 			props.toggleLogin();
 		} catch (error) {
-			// Handle any errors
-			if (error.code == "auth/user-not-found") {
-				alert(props.languageHelper.error_user_not_found);
-			} else if (error.code == "auth/wrong-password") {
-				alert(props.languageHelper.error_wrong_password);
-			} else {
-				alert(error);
-			}
+			alert(props.languageHelper.error_invalid_user);
 		}
 	};
 

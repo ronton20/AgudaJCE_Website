@@ -6,8 +6,7 @@ const languages = {
 			email: "Email",
 			password: "Password",
 			submit: "Login",
-			error_user_not_found: "User not found",
-			error_wrong_password: "Wrong password",
+			error_invalid_user: "Invalid username or password",
 		},
 		logout: {
 			header: "Logout",
@@ -196,8 +195,7 @@ const languages = {
 			email: "אימייל",
 			password: "סיסמה",
 			submit: "התחבר",
-			error_user_not_found: "משתמש לא נמצא",
-			error_wrong_password: "סיסמה שגויה",
+			error_invalid_user: "שם משתמש או סיסמה לא תקינים",
 		},
 		logout: {
 			header: "התנתקות",

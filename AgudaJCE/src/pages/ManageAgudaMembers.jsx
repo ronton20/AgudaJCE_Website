@@ -49,7 +49,7 @@ function ManageAgudaMembers(props) {
 			<h1 id="manage_aguda_members_title">
 				{props.languageHelper.manageAgudaMembers.header}
 			</h1>
-			<div id="addMembers">
+			<div id="addMembers" className="glassify">
 				<AddAgudaMembers
 					languageHelper={props.languageHelper.addAgudaMembers}
 					updateMembers={updateMembers}

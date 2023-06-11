@@ -1,9 +1,13 @@
 .add_aguda_members_div {
 	width: 100%;
 	height: 100%;
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: center; */
+	display: grid;
+	grid-template-columns: 1fr;
+	place-items: center;
+	grid-template-rows: min-content;
 }
 
 .add_aguda_members_form {

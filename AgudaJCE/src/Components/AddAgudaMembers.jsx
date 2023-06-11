@@ -35,7 +35,7 @@ function AddAgudaMembers(props) {
 	};
 
 	return (
-		<div className="add_aguda_members_div glassify">
+		<div className="add_aguda_members_div">
 			<h2>{props.languageHelper.header}</h2>
 			<form className="add_aguda_members_form container" onSubmit={addMember}>
 				<div className="flex">

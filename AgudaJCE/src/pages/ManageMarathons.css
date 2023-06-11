@@ -16,5 +16,12 @@
 
 .marathons_table table {
 	width: 100%;
+	table-layout: fixed;
 	border-collapse: collapse;
+}
+
+@media screen and (max-width: 1000px) {
+	.marathons_table table {
+		table-layout: auto;
+	}
 }

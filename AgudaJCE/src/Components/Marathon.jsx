@@ -30,7 +30,7 @@ function Marathon(props) {
 				{props.data.price}
 				{props.languageHelper.currency}
 			</td>
-			<td>
+			<td className="register_link_cell">
 				<a href={props.data.link} target="_blank">
 					<img src={linkBtn} alt="sign up" />
 				</a>

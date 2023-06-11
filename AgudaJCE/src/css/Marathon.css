@@ -1,14 +1,17 @@
 .marathon {
+	--link-img-size: 25px;
+	--cell-padding: 0.5rem;
 	position: relative;
+	width: 100%;
 }
 
 .marathon td {
 	border: 1px solid black;
-	padding: 0.5rem;
+	padding: var(--cell-padding);
 }
 
 .marathon img {
-	width: 25px;
+	max-width: var(--link-img-size);
 	aspect-ratio: 1;
 	object-fit: contain;
 }
@@ -18,7 +21,13 @@
 }
 
 @media screen and (max-width: 1000px) {
+	.marathon {
+		--link-img-size: 20px;
+		--cell-padding: 1px;
+	}
+
 	.marathon td {
-		padding: 1px;
+		font-size: smaller;
+		font-weight: 400;
 	}
 }

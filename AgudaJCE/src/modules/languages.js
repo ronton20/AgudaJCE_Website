@@ -13,7 +13,7 @@ const languages = {
 			submit: "Logout",
 		},
 		manageMembers: {
-			header: "Manage Members"
+			header: "Manage Members",
 		},
 		addUsers: {
 			header: "Add User",
@@ -202,7 +202,7 @@ const languages = {
 			submit: "התנתק",
 		},
 		manageMembers: {
-			header: "ניהול משתמשים"
+			header: "ניהול משתמשים",
 		},
 		addUsers: {
 			header: "הוספת משתמש",

@@ -240,7 +240,7 @@ const languages = {
 			date: "תאריך",
 			price: "מחיר",
 			currency: "₪",
-			link: "להרשמה",
+			link: "לינק להרשמה",
 			submit: "הוסף",
 		},
 		marathon: {
@@ -250,7 +250,7 @@ const languages = {
 			date: "תאריך",
 			price: "מחיר",
 			currency: "₪",
-			link: "להרשמה",
+			link: "לינק להרשמה",
 		},
 		marathons: {
 			header: "הרשמה למרתונים",

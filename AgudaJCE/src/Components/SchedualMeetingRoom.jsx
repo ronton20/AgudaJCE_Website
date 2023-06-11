@@ -10,13 +10,16 @@ function SchedualMeetingRoom(props) {
 	const selectedTimeSlot = props.selectedTimeSlot;
 
 	const validateStudentId = async (studentId) => {
+		const id = studentId.value;
 		const querySnapshot = await getDocs(collection(db, "Users"));
 		const students = querySnapshot.docs.map((doc) => ({
 			id: doc.id,
 			...doc.data(),
 		}));
 		// return boolean value
-		const returnValue = students.some((student) => student.id === studentId);
+		const returnValue = students.some((student) => student.id === id);
+		if (!returnValue) 
+			studentId.style.border = "2px solid red";
 		return returnValue;
 	};
 
@@ -29,8 +32,6 @@ function SchedualMeetingRoom(props) {
 			studentsIdList.forEach((studentId) => {
 				if (studentsIdList.filter((id) => id.value === studentId.value).length > 1) {
 					studentId.style.border = "2px solid red";
-				} else {
-					studentId.style.border = "2px solid green";
 				}
 			});
 			return false;
@@ -129,7 +130,7 @@ function SchedualMeetingRoom(props) {
 
 		// Validate each of the students id is in the DB
 		const validatePromises = studentsIdList.map((studentId) =>
-			validateStudentId(studentId.value)
+			validateStudentId(studentId)
 		);
 
 		try {
@@ -148,8 +149,6 @@ function SchedualMeetingRoom(props) {
 					bookMeetingRoom(studentsIdList);
 					console.log("booked");
 				}
-			} else {
-				console.log("not booked");
 			}
 		} catch (error) {
 			console.log("An error occurred during student ID validation:", error);

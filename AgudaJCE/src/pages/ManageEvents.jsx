@@ -66,25 +66,27 @@ function ManageEvents(props) {
 
 	return (
 		<div id="manage_events_page" className="page">
-			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
-			<h1 id="manage_aguda_members_title">{props.languageHelper.manageEvents.header}</h1>
-			<div id="add_event">
-				<AddEvent
-					languageHelper={props.languageHelper.addEvent}
-					updateEvents={updateEvents}
-				/>
-			</div>
-			<div id="event_list" className="glassify">
-				{events.map((event) => (
-					<Event
-						key={event.id}
-						data={event}
-						removable={true}
+			<div className="page_content">
+				{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
+				<h1 id="manage_aguda_members_title">{props.languageHelper.manageEvents.header}</h1>
+				<div id="add_event">
+					<AddEvent
+						languageHelper={props.languageHelper.addEvent}
 						updateEvents={updateEvents}
 					/>
-				))}
+				</div>
+				<div id="event_list" className="glassify">
+					{events.map((event) => (
+						<Event
+							key={event.id}
+							data={event}
+							removable={true}
+							updateEvents={updateEvents}
+						/>
+					))}
+				</div>
+				<div id="blur_background" onClick={toggleBackground}></div>
 			</div>
-			<div id="blur_background" onClick={toggleBackground}></div>
 		</div>
 	);
 }

@@ -47,37 +47,41 @@ function ManageMarathons(props) {
 	return (
 		<div id="manage_marathons_page" className="page">
 			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
-			<h1 id="manage_aguda_members_title">{props.languageHelper.manageMarathons.header}</h1>
-			<div id="addMarathons" className="glassify">
-				<AddMarathon
-					languageHelper={props.languageHelper.addMarathon}
-					updateMarathons={updateMarathons}
-				/>
-			</div>
-			<div className="marathons_table glassify">
-				<table>
-					<thead>
-						<tr>
-							<th>{props.languageHelper.marathon.department}</th>
-							<th>{props.languageHelper.marathon.course}</th>
-							<th>{props.languageHelper.marathon.lecturer}</th>
-							<th>{props.languageHelper.marathon.date}</th>
-							<th>{props.languageHelper.marathon.price}</th>
-							<th>{props.languageHelper.marathon.link}</th>
-						</tr>
-					</thead>
-					<tbody>
-						{marathons.map((marathon, index) => (
-							<Marathon
-								key={index}
-								data={marathon}
-								removable={true}
-								updateMarathons={updateMarathons}
-								languageHelper={props.languageHelper.addMarathon}
-							/>
-						))}
-					</tbody>
-				</table>
+			<div className="page_content">
+				<h1 id="manage_aguda_members_title">
+					{props.languageHelper.manageMarathons.header}
+				</h1>
+				<div id="addMarathons" className="glassify">
+					<AddMarathon
+						languageHelper={props.languageHelper.addMarathon}
+						updateMarathons={updateMarathons}
+					/>
+				</div>
+				<div className="marathons_table glassify">
+					<table>
+						<thead>
+							<tr>
+								<th>{props.languageHelper.marathon.department}</th>
+								<th>{props.languageHelper.marathon.course}</th>
+								<th>{props.languageHelper.marathon.lecturer}</th>
+								<th>{props.languageHelper.marathon.date}</th>
+								<th>{props.languageHelper.marathon.price}</th>
+								<th>{props.languageHelper.marathon.link}</th>
+							</tr>
+						</thead>
+						<tbody>
+							{marathons.map((marathon, index) => (
+								<Marathon
+									key={index}
+									data={marathon}
+									removable={true}
+									updateMarathons={updateMarathons}
+									languageHelper={props.languageHelper.addMarathon}
+								/>
+							))}
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	);

@@ -43,30 +43,32 @@ function Marathons(props) {
 
 	return (
 		<div id="marathons_page" className="page">
-			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
-			<h1>{props.languageHelper.marathons.header}</h1>
-			<div className="marathons_table glassify">
-				<table>
-					<thead>
-						<tr>
-							<th>{props.languageHelper.marathon.department}</th>
-							<th>{props.languageHelper.marathon.course}</th>
-							<th>{props.languageHelper.marathon.lecturer}</th>
-							<th>{props.languageHelper.marathon.date}</th>
-							<th>{props.languageHelper.marathon.price}</th>
-							<th>{props.languageHelper.marathon.link}</th>
-						</tr>
-					</thead>
-					<tbody>
-						{marathons.map((marathon) => (
-							<Marathon
-								key={marathon.id}
-								data={marathon}
-								languageHelper={props.languageHelper.marathon}
-							/>
-						))}
-					</tbody>
-				</table>
+			<div className="page_content">
+				{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
+				<h1>{props.languageHelper.marathons.header}</h1>
+				<div className="marathons_table glassify">
+					<table>
+						<thead>
+							<tr>
+								<th>{props.languageHelper.marathon.department}</th>
+								<th>{props.languageHelper.marathon.course}</th>
+								<th>{props.languageHelper.marathon.lecturer}</th>
+								<th>{props.languageHelper.marathon.date}</th>
+								<th>{props.languageHelper.marathon.price}</th>
+								<th>{props.languageHelper.marathon.link}</th>
+							</tr>
+						</thead>
+						<tbody>
+							{marathons.map((marathon) => (
+								<Marathon
+									key={marathon.id}
+									data={marathon}
+									languageHelper={props.languageHelper.marathon}
+								/>
+							))}
+						</tbody>
+					</table>
+				</div>
 			</div>
 			<BackToHomeButton />
 		</div>

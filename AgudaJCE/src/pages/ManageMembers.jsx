@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 import "./ManageMembers.css";
 
-import AddUser from "../Components/addUsers.jsx"
-import UpdateUsers from "../Components/UpdateUsers.jsx"
+import AddUser from "../Components/addUsers.jsx";
+import UpdateUsers from "../Components/UpdateUsers.jsx";
 import NavBar from "../Components/NavBar";
 
 function ManageMembers(props) {
@@ -33,16 +33,14 @@ function ManageMembers(props) {
 	return (
 		<div id="manage_members_page" className="page">
 			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
-			<h1 id="manage_members_title">{props.languageHelper.manageMembers.header}</h1>
-			<div id="add_member" className="glassify">
-				<AddUser
-					languageHelper={props.languageHelper.addUsers}
-				/>
-			</div>
-			<div id="update_members" className="glassify">
-				<UpdateUsers
-					languageHelper={props.languageHelper.addUsers}
-				/>
+			<div className="page_content">
+				<h1 id="manage_members_title">{props.languageHelper.manageMembers.header}</h1>
+				<div id="add_member" className="glassify">
+					<AddUser languageHelper={props.languageHelper.addUsers} />
+				</div>
+				<div id="update_members" className="glassify">
+					<UpdateUsers languageHelper={props.languageHelper.addUsers} />
+				</div>
 			</div>
 		</div>
 	);

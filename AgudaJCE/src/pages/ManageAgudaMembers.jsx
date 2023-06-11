@@ -46,24 +46,26 @@ function ManageAgudaMembers(props) {
 	return (
 		<div id="manage_aguda_members_page" className="page">
 			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
-			<h1 id="manage_aguda_members_title">
-				{props.languageHelper.manageAgudaMembers.header}
-			</h1>
-			<div id="addMembers" className="glassify">
-				<AddAgudaMembers
-					languageHelper={props.languageHelper.addAgudaMembers}
-					updateMembers={updateMembers}
-				/>
-			</div>
-			<div id="agudaMembers" className="glassify">
-				{agudaMembers.map((member) => (
-					<AgudaMember
-						key={member.id}
-						data={member}
-						removable={true}
+			<div className="page_content">
+				<h1 id="manage_aguda_members_title">
+					{props.languageHelper.manageAgudaMembers.header}
+				</h1>
+				<div id="addMembers" className="glassify">
+					<AddAgudaMembers
+						languageHelper={props.languageHelper.addAgudaMembers}
 						updateMembers={updateMembers}
 					/>
-				))}
+				</div>
+				<div id="agudaMembers" className="glassify">
+					{agudaMembers.map((member) => (
+						<AgudaMember
+							key={member.id}
+							data={member}
+							removable={true}
+							updateMembers={updateMembers}
+						/>
+					))}
+				</div>
 			</div>
 		</div>
 	);

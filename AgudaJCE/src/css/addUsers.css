@@ -1,22 +1,11 @@
 .add_users_div {
 	width: 100%;
 	height: 100%;
-	padding: 2rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 2rem;
-	background: linear-gradient(
-		to bottom right,
-		rgba(0, 0, 0, 0.2),
-		rgba(0, 0, 0, 0.1),
-		rgba(0, 0, 0, 0.2)
-	);
-	color: var(--JCE-white);
-	backdrop-filter: blur(5px);
-	border-radius: 1rem;
-	border: 1px solid rgba(255, 255, 255, 0.3);
+	gap: var(--JCE-gap);
 }
 
 .add_users_div > h1 {
@@ -30,7 +19,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 2rem;
+	gap: var(--JCE-gap);
 }
 
 @keyframes shine {

@@ -29,10 +29,16 @@ const MeetingRooms = (props) => {
 	const [isEveningAvailable, setIsEveningAvailable] = useState(false);
 
 	const meetingRooms = {
-		room1: "MeetingRoom1",
-		room2: "MeetingRoom2",
-		room3: "MeetingRoom3",
+		room1: "c305",
+		room2: "c306",
+		room3: "c307",
 	};
+
+	const timeFrames = {
+		room1: "09:00-13:00",
+		room2: "13:00-17:00",
+		room3: "17:00-21:00",
+	}
 
 	useEffect(() => {
 		async function setAdmin() {
@@ -175,48 +181,60 @@ const MeetingRooms = (props) => {
 				<div id="meeting_rooms_box" className="booking_box">
 					<AgudaButtonUI
 						_id={meetingRooms.room1}
-						button_text={props.languageHelper.meetingRooms.meeting_room_1}
+						button_text={meetingRooms.room1}
 						disabled={false}
 						onClick={() => setRoom(meetingRooms.room1)}
 						value={meetingRooms.room1}
 					/>
 					<AgudaButtonUI
 						_id={meetingRooms.room2}
-						button_text={props.languageHelper.meetingRooms.meeting_room_2}
+						button_text={meetingRooms.room2}
 						disabled={false}
 						onClick={() => setRoom(meetingRooms.room2)}
 						value={meetingRooms.room2}
 					/>
 					<AgudaButtonUI
 						_id={meetingRooms.room3}
-						button_text={props.languageHelper.meetingRooms.meeting_room_3}
+						button_text={meetingRooms.room3}
 						disabled={false}
 						onClick={() => setRoom(meetingRooms.room3)}
 						value={meetingRooms.room3}
 					/>
 				</div>
 				<div id="time_frame_box" className="booking_box">
-					<AgudaButtonUI
-						_id={"morning"}
-						button_text={props.languageHelper.meetingRooms.morning}
-						disabled={!isMorningAvailable}
-						onClick={() => timeSlotClicked("morning")}
-						value={"morning"}
-					/>
-					<AgudaButtonUI
-						_id={"noon"}
-						button_text={props.languageHelper.meetingRooms.afternoon}
-						disabled={!isNoonAvailable}
-						onClick={() => timeSlotClicked("noon")}
-						value={"noon"}
-					/>
-					<AgudaButtonUI
-						_id={"evening"}
-						button_text={props.languageHelper.meetingRooms.evening}
-						disabled={!isEveningAvailable}
-						onClick={() => timeSlotClicked("evening")}
-						value={"evening"}
-					/>
+					<div className="time_frame_button">
+						<AgudaButtonUI
+							_id={"morning"}
+							button_text={props.languageHelper.meetingRooms.morning}
+							disabled={!isMorningAvailable}
+							onClick={() => timeSlotClicked("morning")}
+							value={"morning"}
+						/>
+						<p>{timeFrames.room1}</p>
+					</div>
+					<div className="time_frame_button">
+						<AgudaButtonUI
+							_id={"noon"}
+							button_text={props.languageHelper.meetingRooms.afternoon}
+							disabled={!isNoonAvailable}
+							onClick={() => timeSlotClicked("noon")}
+							value={"noon"}
+						/>
+						<p>{timeFrames.room2}</p>
+					</div>
+					<div className="time_frame_button">
+						<AgudaButtonUI
+							_id={"evening"}
+							button_text={props.languageHelper.meetingRooms.evening}
+							disabled={!isEveningAvailable}
+							onClick={() => timeSlotClicked("evening")}
+							value={"evening"}
+						/>
+						<p>{timeFrames.room3}</p>
+					</div>
+					
+					
+					
 				</div>
 				<SchedualMeetingRoom
 					selectedDate={currentDate}

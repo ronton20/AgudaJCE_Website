@@ -5,6 +5,7 @@
 
 #add_event {
 	width: 90%;
+	height: 100%;
 	max-height: 600px;
 }
 
@@ -13,7 +14,8 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 	place-items: center;
-	place-content: center;
+	/* place-content: center; */
+	align-items: center;
 }
 
 #event_list > * {

@@ -106,3 +106,15 @@
 .booking_box.active {
 	transform: scaleY(1);
 }
+
+.time_frame_button {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr;
+	place-items: center;
+	gap: var(--JCE-Padding);
+}
+
+.time_frame_button > button {
+	width: 100%;
+}

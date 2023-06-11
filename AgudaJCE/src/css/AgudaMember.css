@@ -2,12 +2,15 @@
 	position: relative;
 	width: 100%;
 	max-width: 150px;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 0.5rem;
 	padding: 0.5rem;
+}
+
+.agudaMember > div {
+	height: min-content;
 }
 
 .agudaMemberOverlay {
@@ -23,12 +26,12 @@
 	border: 2px solid black;
 }
 
-.agudaMember > h3 {
+.agudaMember h3 {
 	font-size: 1.5rem;
 	font-weight: 500;
 }
 
-.agudaMember > p {
+.agudaMember p {
 	font-size: 1rem;
 	font-weight: 400;
 }

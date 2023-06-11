@@ -89,6 +89,7 @@
 
 #logo_div > img {
 	width: 100%;
+	max-width: 100px;
 	height: 100%;
 	object-fit: contain;
 	border-radius: var(--JCE-BR);
@@ -297,7 +298,12 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	place-items: center;
+	align-items: flex-start;
 	direction: ltr;
+}
+
+#aguda_members_div > * {
+	height: 100%;
 }
 
 @media screen and (max-width: 1000px) {
@@ -332,10 +338,12 @@
 #contact_us_div {
 	width: 100%;
 	height: auto;
-	padding: var(--JCE-gap);
 	display: grid;
 	grid-template-columns: 2fr 1fr;
+	grid-template-rows: min-content;
 	gap: var(--JCE-gap);
+	padding: var(--JCE-gap);
+	place-items: center;
 	background-color: var(--JCE-color-main-3);
 	border: var(--JCE-border);
 }

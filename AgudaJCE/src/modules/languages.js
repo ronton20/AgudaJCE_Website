@@ -13,8 +13,12 @@ const languages = {
 			header: "Logout",
 			submit: "Logout",
 		},
+		manageMembers: {
+			header: "Manage Members"
+		},
 		addUsers: {
-			header: "Add Users",
+			header: "Add User",
+			updateUsers: "Update Users",
 			firstName: "First Name",
 			lastName: "Last Name",
 			email: "Email",
@@ -195,8 +199,12 @@ const languages = {
 			header: "התנתקות",
 			submit: "התנתק",
 		},
+		manageMembers: {
+			header: "ניהול משתמשים"
+		},
 		addUsers: {
-			header: "הוספת משתמשים",
+			header: "הוספת משתמש",
+			updateUsers: "עדכון משתמשים",
 			firstName: "שם פרטי",
 			lastName: "שם משפחה",
 			email: "אימייל",

@@ -10,10 +10,10 @@ import {
 
 import languages from "./modules/languages";
 import LanguagesSelection from "./Components/languages_selection.jsx";
-import AddUsers from "./Components/addUsers";
 
 import MainPage from "./pages/mainPage.jsx";
 import ManageAgudaMembers from "./pages/ManageAgudaMembers.jsx";
+import ManageMembers from "./pages/ManageMembers.jsx"
 import ManageEvents from "./pages/ManageEvents.jsx";
 import ManageMarathons from "./pages/ManageMarathons.jsx";
 import MeetingRooms from "./pages/MeetingRooms.jsx";
@@ -38,7 +38,7 @@ function App() {
 				/>
 				<Route
 					path="/add_users"
-					element={<AddUsers languageHelper={languageHelper.addUsers} />}
+					element={<ManageMembers languageHelper={languageHelper} />}
 				/>
 				<Route
 					path="/manage_events"

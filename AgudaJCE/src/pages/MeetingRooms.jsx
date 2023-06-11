@@ -35,9 +35,9 @@ const MeetingRooms = (props) => {
 	};
 
 	const timeFrames = {
-		room1: "09:00-13:00",
-		room2: "13:00-17:00",
-		room3: "17:00-21:00",
+		morning: "09:00-13:00",
+		noon: "13:00-17:00",
+		evening: "17:00-21:00",
 	}
 
 	useEffect(() => {
@@ -210,7 +210,7 @@ const MeetingRooms = (props) => {
 							onClick={() => timeSlotClicked("morning")}
 							value={"morning"}
 						/>
-						<p>{timeFrames.room1}</p>
+						<p>{timeFrames.morning}</p>
 					</div>
 					<div className="time_frame_button">
 						<AgudaButtonUI
@@ -220,7 +220,7 @@ const MeetingRooms = (props) => {
 							onClick={() => timeSlotClicked("noon")}
 							value={"noon"}
 						/>
-						<p>{timeFrames.room2}</p>
+						<p>{timeFrames.noon}</p>
 					</div>
 					<div className="time_frame_button">
 						<AgudaButtonUI
@@ -230,7 +230,7 @@ const MeetingRooms = (props) => {
 							onClick={() => timeSlotClicked("evening")}
 							value={"evening"}
 						/>
-						<p>{timeFrames.room3}</p>
+						<p>{timeFrames.evening}</p>
 					</div>
 					
 					
@@ -240,6 +240,7 @@ const MeetingRooms = (props) => {
 					selectedDate={currentDate}
 					selectedRoom={meetingRoom}
 					selectedTimeSlot={selectedTimeSlot}
+					selectedTimeSlotHour={timeFrames[selectedTimeSlot]}
 					meetingRooms={meetingRooms}
 					languageHelper={props.languageHelper}
 				/>

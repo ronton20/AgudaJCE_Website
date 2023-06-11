@@ -3,11 +3,13 @@ import InputField from "./InputField";
 
 import { auth, db } from "../firebase.js";
 import { collection, setDoc, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
+import emailjs from "@emailjs/browser";
 
 function SchedualMeetingRoom(props) {
 	const selectedDate = props.selectedDate;
 	const selectedRoom = props.selectedRoom;
 	const selectedTimeSlot = props.selectedTimeSlot;
+	const selectedTimeSlotHour = props.selectedTimeSlotHour;
 	const meetingRooms = props.meetingRooms;
 
 	const validateStudentId = async (studentId) => {
@@ -113,11 +115,20 @@ function SchedualMeetingRoom(props) {
 
 	const bookMeetingRoom = async (studentsIdList) => {
 		// create a new document in the DB with the selected date and time slot
-		const docRef = await setDoc(doc(db, selectedRoom, `${selectedDate}_${selectedTimeSlot}`), {
-			id1: studentsIdList[0].value,
-			id2: studentsIdList[1].value,
-			id3: studentsIdList[2].value,
-		});
+		// const docRef = await setDoc(doc(db, selectedRoom, `${selectedDate}_${selectedTimeSlot}`), {
+		// 	id1: studentsIdList[0].value,
+		// 	id2: studentsIdList[1].value,
+		// 	id3: studentsIdList[2].value,
+		// });
+		// send confirmation mail to the current user
+		const currentUserEmail = auth.currentUser.email;
+		// send confirmation mail to the currentUserEmail
+		await emailjs.send("service_1b0ai8x", "template_rjg6mea", {
+			to_email: currentUserEmail,
+			room_number: selectedRoom,
+			date: selectedDate,
+			time: selectedTimeSlotHour,
+		  }, "wdHyAazrWD5Ae01Xf");
 	};
 
 	// validate that the room is available for the selected date and time slot

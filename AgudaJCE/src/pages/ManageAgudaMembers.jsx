@@ -8,6 +8,7 @@ import "./ManageAgudaMembers.css";
 import AddAgudaMembers from "../Components/AddAgudaMembers.jsx";
 import AgudaMember from "../Components/AgudaMember.jsx";
 import NavBar from "../Components/NavBar";
+import Background from "../Components/Background";
 
 function ManageAgudaMembers(props) {
 	const [user, loading, error] = useAuthState(auth);
@@ -45,6 +46,7 @@ function ManageAgudaMembers(props) {
 
 	return (
 		<div id="manage_aguda_members_page" className="page">
+			<Background />
 			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
 			<div className="page_content">
 				<h1 id="manage_aguda_members_title">

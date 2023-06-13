@@ -9,6 +9,7 @@ import "./ManageMarathons.css";
 import AddMarathon from "../Components/AddMarathon.jsx";
 import Marathon from "../Components/Marathon.jsx";
 import NavBar from "../Components/NavBar";
+import Background from "../Components/Background.jsx";
 
 function ManageMarathons(props) {
 	const [user, loading, error] = useAuthState(auth);
@@ -46,6 +47,7 @@ function ManageMarathons(props) {
 
 	return (
 		<div id="manage_marathons_page" className="page">
+			<Background />
 			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
 			<div className="page_content">
 				<h1 id="manage_aguda_members_title">

@@ -9,6 +9,7 @@ import "./ManageMembers.css";
 import AddUser from "../Components/addUsers.jsx";
 import UpdateUsers from "../Components/UpdateUsers.jsx";
 import NavBar from "../Components/NavBar";
+import Background from "../Components/Background.jsx";
 
 function ManageMembers(props) {
 	const [user, loading, error] = useAuthState(auth);
@@ -32,6 +33,7 @@ function ManageMembers(props) {
 
 	return (
 		<div id="manage_members_page" className="page">
+			<Background />
 			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
 			<div className="page_content">
 				<h1 id="manage_members_title">{props.languageHelper.manageMembers.header}</h1>

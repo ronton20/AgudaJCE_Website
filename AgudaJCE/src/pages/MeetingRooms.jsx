@@ -12,6 +12,7 @@ import NavBar from "../Components/NavBar";
 
 import "./MeetingRooms.css";
 import BackToHomeButton from "../Components/BackToHomeButton";
+import Background from "../Components/Background";
 
 const MeetingRooms = (props) => {
 	const [user, loading, error] = useAuthState(auth);
@@ -152,6 +153,7 @@ const MeetingRooms = (props) => {
 
 	return (
 		<div id="meeting_room_page" className="page">
+			<Background />
 			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
 			<div className="page_content">
 				<h1>{props.languageHelper.meetingRooms.header}</h1>

@@ -1,12 +1,12 @@
 #meeting_room_page {
-	background: var(--JCE-gradient-light-gray);
+	background: var(--JCE-white);
 	padding: var(--JCE-gap);
 }
 
 .meeting_room_booking_container {
 	width: 100%;
 	max-width: 600px;
-	height: 100%;
+	/* height: 100%; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;

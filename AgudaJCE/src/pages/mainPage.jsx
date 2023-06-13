@@ -18,6 +18,7 @@ import linkedinIcon from "../assets/linkedin.png";
 import whatsAppIcon from "../assets/whatsapp.png";
 import meetingRoomImg from "../assets/meeting_room.png";
 import marathonsImg from "../assets/marathons.png";
+import studyMaterialsImg from "../assets/study_materials.jpg";
 import logoImg from "../assets/logo.png";
 
 import Login from "../Components/Login.jsx";
@@ -239,7 +240,7 @@ function MainPage(props) {
 								/>
 								<Action
 									title={props.languageHelper.actions.materials}
-									img="https://unsplash.it/600/700"
+									img={studyMaterialsImg}
 									href="https://www.dropbox.com/sh/yt2y1sdmx55tlju/AAAkccJEqrUckSbvVo4lQpRra?dl=0"
 								/>
 							</div>

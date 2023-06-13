@@ -12,11 +12,11 @@
 	--JCE-black: #222222;
 	--JCE-red-gradient: linear-gradient(
 		159deg,
-		/* gradient using this color:rgba(215,228,235,255) and make it nice */
-		rgba(215, 228, 235, 255) 0%,
-		rgba(215, 228, 235, 255) 50%,
-		rgba(215, 228, 235, 255) 100%
-		
+		rgba(195, 0, 0, 1) 0%,
+		rgba(255, 46, 46, 1) 25%,
+		rgba(255, 0, 0, 1) 50%,
+		rgba(255, 46, 46, 1) 75%,
+		rgba(195, 0, 0, 1) 100%
 	);
 	--JCE-gradient-dark-gray: linear-gradient(
 		159deg,

@@ -17,8 +17,9 @@
 	text-align: start;
 	font-size: 3rem;
 	font-weight: 600;
-	color: black;
-	text-shadow: 1px 0px 0px white, -1px 0px 0px white, 0px 1px 0px white, 0px -1px 0px white;
+	color: white;
+	text-shadow: 2px 2px 0px black, -2px -2px 0px black, -2px 2px 0px black, 2px -2px 0px black,
+		0px 2px 0px black, 0px -2px 0px black, -2px 0px 0px black, 2px 0px 0px black;
 }
 
 .action_img {

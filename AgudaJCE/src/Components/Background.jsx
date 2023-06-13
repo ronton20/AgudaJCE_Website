@@ -3,8 +3,9 @@ import "../css/Background.css";
 
 import background from "../assets/Background1.png";
 
-const Background = () => {
-	return <img src={background} alt="background-picture" className="BG" />;
+const Background = (props) => {
+	const classes = props.absolute ? "BG absolute" : "BG";
+	return <img src={background} alt="background-picture" className={classes} />;
 };
 
 export default Background;

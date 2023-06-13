@@ -26,6 +26,7 @@ import ContactUs from "../Components/ContactUs";
 import NavBar from "../Components/NavBar";
 import Action from "../Components/Action";
 import AgudaMember from "../Components/AgudaMember.jsx";
+import Background from "../Components/Background";
 
 const background =
 	"https://firebasestorage.googleapis.com/v0/b/agudajce-51667.appspot.com/o/Assets%2FAgudaJCE_main_page_video.mp4?alt=media&token=f4530588-1b70-4bcf-bc8c-0917c3d86df2&_gl=1*yq9khx*_ga*MTE4Mzc5OTA2NS4xNjg0NDIzMzAy*_ga_CW55HF8NVT*MTY4NjQwMTQzMi4xOC4xLjE2ODY0MDQ5NzYuMC4wLjA.";

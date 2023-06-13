@@ -8,8 +8,8 @@
 	--JCE-color-sub-3: #8c52ff;
 
 	--JCE-red: #ec1b31;
-	--JCE-white: #eeeeee;
-	--JCE-black: #222222;
+	--JCE-white: #eee;
+	--JCE-black: #222;
 	--JCE-red-gradient: linear-gradient(
 		159deg,
 		rgba(195, 0, 0, 1) 0%,

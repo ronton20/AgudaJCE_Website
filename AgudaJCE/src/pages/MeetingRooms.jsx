@@ -38,7 +38,7 @@ const MeetingRooms = (props) => {
 		morning: "09:00-13:00",
 		noon: "13:00-17:00",
 		evening: "17:00-21:00",
-	}
+	};
 
 	useEffect(() => {
 		async function setAdmin() {
@@ -153,97 +153,104 @@ const MeetingRooms = (props) => {
 	return (
 		<div id="meeting_room_page" className="page">
 			{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
-			<h1>{props.languageHelper.meetingRooms.header}</h1>
-			<div className="meeting_room_booking_container">
-				<div className="calendar">
-					<div className="header">
-						<a className="arrow" rel="right-arrow-container" onClick={handlePrevMonth}>
-							<img src={arrow} alt="right-arrow" />
-						</a>
-						<h2>
-							{monthName} {currentYear}
-						</h2>
-						<a className="arrow" rel="left-arrow-container" onClick={handleNextMonth}>
-							<img id="left-arrow" src={leftArrow} alt="left-arrow" />
-						</a>
+			<div className="page_content">
+				<h1>{props.languageHelper.meetingRooms.header}</h1>
+				<div className="meeting_room_booking_container">
+					<div className="calendar">
+						<div className="header">
+							<a
+								className="arrow"
+								rel="right-arrow-container"
+								onClick={handlePrevMonth}
+							>
+								<img src={arrow} alt="right-arrow" />
+							</a>
+							<h2>
+								{monthName} {currentYear}
+							</h2>
+							<a
+								className="arrow"
+								rel="left-arrow-container"
+								onClick={handleNextMonth}
+							>
+								<img id="left-arrow" src={leftArrow} alt="left-arrow" />
+							</a>
+						</div>
+						<div className="days">
+							{days.map((day) => {
+								const fullDate = `${currentYear}-${monthNumeric}-${day}`;
+								return (
+									<div key={day} onClick={() => setDate(fullDate)} id={fullDate}>
+										{day}
+									</div>
+								);
+							})}
+						</div>
 					</div>
-					<div className="days">
-						{days.map((day) => {
-							const fullDate = `${currentYear}-${monthNumeric}-${day}`;
-							return (
-								<div key={day} onClick={() => setDate(fullDate)} id={fullDate}>
-									{day}
-								</div>
-							);
-						})}
-					</div>
-				</div>
-				<div id="meeting_rooms_box" className="booking_box">
-					<AgudaButtonUI
-						_id={meetingRooms.room1}
-						button_text={meetingRooms.room1}
-						disabled={false}
-						onClick={() => setRoom(meetingRooms.room1)}
-						value={meetingRooms.room1}
-					/>
-					<AgudaButtonUI
-						_id={meetingRooms.room2}
-						button_text={meetingRooms.room2}
-						disabled={false}
-						onClick={() => setRoom(meetingRooms.room2)}
-						value={meetingRooms.room2}
-					/>
-					<AgudaButtonUI
-						_id={meetingRooms.room3}
-						button_text={meetingRooms.room3}
-						disabled={false}
-						onClick={() => setRoom(meetingRooms.room3)}
-						value={meetingRooms.room3}
-					/>
-				</div>
-				<div id="time_frame_box" className="booking_box">
-					<div className="time_frame_button">
+					<div id="meeting_rooms_box" className="booking_box">
 						<AgudaButtonUI
-							_id={"morning"}
-							button_text={props.languageHelper.meetingRooms.morning}
-							disabled={!isMorningAvailable}
-							onClick={() => timeSlotClicked("morning")}
-							value={"morning"}
+							_id={meetingRooms.room1}
+							button_text={meetingRooms.room1}
+							disabled={false}
+							onClick={() => setRoom(meetingRooms.room1)}
+							value={meetingRooms.room1}
 						/>
-						<p>{timeFrames.morning}</p>
-					</div>
-					<div className="time_frame_button">
 						<AgudaButtonUI
-							_id={"noon"}
-							button_text={props.languageHelper.meetingRooms.afternoon}
-							disabled={!isNoonAvailable}
-							onClick={() => timeSlotClicked("noon")}
-							value={"noon"}
+							_id={meetingRooms.room2}
+							button_text={meetingRooms.room2}
+							disabled={false}
+							onClick={() => setRoom(meetingRooms.room2)}
+							value={meetingRooms.room2}
 						/>
-						<p>{timeFrames.noon}</p>
-					</div>
-					<div className="time_frame_button">
 						<AgudaButtonUI
-							_id={"evening"}
-							button_text={props.languageHelper.meetingRooms.evening}
-							disabled={!isEveningAvailable}
-							onClick={() => timeSlotClicked("evening")}
-							value={"evening"}
+							_id={meetingRooms.room3}
+							button_text={meetingRooms.room3}
+							disabled={false}
+							onClick={() => setRoom(meetingRooms.room3)}
+							value={meetingRooms.room3}
 						/>
-						<p>{timeFrames.evening}</p>
 					</div>
-					
-					
-					
+					<div id="time_frame_box" className="booking_box">
+						<div className="time_frame_button">
+							<AgudaButtonUI
+								_id={"morning"}
+								button_text={props.languageHelper.meetingRooms.morning}
+								disabled={!isMorningAvailable}
+								onClick={() => timeSlotClicked("morning")}
+								value={"morning"}
+							/>
+							<p>{timeFrames.morning}</p>
+						</div>
+						<div className="time_frame_button">
+							<AgudaButtonUI
+								_id={"noon"}
+								button_text={props.languageHelper.meetingRooms.afternoon}
+								disabled={!isNoonAvailable}
+								onClick={() => timeSlotClicked("noon")}
+								value={"noon"}
+							/>
+							<p>{timeFrames.noon}</p>
+						</div>
+						<div className="time_frame_button">
+							<AgudaButtonUI
+								_id={"evening"}
+								button_text={props.languageHelper.meetingRooms.evening}
+								disabled={!isEveningAvailable}
+								onClick={() => timeSlotClicked("evening")}
+								value={"evening"}
+							/>
+							<p>{timeFrames.evening}</p>
+						</div>
+					</div>
+					<SchedualMeetingRoom
+						selectedDate={currentDate}
+						selectedRoom={meetingRoom}
+						selectedTimeSlot={selectedTimeSlot}
+						selectedTimeSlotHour={timeFrames[selectedTimeSlot]}
+						meetingRooms={meetingRooms}
+						languageHelper={props.languageHelper}
+					/>
 				</div>
-				<SchedualMeetingRoom
-					selectedDate={currentDate}
-					selectedRoom={meetingRoom}
-					selectedTimeSlot={selectedTimeSlot}
-					selectedTimeSlotHour={timeFrames[selectedTimeSlot]}
-					meetingRooms={meetingRooms}
-					languageHelper={props.languageHelper}
-				/>
 			</div>
 			<BackToHomeButton />
 		</div>

@@ -112,11 +112,7 @@ function MainPage(props) {
 		<div id="main_page" className="page">
 			<nav id="main_page_nav_bar">
 				<div id="logo_div">
-					<img
-						id="logo"
-						src={logoImg}
-						alt="logo"
-					/>
+					<img id="logo" src={logoImg} alt="logo" />
 				</div>
 				<ul>
 					<li>
@@ -214,14 +210,14 @@ function MainPage(props) {
 			{/* MAIN PAGE STARTS HERE */}
 			<main id="main_page_content">
 				<section id="section_aguda">
-					<div id="section_aguda_content" className="section_content glassify">
+					<div id="aguda_img">
+						<video src={background} type="video/mp4" autoPlay loop muted></video>
+					</div>
+					<div id="section_aguda_content" className="section_content">
 						<div id="aguda_text">
 							<h1>{props.languageHelper.mainPage.header}</h1>
 							<p>{props.languageHelper.mainPage.aboutText}</p>
 						</div>
-					</div>
-					<div id="aguda_img">
-						<video src={background} type="video/mp4" autoPlay loop muted></video>
 					</div>
 				</section>
 				{!user ? (

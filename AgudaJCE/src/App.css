@@ -12,17 +12,11 @@
 	--JCE-black: #222222;
 	--JCE-red-gradient: linear-gradient(
 		159deg,
-		/* rgb(252, 252, 252) 0%,
-		rgb(244, 244, 244) 25%,
-		rgb(250, 250, 250) 50%,
-		rgb(246, 246, 246) 75%,
-		rgb(255, 255, 255) 100% */
-		/* all white */
-		rgba(247,247,247,255) 0%,
-		rgba(247,247,247,255) 25%,
-		rgba(247,247,247,255) 50%,
-		rgba(247,247,247,255) 75%,
-		rgba(247,247,247,255) 100%
+		/* gradient using this color:rgba(215,228,235,255) and make it nice */
+		rgba(215, 228, 235, 255) 0%,
+		rgba(215, 228, 235, 255) 50%,
+		rgba(215, 228, 235, 255) 100%
+		
 	);
 	--JCE-gradient-dark-gray: linear-gradient(
 		159deg,

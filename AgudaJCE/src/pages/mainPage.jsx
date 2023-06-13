@@ -16,6 +16,9 @@ import facebookIcon from "../assets/facebook.png";
 import instagramIcon from "../assets/instagram.png";
 import linkedinIcon from "../assets/linkedin.png";
 import whatsAppIcon from "../assets/whatsapp.png";
+import meetingRoomImg from "../assets/meeting_room.png";
+import marathonsImg from "../assets/marathons.png";
+import logoImg from "../assets/logo.png";
 
 import Login from "../Components/Login.jsx";
 import ContactUs from "../Components/ContactUs";
@@ -111,7 +114,7 @@ function MainPage(props) {
 				<div id="logo_div">
 					<img
 						id="logo"
-						src="https://firebasestorage.googleapis.com/v0/b/agudajce-51667.appspot.com/o/Assets%2FAgudaJCE_Logo.jpg?alt=media&token=94f93a3d-899d-434c-97f2-9c8b6b4438f9&_gl=1*jra0q4*_ga*MTE4Mzc5OTA2NS4xNjg0NDIzMzAy*_ga_CW55HF8NVT*MTY4NTYxNDE3OC45LjEuMTY4NTYxNDIzMS4wLjAuMA.."
+						src={logoImg}
 						alt="logo"
 					/>
 				</div>
@@ -230,12 +233,12 @@ function MainPage(props) {
 							<div id="actions_div">
 								<Action
 									title={props.languageHelper.actions.meetingRooms}
-									img="https://www.riministreet.com/wp-content/uploads/2020/06/Solution_softwaresupported_oracledb_1.webp"
+									img={meetingRoomImg}
 									onClick={() => goTo("/meeting_rooms")}
 								/>
 								<Action
 									title={props.languageHelper.actions.marathons}
-									img="https://mail.google.com/mail/u/0/?ui=2&ik=651da5bc7c&attid=0.1&permmsgid=msg-f:1768596737669523162&th=188b515ccbb4e6da&view=fimg&realattid=f_liuf6re82&disp=thd&attbid=ANGjdJ8FyDYD07rj0PNdVrS0hsKS5Or6cq8US7q51WIpfm2-lzu2yFFIxGqcwTAA5inRVwGmR0s2PZFzCEkhQNNCWpWLRDiNHP1O8cvweTDfWyqkd23dyb3lHdyo90k&ats=2524608000000&sz=w2560-h1297"
+									img={marathonsImg}
 									onClick={() => goTo("/marathons")}
 								/>
 								<Action

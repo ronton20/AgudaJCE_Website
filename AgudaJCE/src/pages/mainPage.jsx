@@ -230,12 +230,12 @@ function MainPage(props) {
 							<div id="actions_div">
 								<Action
 									title={props.languageHelper.actions.meetingRooms}
-									img="https://unsplash.it/600/600"
+									img="https://www.riministreet.com/wp-content/uploads/2020/06/Solution_softwaresupported_oracledb_1.webp"
 									onClick={() => goTo("/meeting_rooms")}
 								/>
 								<Action
 									title={props.languageHelper.actions.marathons}
-									img="https://unsplash.it/700/600"
+									img="https://mail.google.com/mail/u/0/?ui=2&ik=651da5bc7c&attid=0.1&permmsgid=msg-f:1768596737669523162&th=188b515ccbb4e6da&view=fimg&realattid=f_liuf6re82&disp=thd&attbid=ANGjdJ8FyDYD07rj0PNdVrS0hsKS5Or6cq8US7q51WIpfm2-lzu2yFFIxGqcwTAA5inRVwGmR0s2PZFzCEkhQNNCWpWLRDiNHP1O8cvweTDfWyqkd23dyb3lHdyo90k&ats=2524608000000&sz=w2560-h1297"
 									onClick={() => goTo("/marathons")}
 								/>
 								<Action

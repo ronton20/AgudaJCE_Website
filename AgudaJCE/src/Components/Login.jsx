@@ -15,6 +15,11 @@ function Login(props) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		// clean the error if there is one
+		const errors = document.getElementsByClassName("error_message");
+		if (errors.length > 0) errors[0].remove();
+		
+		
 		const email = document.getElementById(`input_field_${ids.email}`).value;
 		const password = document.getElementById(`input_field_${ids.password}`).value;
 		try {
@@ -22,7 +27,7 @@ function Login(props) {
 			const querySnapshot = await getDocs(collection(db, "Users"));
 			const userDoc = querySnapshot.docs.find((doc) => doc.data().email == email);
 			if (userDoc.data().block) {
-				alert(props.languageHelper.error_user_not_found);
+				invalidUser(props.languageHelper.error_invalid_user);
 				return;
 			}
 			// Sign in the user using the custom authentication method
@@ -30,8 +35,16 @@ function Login(props) {
 			// Close the login modal and refresh the page
 			props.toggleLogin();
 		} catch (error) {
-			alert(props.languageHelper.error_invalid_user);
+			invalidUser(props.languageHelper.error_invalid_user);
 		}
+	};
+
+	const invalidUser = (errorMessage) => {
+		const passwordField = document.getElementById(`input_field_${ids.password}`);
+		const errorElement = document.createElement("p");
+		errorElement.className = "error_message";
+		errorElement.innerText = errorMessage;
+		passwordField.parentNode.insertBefore(errorElement, passwordField.nextSibling);
 	};
 
 	return (

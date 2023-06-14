@@ -1,9 +1,9 @@
 .languages_tab {
-	width: fit-content;
-	height: fit-content;
+	width: 70px;
+	height: 70px;
 	box-sizing: border-box;
 	padding: var(--JCE-Padding);
-	border-radius: 0 calc(var(--JCE-BR) * 1.5) calc(var(--JCE-BR) * 1.5) 0;
+	border-radius: 0 var(--JCE-BR) var(--JCE-BR) 0;
 	background-color: #222;
 	z-index: 1000;
 	display: flex;
@@ -12,7 +12,7 @@
 }
 
 .languages_tab > img {
-	width: 3rem;
+	width: 100%;
 	aspect-ratio: 1;
 	object-fit: contain;
 	cursor: pointer;

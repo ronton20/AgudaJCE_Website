@@ -7,6 +7,7 @@ import NavBar from "../Components/NavBar";
 import Marathon from "../Components/Marathon.jsx";
 import BackToHomeButton from "../Components/BackToHomeButton.jsx";
 import "./Marathons.css";
+import Background from "../Components/Background.jsx";
 
 function Marathons(props) {
 	const [user, loading] = useAuthState(auth);
@@ -43,6 +44,7 @@ function Marathons(props) {
 
 	return (
 		<div id="marathons_page" className="page">
+			<Background />
 			<div className="page_content">
 				{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
 				<h1>{props.languageHelper.marathons.header}</h1>

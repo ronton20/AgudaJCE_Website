@@ -9,6 +9,7 @@ import "./ManageEvents.css";
 import AddEvent from "../Components/addEvent.jsx";
 import Event from "../Components/Event.jsx";
 import NavBar from "../Components/NavBar";
+import Background from "../Components/Background.jsx";
 
 function ManageEvents(props) {
 	const [user, loading, error] = useAuthState(auth);
@@ -66,6 +67,7 @@ function ManageEvents(props) {
 
 	return (
 		<div id="manage_events_page" className="page">
+			<Background />
 			<div className="page_content">
 				{isAdmin ? <NavBar languageHelper={props.languageHelper.navBar} /> : <></>}
 				<h1 id="manage_aguda_members_title">{props.languageHelper.manageEvents.header}</h1>

@@ -16,12 +16,17 @@ import facebookIcon from "../assets/facebook.png";
 import instagramIcon from "../assets/instagram.png";
 import linkedinIcon from "../assets/linkedin.png";
 import whatsAppIcon from "../assets/whatsapp.png";
+import meetingRoomImg from "../assets/meeting_room.png";
+import marathonsImg from "../assets/marathons.png";
+import studyMaterialsImg from "../assets/study_materials.jpg";
+import logoImg from "../assets/logo.png";
 
 import Login from "../Components/Login.jsx";
 import ContactUs from "../Components/ContactUs";
 import NavBar from "../Components/NavBar";
 import Action from "../Components/Action";
 import AgudaMember from "../Components/AgudaMember.jsx";
+import Background from "../Components/Background";
 
 const background =
 	"https://firebasestorage.googleapis.com/v0/b/agudajce-51667.appspot.com/o/Assets%2FAgudaJCE_main_page_video.mp4?alt=media&token=f4530588-1b70-4bcf-bc8c-0917c3d86df2&_gl=1*yq9khx*_ga*MTE4Mzc5OTA2NS4xNjg0NDIzMzAy*_ga_CW55HF8NVT*MTY4NjQwMTQzMi4xOC4xLjE2ODY0MDQ5NzYuMC4wLjA.";
@@ -109,11 +114,7 @@ function MainPage(props) {
 		<div id="main_page" className="page">
 			<nav id="main_page_nav_bar">
 				<div id="logo_div">
-					<img
-						id="logo"
-						src="https://firebasestorage.googleapis.com/v0/b/agudajce-51667.appspot.com/o/Assets%2FAgudaJCE_Logo.jpg?alt=media&token=94f93a3d-899d-434c-97f2-9c8b6b4438f9&_gl=1*jra0q4*_ga*MTE4Mzc5OTA2NS4xNjg0NDIzMzAy*_ga_CW55HF8NVT*MTY4NTYxNDE3OC45LjEuMTY4NTYxNDIzMS4wLjAuMA.."
-						alt="logo"
-					/>
+					<img id="logo" src={logoImg} alt="logo" />
 				</div>
 				<ul>
 					<li>
@@ -211,14 +212,14 @@ function MainPage(props) {
 			{/* MAIN PAGE STARTS HERE */}
 			<main id="main_page_content">
 				<section id="section_aguda">
-					<div id="section_aguda_content" className="section_content glassify">
+					<div id="aguda_img">
+						<video src={background} type="video/mp4" autoPlay loop muted></video>
+					</div>
+					<div id="section_aguda_content" className="section_content">
 						<div id="aguda_text">
 							<h1>{props.languageHelper.mainPage.header}</h1>
 							<p>{props.languageHelper.mainPage.aboutText}</p>
 						</div>
-					</div>
-					<div id="aguda_img">
-						<video src={background} type="video/mp4" autoPlay loop muted></video>
 					</div>
 				</section>
 				{!user ? (
@@ -230,17 +231,17 @@ function MainPage(props) {
 							<div id="actions_div">
 								<Action
 									title={props.languageHelper.actions.meetingRooms}
-									img="https://unsplash.it/600/600"
+									img={meetingRoomImg}
 									onClick={() => goTo("/meeting_rooms")}
 								/>
 								<Action
 									title={props.languageHelper.actions.marathons}
-									img="https://unsplash.it/700/600"
+									img={marathonsImg}
 									onClick={() => goTo("/marathons")}
 								/>
 								<Action
 									title={props.languageHelper.actions.materials}
-									img="https://unsplash.it/600/700"
+									img={studyMaterialsImg}
 									href="https://www.dropbox.com/sh/yt2y1sdmx55tlju/AAAkccJEqrUckSbvVo4lQpRra?dl=0"
 								/>
 							</div>

@@ -82,7 +82,7 @@ const languages = {
 			evening: "Evening",
 		},
 		manageAgudaMembers: {
-			header: "Manage Aguda Members",
+			header: "Manage Aguda Team",
 		},
 		manageEvents: {
 			header: "Manage Events",
@@ -93,14 +93,14 @@ const languages = {
 		navBar: {
 			header: "Admin Panel",
 			home: "Home",
-			manageAgudaMembers: "Manage Aguda Members",
+			manageAgudaMembers: "Manage Aguda Team",
 			manageEvents: "Manage Events",
 			manageMarathons: "Manage Marathons",
 			manageUsers: "Manage Users",
 			meetingRooms: "Manage Meeting Rooms",
 			aguda: "Aguda",
 			actions: "Actions",
-			agudaMembers: "Aguda Members",
+			agudaMembers: "Aguda Team",
 			events: "Events",
 			contactUs: "Contact Us",
 		},
@@ -114,7 +114,7 @@ const languages = {
 			aboutText3:
 				"The Student Union is the body that organizes the social life of the students in the college and is responsible for the various events that take place in the college.",
 
-			agudaMembers: "Aguda Members",
+			agudaMembers: "Aguda Team",
 
 			events: "Events",
 			eventsText:
@@ -216,7 +216,7 @@ const languages = {
 			chooseFile: "בחר קובץ",
 		},
 		addAgudaMembers: {
-			header: "הוספת חבר אגודה",
+			header: "הוספה לצוות האגודה",
 			firstName: "שם פרטי",
 			lastName: "שם משפחה",
 			position: "תפקיד",
@@ -256,7 +256,7 @@ const languages = {
 			header: "הרשמה למרתונים",
 		},
 		deleteAgudaMembers: {
-			header: "מחיקת חבר אגודה",
+			header: "מחיקה מצוות האגודה",
 			firstName: "שם פרטי",
 			lastName: "שם משפחה",
 			submit: "מחק",
@@ -271,7 +271,7 @@ const languages = {
 			evening: "ערב",
 		},
 		manageAgudaMembers: {
-			header: "ניהול חברי אגודה",
+			header: "ניהול צוות האגודה",
 		},
 		manageEvents: {
 			header: "ניהול אירועים",
@@ -282,14 +282,14 @@ const languages = {
 		navBar: {
 			header: "פאנל ניהול",
 			home: "בית",
-			manageAgudaMembers: "ניהול חברי אגודה",
+			manageAgudaMembers: "ניהול צוות האגודה",
 			manageEvents: "ניהול אירועים",
 			manageMarathons: "ניהול מרתונים",
 			manageUsers: "ניהול משתמשים",
 			meetingRooms: "ניהול חדנים",
 			aguda: "האגודה",
 			actions: "פעולות",
-			agudaMembers: "חברי אגודה",
+			agudaMembers: "צוות האגודה",
 			events: "אירועים",
 			contactUs: "צור קשר",
 		},
@@ -303,7 +303,7 @@ const languages = {
 			aboutText3:
 				"אגודת הסטודנטים מספקת שירותים ופעילויות לסטודנטים ומקדמת את ענייני הסטודנטים במכללה.",
 
-			agudaMembers: "חברי אגודה",
+			agudaMembers: "צוות האגודה",
 
 			events: "אירועים",
 			eventsText:

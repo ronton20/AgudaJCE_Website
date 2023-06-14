@@ -187,6 +187,7 @@ const languages = {
 			error_duplicate_id: "Duplicate ID",
 			error_invalid_id: "Invalid ID",
 			error_exceed_limit: "Weekly booking limit exceeded",
+			success: "Room booked successfully",
 		},
 	},
 	he: {
@@ -376,6 +377,7 @@ const languages = {
 			error_duplicate_id: "תעודת זהות כפולה",
 			error_invalid_id: "תעודת זהות לא תקינה",
 			error_exceed_limit: "סטודנט זה עבר את המכסה השבועית",
+			success: "החדר נקבע בהצלחה!",
 		},
 	},
 };

@@ -11,6 +11,7 @@ function SchedualMeetingRoom(props) {
 	const selectedTimeSlot = props.selectedTimeSlot;
 	const selectedTimeSlotHour = props.selectedTimeSlotHour;
 	const meetingRooms = props.meetingRooms;
+	// get the submit buton
 
 	const validateStudentId = async (studentId) => {
 		const id = studentId.value;
@@ -28,8 +29,12 @@ function SchedualMeetingRoom(props) {
 
 	const invalidIdForBooking = (studentId, errorMessage) => {
 		studentId.style.border = "2px solid red";
-		console.log(errorMessage);
-	}
+		const errorElement = document.createElement("p");
+		errorElement.className = "error_message";
+		errorElement.innerText = errorMessage;
+		studentId.parentNode.insertBefore(errorElement, studentId.nextSibling);
+	  };
+	  
 
 	const validateOnlyUniqueStudents = (studentsIdList) => {
 		const uniqueStudentsIdList = [
@@ -115,20 +120,22 @@ function SchedualMeetingRoom(props) {
 
 	const bookMeetingRoom = async (studentsIdList) => {
 		// create a new document in the DB with the selected date and time slot
-		const docRef = await setDoc(doc(db, selectedRoom, `${selectedDate}_${selectedTimeSlot}`), {
-			id1: studentsIdList[0].value,
-			id2: studentsIdList[1].value,
-			id3: studentsIdList[2].value,
-		});
-		// send confirmation mail to the current user
-		const currentUserEmail = auth.currentUser.email;
-		// send confirmation mail to the currentUserEmail
-		await emailjs.send("service_1b0ai8x", "template_rjg6mea", {
-			to_email: currentUserEmail,
-			room_number: selectedRoom,
-			date: selectedDate,
-			time: selectedTimeSlotHour,
-		  }, "wdHyAazrWD5Ae01Xf");
+		// const docRef = await setDoc(doc(db, selectedRoom, `${selectedDate}_${selectedTimeSlot}`), {
+		// 	id1: studentsIdList[0].value,
+		// 	id2: studentsIdList[1].value,
+		// 	id3: studentsIdList[2].value,
+		// });
+		// // send confirmation mail to the current user
+		// const currentUserEmail = auth.currentUser.email;
+		// // send confirmation mail to the currentUserEmail
+		// await emailjs.send("service_1b0ai8x", "template_rjg6mea", {
+		// 	to_email: currentUserEmail,
+		// 	room_number: selectedRoom,
+		// 	date: selectedDate,
+		// 	time: selectedTimeSlotHour,
+		//   }, "wdHyAazrWD5Ae01Xf");
+		//   change the submit button to a success message
+	
 	};
 
 	// validate that the room is available for the selected date and time slot
@@ -144,10 +151,29 @@ function SchedualMeetingRoom(props) {
 		return true;
 	};
 
+	const clearAllInputFields = () => {
+		const firstStudentId = document.getElementById("input_field_student_id_1");
+		const secondStudentId = document.getElementById("input_field_student_id_2");
+		const thirdStudentId = document.getElementById("input_field_student_id_3");
+	  
+		// Clear all the red borders from the input fields
+		firstStudentId.style.border = "";
+		secondStudentId.style.border = "";
+		thirdStudentId.style.border = "";
+	  
+		// Remove error elements
+		const errorElements = document.querySelectorAll(".error_message");
+		errorElements.forEach((errorElement) => {
+		  errorElement.parentNode.removeChild(errorElement);
+		});
+	  };
+	  
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		// Access the input field values using their ids
+		// clear all the red borders from the input fields
+		clearAllInputFields();
 		const firstStudentId = document.getElementById("input_field_student_id_1");
 		const secondStudentId = document.getElementById("input_field_student_id_2");
 		const thirdStudentId = document.getElementById("input_field_student_id_3");
@@ -179,8 +205,13 @@ function SchedualMeetingRoom(props) {
 				if (isMaxBookingsValid) {
 					// check if the meeting room is available, then book
 					const isAvailable = await validateMeetingRoomAvailability();
-					if (isAvailable)
+					if (isAvailable){
 						await bookMeetingRoom(studentsIdList);
+						const submitButton = e.target.querySelector(".submit_button");
+						submitButton.disabled = true;
+						// Update the submit button text to indicate booking success
+						submitButton.textContent = props.languageHelper.scheduleMeetingRoom.success;
+					}
 					else 
 						alert(props.languageHelper.scheduleMeetingRoom.not_available);
 				}

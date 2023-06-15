@@ -11,6 +11,8 @@ function SchedualMeetingRoom(props) {
 	const selectedTimeSlot = props.selectedTimeSlot;
 	const selectedTimeSlotHour = props.selectedTimeSlotHour;
 	const meetingRooms = props.meetingRooms;
+	
+	// if a new date/room/time slot is selected, resume the original submit button
 
 	const validateStudentId = async (studentId) => {
 		const id = studentId.value;
@@ -28,8 +30,12 @@ function SchedualMeetingRoom(props) {
 
 	const invalidIdForBooking = (studentId, errorMessage) => {
 		studentId.style.border = "2px solid red";
-		console.log(errorMessage);
-	}
+		const errorElement = document.createElement("p");
+		errorElement.className = "error_message";
+		errorElement.innerText = errorMessage;
+		studentId.parentNode.insertBefore(errorElement, studentId.nextSibling);
+	  };
+	  
 
 	const validateOnlyUniqueStudents = (studentsIdList) => {
 		const uniqueStudentsIdList = [
@@ -129,6 +135,8 @@ function SchedualMeetingRoom(props) {
 			date: selectedDate,
 			time: selectedTimeSlotHour,
 		  }, "wdHyAazrWD5Ae01Xf");
+
+		//   TODO: send confirmation mail to the admin
 	};
 
 	// validate that the room is available for the selected date and time slot
@@ -144,10 +152,31 @@ function SchedualMeetingRoom(props) {
 		return true;
 	};
 
+	const clearAllInputFields = () => {
+		const firstStudentId = document.getElementById("input_field_student_id_1");
+		const secondStudentId = document.getElementById("input_field_student_id_2");
+		const thirdStudentId = document.getElementById("input_field_student_id_3");
+	  
+		// Clear all the red borders from the input fields
+		firstStudentId.style.border = "";
+		secondStudentId.style.border = "";
+		thirdStudentId.style.border = "";
+	  
+		// Remove error elements
+		const errorElements = document.querySelectorAll(".error_message");
+		errorElements.forEach((errorElement) => {
+		  errorElement.parentNode.removeChild(errorElement);
+		});
+	  };
+	  
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// Access the input field values using their ids
+		// disable the submit button until the validation is done to prevent multiple clicks
+		const submitButton = e.target.querySelector(".submit_button");
+		submitButton.disabled = true;
+		// clear all the red borders from the input fields
+		clearAllInputFields();
 		const firstStudentId = document.getElementById("input_field_student_id_1");
 		const secondStudentId = document.getElementById("input_field_student_id_2");
 		const thirdStudentId = document.getElementById("input_field_student_id_3");
@@ -156,6 +185,7 @@ function SchedualMeetingRoom(props) {
 
 		// validate that the students id are unique
 		if (!validateOnlyUniqueStudents(studentsIdList)) {
+			submitButton.disabled = false;
 			return;
 		}
 
@@ -179,14 +209,27 @@ function SchedualMeetingRoom(props) {
 				if (isMaxBookingsValid) {
 					// check if the meeting room is available, then book
 					const isAvailable = await validateMeetingRoomAvailability();
-					if (isAvailable)
+					if (isAvailable){
 						await bookMeetingRoom(studentsIdList);
+						// Update the submit button text to indicate booking success
+						submitButton.textContent = props.languageHelper.scheduleMeetingRoom.success;
+						// give the button a green border
+						submitButton.style.border = "2px solid green";
+						// give the button a green text color
+						submitButton.style.color = "green";
+					}
 					else 
 						alert(props.languageHelper.scheduleMeetingRoom.not_available);
 				}
+				else
+					submitButton.disabled = false;
+
 			}
+			else
+				submitButton.disabled = false;
 		} catch (error) {
 			console.log("An error occurred during student ID validation:", error);
+			submitButton.disabled = false;
 		}
 	};
 

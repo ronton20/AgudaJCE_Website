@@ -149,6 +149,16 @@ const MeetingRooms = (props) => {
 		if (ids) {
 			document.querySelector("#id_box").classList.remove("active");
 		}
+		// reset the submit button
+		clearSubmitButton();
+	};
+
+
+	const clearSubmitButton = () => {
+		document.querySelector("#id_box .submit_button").disabled = false;
+		document.querySelector("#id_box .submit_button").innerHTML = props.languageHelper.scheduleMeetingRoom.submit;
+		document.querySelector("#id_box .submit_button").style.color = "";
+		document.querySelector("#id_box .submit_button").style.border = "";
 	};
 
 	return (

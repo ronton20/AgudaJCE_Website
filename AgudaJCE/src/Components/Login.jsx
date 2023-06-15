@@ -17,6 +17,9 @@ function Login(props) {
 		e.preventDefault();
 		// clean the error if there is one
 		const errors = document.getElementsByClassName("error_message");
+		// disable the button to prevent multiple submissions
+		const submitButton = e.target.querySelector(".submit_button");
+		submitButton.disabled = true;
 		if (errors.length > 0) errors[0].remove();
 		
 		
@@ -36,6 +39,7 @@ function Login(props) {
 			props.toggleLogin();
 		} catch (error) {
 			invalidUser(props.languageHelper.error_invalid_user);
+			submitButton.disabled = false;
 		}
 	};
 

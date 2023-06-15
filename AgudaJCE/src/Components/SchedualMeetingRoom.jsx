@@ -11,7 +11,8 @@ function SchedualMeetingRoom(props) {
 	const selectedTimeSlot = props.selectedTimeSlot;
 	const selectedTimeSlotHour = props.selectedTimeSlotHour;
 	const meetingRooms = props.meetingRooms;
-	// get the submit buton
+	
+	// if a new date/room/time slot is selected, resume the original submit button
 
 	const validateStudentId = async (studentId) => {
 		const id = studentId.value;
@@ -120,22 +121,20 @@ function SchedualMeetingRoom(props) {
 
 	const bookMeetingRoom = async (studentsIdList) => {
 		// create a new document in the DB with the selected date and time slot
-		// const docRef = await setDoc(doc(db, selectedRoom, `${selectedDate}_${selectedTimeSlot}`), {
-		// 	id1: studentsIdList[0].value,
-		// 	id2: studentsIdList[1].value,
-		// 	id3: studentsIdList[2].value,
-		// });
-		// // send confirmation mail to the current user
-		// const currentUserEmail = auth.currentUser.email;
-		// // send confirmation mail to the currentUserEmail
-		// await emailjs.send("service_1b0ai8x", "template_rjg6mea", {
-		// 	to_email: currentUserEmail,
-		// 	room_number: selectedRoom,
-		// 	date: selectedDate,
-		// 	time: selectedTimeSlotHour,
-		//   }, "wdHyAazrWD5Ae01Xf");
-		//   change the submit button to a success message
-	
+		const docRef = await setDoc(doc(db, selectedRoom, `${selectedDate}_${selectedTimeSlot}`), {
+			id1: studentsIdList[0].value,
+			id2: studentsIdList[1].value,
+			id3: studentsIdList[2].value,
+		});
+		// send confirmation mail to the current user
+		const currentUserEmail = auth.currentUser.email;
+		// send confirmation mail to the currentUserEmail
+		await emailjs.send("service_1b0ai8x", "template_rjg6mea", {
+			to_email: currentUserEmail,
+			room_number: selectedRoom,
+			date: selectedDate,
+			time: selectedTimeSlotHour,
+		  }, "wdHyAazrWD5Ae01Xf");
 	};
 
 	// validate that the room is available for the selected date and time slot
@@ -171,7 +170,9 @@ function SchedualMeetingRoom(props) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// Access the input field values using their ids
+		// disable the submit button until the validation is done to prevent multiple clicks
+		const submitButton = e.target.querySelector(".submit_button");
+		submitButton.disabled = true;
 		// clear all the red borders from the input fields
 		clearAllInputFields();
 		const firstStudentId = document.getElementById("input_field_student_id_1");
@@ -182,6 +183,7 @@ function SchedualMeetingRoom(props) {
 
 		// validate that the students id are unique
 		if (!validateOnlyUniqueStudents(studentsIdList)) {
+			submitButton.disabled = false;
 			return;
 		}
 
@@ -207,17 +209,25 @@ function SchedualMeetingRoom(props) {
 					const isAvailable = await validateMeetingRoomAvailability();
 					if (isAvailable){
 						await bookMeetingRoom(studentsIdList);
-						const submitButton = e.target.querySelector(".submit_button");
-						submitButton.disabled = true;
 						// Update the submit button text to indicate booking success
 						submitButton.textContent = props.languageHelper.scheduleMeetingRoom.success;
+						// give the button a green border
+						submitButton.style.border = "2px solid green";
+						// give the button a green text color
+						submitButton.style.color = "green";
 					}
 					else 
 						alert(props.languageHelper.scheduleMeetingRoom.not_available);
 				}
+				else
+					submitButton.disabled = false;
+
 			}
+			else
+				submitButton.disabled = false;
 		} catch (error) {
 			console.log("An error occurred during student ID validation:", error);
+			submitButton.disabled = false;
 		}
 	};
 

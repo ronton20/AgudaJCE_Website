@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import InputField from "./InputField";
 import "../css/Login.css";
 
@@ -8,6 +8,9 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase.js";
 
 function Login(props) {
+
+	const [ errorMessage, setErrorMessage ] = useState("");
+
 	const ids = {
 		email: "login_email",
 		password: "login_password",
@@ -16,11 +19,10 @@ function Login(props) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		// clean the error if there is one
-		const errors = document.getElementsByClassName("error_message");
+		setErrorMessage("");
 		// disable the button to prevent multiple submissions
 		const submitButton = e.target.querySelector(".submit_button");
 		submitButton.disabled = true;
-		if (errors.length > 0) errors[0].remove();
 		
 		
 		const email = document.getElementById(`input_field_${ids.email}`).value;
@@ -44,16 +46,13 @@ function Login(props) {
 	};
 
 	const invalidUser = (errorMessage) => {
-		const passwordField = document.getElementById(`input_field_${ids.password}`);
-		const errorElement = document.createElement("p");
-		errorElement.className = "error_message";
-		errorElement.innerText = errorMessage;
-		passwordField.parentNode.insertBefore(errorElement, passwordField.nextSibling);
+		setErrorMessage(errorMessage);
 	};
 
 	return (
 		<div className="login_div">
 			<h1>{props.languageHelper.header}</h1>
+			{errorMessage === "" ? (<></>) : (<p id="login_error" className="error_message">{ errorMessage }</p>)}
 			<form className="login_form" onSubmit={handleSubmit}>
 				<InputField _id={ids.email} label={props.languageHelper.email} type="email" />
 				<InputField

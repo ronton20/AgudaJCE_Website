@@ -12,7 +12,7 @@ const InputField = ({ label, type, _id, _name = "" , pattern = null, maxlength =
 				id={id}
 				type={type}
 				pattern={pattern}
-				maxlength={maxlength}
+				maxLength={maxlength}
 				value={value}
 				name={_name}
 				required

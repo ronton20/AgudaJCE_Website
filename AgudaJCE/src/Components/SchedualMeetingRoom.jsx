@@ -135,6 +135,8 @@ function SchedualMeetingRoom(props) {
 			date: selectedDate,
 			time: selectedTimeSlotHour,
 		  }, "wdHyAazrWD5Ae01Xf");
+
+		//   TODO: send confirmation mail to the admin
 	};
 
 	// validate that the room is available for the selected date and time slot

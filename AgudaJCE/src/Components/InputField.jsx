@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/InputField.css";
 
-const InputField = ({ label, type, _id, _name = "" }) => {
+const InputField = ({ label, type, _id, _name = "" , pattern = null, maxlength = "250" }) => {
 	const [value, setValue] = useState("");
 	const id = `input_field_${_id}`;
 
@@ -11,6 +11,8 @@ const InputField = ({ label, type, _id, _name = "" }) => {
 			<input
 				id={id}
 				type={type}
+				pattern={pattern}
+				maxlength={maxlength}
 				value={value}
 				name={_name}
 				required

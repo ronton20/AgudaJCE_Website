@@ -14,17 +14,17 @@ function ContactUs(props) {
 	const sendEmail = (e) => {
 		e.preventDefault();
 
-		console.log(form.current);
-		emailjs
-			.sendForm("service_1b0ai8x", "template_xtpoctj", form.current, "wdHyAazrWD5Ae01Xf")
-			.then(
-				(result) => {
-					console.log(result.text);
-				},
-				(error) => {
-					console.log(error.text);
-				}
-			);
+		console.log("email sent");
+		// emailjs
+		// 	.sendForm("service_1b0ai8x", "template_xtpoctj", form.current, "wdHyAazrWD5Ae01Xf")
+		// 	.then(
+		// 		(result) => {
+		// 			console.log(result.text);
+		// 		},
+		// 		(error) => {
+		// 			console.log(error.text);
+		// 		}
+		// 	);
 	};
 
 	return (
@@ -36,18 +36,20 @@ function ContactUs(props) {
 						label={props.languageHelper.fullName}
 						_name="from_name"
 						type="text"
+						pattern="[A-Za-z ]{1,250}"
 					/>
 					<InputField
 						_id={ids.email}
 						label={props.languageHelper.email}
 						_name="from_email"
-						type="text"
+						type="email"
 					/>
 					<InputField
 						_id="contact_us_phone"
 						label={props.languageHelper.phone}
 						_name="from_phone"
-						type="text"
+						type="tel"
+						pattern="[0-9]{10}"
 					/>
 				</div>
 
@@ -155,6 +157,7 @@ function ContactUs(props) {
 						className="contact_us_textarea"
 						placeholder={props.languageHelper.message}
 						name="message"
+						maxLength="1000"
 					></textarea>
 				</div>
 

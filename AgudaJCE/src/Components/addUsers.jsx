@@ -4,7 +4,7 @@ import "../css/addUsers.css";
 
 import { auth, db } from "../firebase.js";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, updateDoc, getDocs, doc } from "firebase/firestore";
 
 function AddUser(props) {
 	const submit_button = document.getElementById("add_users_submit");
@@ -51,20 +51,20 @@ function AddUser(props) {
 		const currentUser = auth.currentUser;
 		try {
 			// Create a new user with the provided email and password
-			// await createUserWithEmailAndPassword(auth, email, id);
+			await createUserWithEmailAndPassword(auth, email, id);
 
 			// Create a user document in the "users" collection with the same UID and isAdmin set to false
-			// const userRef = collection(db, "Users");
+			const userRef = collection(db, "Users");
 
-			// await addDoc(userRef, {
-			// 	id: id,
-			// 	first_name: first_name,
-			// 	last_name: last_name,
-			// 	email: email,
-			// 	phone: phone,
-			// 	isAdmin: isAdmin,
-			// 	block: false,
-			// });
+			await addDoc(userRef, {
+				id: id,
+				first_name: first_name,
+				last_name: last_name,
+				email: email,
+				phone: phone,
+				isAdmin: isAdmin,
+				block: false,
+			});
 
 			// change the submit button to "success" and make it green
 			submit_button.innerHTML = props.languageHelper.success;
@@ -84,6 +84,30 @@ function AddUser(props) {
 		} catch (error) {
 			// Handle any errors
 			console.error("User creation error:", error);
+			// remove the block from the user if already created
+			if (error.code === "auth/email-already-in-use") {
+				// get the user document
+				const querySnapshot = await getDocs(collection(db, "Users"));
+				// get the user document
+				const userRef = doc(db, "Users", querySnapshot.docs[0].id);
+				// print the user id
+				// update the user document
+				await updateDoc(userRef, {
+					block: false,
+				});
+				// change the submit button to "success" and make it green
+				submit_button.innerHTML = props.languageHelper.success;
+				submit_button.style.border = "2px solid green";
+				// border green
+				submit_button.style.color = "green";
+				// re-enable the button after 5 seconds
+				setTimeout(() => {
+					submit_button.disabled = false;
+					submit_button.innerHTML = props.languageHelper.submit;
+					submit_button.style.border = "";
+					submit_button.style.color = "";
+				}, 5000);
+			}
 		}
 		auth.updateCurrentUser(currentUser);
 	};

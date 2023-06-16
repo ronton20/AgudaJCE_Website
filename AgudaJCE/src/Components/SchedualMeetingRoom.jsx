@@ -11,7 +11,7 @@ function SchedualMeetingRoom(props) {
 	const selectedTimeSlot = props.selectedTimeSlot;
 	const selectedTimeSlotHour = props.selectedTimeSlotHour;
 	const meetingRooms = props.meetingRooms;
-	
+
 	// if a new date/room/time slot is selected, resume the original submit button
 
 	const validateStudentId = async (studentId) => {
@@ -24,7 +24,10 @@ function SchedualMeetingRoom(props) {
 		// return boolean value
 		const returnValue = students.some((student) => student.id === id);
 		if (!returnValue)
-			invalidIdForBooking(studentId, props.languageHelper.scheduleMeetingRoom.error_invalid_id);
+			invalidIdForBooking(
+				studentId,
+				props.languageHelper.scheduleMeetingRoom.error_invalid_id
+			);
 		return returnValue;
 	};
 
@@ -34,8 +37,7 @@ function SchedualMeetingRoom(props) {
 		errorElement.className = "error_message";
 		errorElement.innerText = errorMessage;
 		studentId.parentNode.insertBefore(errorElement, studentId.nextSibling);
-	  };
-	  
+	};
 
 	const validateOnlyUniqueStudents = (studentsIdList) => {
 		const uniqueStudentsIdList = [
@@ -45,7 +47,10 @@ function SchedualMeetingRoom(props) {
 		if (uniqueStudentsIdList.length !== studentsIdList.length) {
 			studentsIdList.forEach((studentId) => {
 				if (studentsIdList.filter((id) => id.value === studentId.value).length > 1) {
-					invalidIdForBooking(studentId, props.languageHelper.scheduleMeetingRoom.error_duplicate_id);
+					invalidIdForBooking(
+						studentId,
+						props.languageHelper.scheduleMeetingRoom.error_duplicate_id
+					);
 				}
 			});
 			return false;
@@ -84,7 +89,7 @@ function SchedualMeetingRoom(props) {
 		// iterate all currentWeekBookings and check id1, id2, id3 fields for each booking
 		let studentsExceededMaxBookings = false;
 		let counter = 0;
-		
+
 		studentsIdList.forEach((studentId) => {
 			currentWeekBookings.forEach((booking) => {
 				if (
@@ -96,7 +101,10 @@ function SchedualMeetingRoom(props) {
 					if (counter >= 2) {
 						// if one of the students already exceeded the max bookings for the current week (2 bookings) print error
 						studentsExceededMaxBookings = true;
-						invalidIdForBooking(studentId, props.languageHelper.scheduleMeetingRoom.error_exceed_limit);
+						invalidIdForBooking(
+							studentId,
+							props.languageHelper.scheduleMeetingRoom.error_exceed_limit
+						);
 					}
 				}
 			});
@@ -129,12 +137,17 @@ function SchedualMeetingRoom(props) {
 		// send confirmation mail to the current user
 		const currentUserEmail = auth.currentUser.email;
 		// send confirmation mail to the currentUserEmail
-		await emailjs.send("service_1b0ai8x", "template_rjg6mea", {
-			to_email: currentUserEmail,
-			room_number: selectedRoom,
-			date: selectedDate,
-			time: selectedTimeSlotHour,
-		  }, "wdHyAazrWD5Ae01Xf");
+		await emailjs.send(
+			"service_1b0ai8x",
+			"template_rjg6mea",
+			{
+				to_email: currentUserEmail,
+				room_number: selectedRoom,
+				date: selectedDate,
+				time: selectedTimeSlotHour,
+			},
+			"wdHyAazrWD5Ae01Xf"
+		);
 
 		//   TODO: send confirmation mail to the admin
 	};
@@ -146,9 +159,10 @@ function SchedualMeetingRoom(props) {
 			id: doc.id,
 			...doc.data(),
 		}));
-		const booking = bookings.find((booking) => booking.id === `${selectedDate}_${selectedTimeSlot}`);
-		if (booking) 
-			return false;
+		const booking = bookings.find(
+			(booking) => booking.id === `${selectedDate}_${selectedTimeSlot}`
+		);
+		if (booking) return false;
 		return true;
 	};
 
@@ -156,19 +170,18 @@ function SchedualMeetingRoom(props) {
 		const firstStudentId = document.getElementById("input_field_student_id_1");
 		const secondStudentId = document.getElementById("input_field_student_id_2");
 		const thirdStudentId = document.getElementById("input_field_student_id_3");
-	  
+
 		// Clear all the red borders from the input fields
 		firstStudentId.style.border = "";
 		secondStudentId.style.border = "";
 		thirdStudentId.style.border = "";
-	  
+
 		// Remove error elements
 		const errorElements = document.querySelectorAll(".error_message");
 		errorElements.forEach((errorElement) => {
-		  errorElement.parentNode.removeChild(errorElement);
+			errorElement.parentNode.removeChild(errorElement);
 		});
-	  };
-	  
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -190,9 +203,7 @@ function SchedualMeetingRoom(props) {
 		}
 
 		// Validate each of the students id is in the DB
-		const validatePromises = studentsIdList.map((studentId) =>
-			validateStudentId(studentId)
-		);
+		const validatePromises = studentsIdList.map((studentId) => validateStudentId(studentId));
 
 		try {
 			const validationResults = await Promise.all(validatePromises);
@@ -209,7 +220,7 @@ function SchedualMeetingRoom(props) {
 				if (isMaxBookingsValid) {
 					// check if the meeting room is available, then book
 					const isAvailable = await validateMeetingRoomAvailability();
-					if (isAvailable){
+					if (isAvailable) {
 						await bookMeetingRoom(studentsIdList);
 						// Update the submit button text to indicate booking success
 						submitButton.textContent = props.languageHelper.scheduleMeetingRoom.success;
@@ -217,16 +228,9 @@ function SchedualMeetingRoom(props) {
 						submitButton.style.border = "2px solid green";
 						// give the button a green text color
 						submitButton.style.color = "green";
-					}
-					else 
-						alert(props.languageHelper.scheduleMeetingRoom.not_available);
-				}
-				else
-					submitButton.disabled = false;
-
-			}
-			else
-				submitButton.disabled = false;
+					} else alert(props.languageHelper.scheduleMeetingRoom.not_available);
+				} else submitButton.disabled = false;
+			} else submitButton.disabled = false;
 		} catch (error) {
 			console.log("An error occurred during student ID validation:", error);
 			submitButton.disabled = false;

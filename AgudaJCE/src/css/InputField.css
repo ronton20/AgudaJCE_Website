@@ -3,6 +3,7 @@
 	height: fit-content;
 	display: flex;
 	flex-direction: column;
+	position: relative;
 }
 
 .input_field > label {
@@ -31,13 +32,21 @@
 	resize: none;
 }
 
+.input_field > input:focus {
+	outline: none;
+}
+
 .input_field > input.invalid,
 .input_field > textarea.invalid {
 	border: 2px solid red;
 }
 
-.input_field > input:focus {
-	outline: none;
+.input_field .error_message {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	text-align: end;
 }
 
 @media screen and (max-width: 1000px) {

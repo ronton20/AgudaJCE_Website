@@ -13,14 +13,15 @@ import LanguagesSelection from "./Components/languages_selection.jsx";
 
 import MainPage from "./pages/mainPage.jsx";
 import ManageAgudaMembers from "./pages/ManageAgudaMembers.jsx";
-import ManageMembers from "./pages/ManageMembers.jsx"
+import ManageMembers from "./pages/ManageMembers.jsx";
 import ManageEvents from "./pages/ManageEvents.jsx";
 import ManageMarathons from "./pages/ManageMarathons.jsx";
 import MeetingRooms from "./pages/MeetingRooms.jsx";
 import Marathons from "./pages/Marathons.jsx";
 
 function App() {
-	const [currentLanguage, setCurrentLanguage] = useState("he");
+	const localLanguage = localStorage.getItem("language");
+	const [currentLanguage, setCurrentLanguage] = useState(localLanguage || "he");
 	const languageHelper = languages[currentLanguage];
 
 	const router = createBrowserRouter(
@@ -77,10 +78,12 @@ function App() {
 	const toggleLanguage = () => {
 		if (currentLanguage == "he") {
 			setCurrentLanguage("en");
+			localStorage.setItem("language", "en");
 		} else {
 			setCurrentLanguage("he");
+			localStorage.setItem("language", "he");
 		}
-		changeLanguage();
+		window.location.reload();
 	};
 
 	return (
@@ -88,7 +91,7 @@ function App() {
 			<div id="languageSelection">
 				<LanguagesSelection
 					toggleLanguage={toggleLanguage}
-					selectedLanguage={currentLanguage}
+					currentLanguage={currentLanguage}
 				/>
 			</div>
 			<RouterProvider router={router} />

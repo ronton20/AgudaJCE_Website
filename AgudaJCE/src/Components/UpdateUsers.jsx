@@ -20,8 +20,12 @@ function UpdateUsers(props) {
 	};
 
 	const parseCSV = (file) => {
+		// get the input id ids.uploadFile
+		const uploadFile = document.getElementById(ids.uploadFileLabel);
+		// change the text to uploading
+		uploadFile.innerHTML = props.languageHelper.uploading;
+
 		const currentUser = auth.currentUser;
-		console.log(currentUser);
 		const reader = new FileReader();
 
 		Papa.parse(file, {
@@ -105,8 +109,15 @@ function UpdateUsers(props) {
 						console.error("User update error:", error);
 					}
 				}
+				// change the text to success
+				uploadFile.innerHTML = props.languageHelper.fileUploadSuccess;
+				// change the text to green with green border
+				uploadFile.style.color = "green";
+				uploadFile.style.border = "2px solid green";
 			},
-		});
+		}
+		);
+
 	};
 
 	return (

@@ -26,6 +26,8 @@ const languages = {
 			submit: "Add",
 			chooseFile: "Choose File",
 			success: "User added successfully",
+			uploading: "Uploading...",
+			fileUploadSuccess: "File uploaded successfully",
 		},
 		addAgudaMembers: {
 			header: "Add A Member",
@@ -217,6 +219,8 @@ const languages = {
 			submit: "הוסף",
 			chooseFile: "בחר קובץ",
 			success: "משתמש נוסף בהצלחה",
+			uploading: "מעלה קובץ...",
+			fileUploadSuccess: "הקובץ הועלה בהצלחה",
 		},
 		addAgudaMembers: {
 			header: "הוספה לצוות האגודה",

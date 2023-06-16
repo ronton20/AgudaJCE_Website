@@ -80,7 +80,13 @@ const Carousel = (props) => {
 			>
 				{items.map((event, index) => (
 					<div key={index} className="carousel__slide">
-						<Event key={event.id} data={event} removable={false} updateEvents={null} />
+						<Event
+							key={event.id}
+							data={event}
+							removable={false}
+							updateEvents={null}
+							setCurrEvent={props.setCurrEvent}
+						/>
 					</div>
 				))}
 			</div>

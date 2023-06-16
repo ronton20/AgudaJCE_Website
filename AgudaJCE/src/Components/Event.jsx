@@ -36,7 +36,12 @@ function Event(props) {
 
 	return (
 		<div className="event">
-			<img className="event-img" src={imgUrl} alt={props.data.title} />
+			<img
+				className="event-img"
+				src={imgUrl}
+				alt={props.data.title}
+				onClick={props.setCurrEvent ? () => props.setCurrEvent(props.data) : null}
+			/>
 			<img className="event-bg" src={imgUrl} alt="background" />
 			{props.removable ? <RemoveButton absolute={true} onClick={deleteEvent} /> : <></>}
 		</div>

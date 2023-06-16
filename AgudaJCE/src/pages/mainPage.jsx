@@ -26,7 +26,7 @@ import ContactUs from "../Components/ContactUs";
 import NavBar from "../Components/NavBar";
 import Action from "../Components/Action";
 import AgudaMember from "../Components/AgudaMember.jsx";
-import Background from "../Components/Background";
+import EventPopup from "../Components/EventPopup.jsx";
 
 const background =
 	"https://firebasestorage.googleapis.com/v0/b/agudajce-51667.appspot.com/o/Assets%2FAgudaJCE_main_page_video.mp4?alt=media&token=f4530588-1b70-4bcf-bc8c-0917c3d86df2&_gl=1*yq9khx*_ga*MTE4Mzc5OTA2NS4xNjg0NDIzMzAy*_ga_CW55HF8NVT*MTY4NjQwMTQzMi4xOC4xLjE2ODY0MDQ5NzYuMC4wLjA.";
@@ -38,6 +38,7 @@ function MainPage(props) {
 
 	const [agudaMembers, setAgudaMembers] = useState([]);
 	const [events, setEvents] = useState([]);
+	const [popupEvent, setPopupEvent] = useState(null);
 
 	// Toggles the login form
 	function toggleLogin() {
@@ -252,7 +253,11 @@ function MainPage(props) {
 					<div className="section_content">
 						<h2>{props.languageHelper.navBar.events}</h2>
 						<div id="events_div">
-							<Carousel events={events} currLang={props.currLang} />
+							<Carousel
+								events={events}
+								currLang={props.currLang}
+								setCurrEvent={setPopupEvent}
+							/>
 						</div>
 					</div>
 				</section>
@@ -317,6 +322,11 @@ function MainPage(props) {
 					</a>
 				</div>
 			</footer>
+			<EventPopup
+				active={popupEvent ? true : false}
+				event={popupEvent}
+				closePopup={() => setPopupEvent(null)}
+			/>
 			<div id="login_div">
 				<Login languageHelper={props.languageHelper.login} toggleLogin={toggleLogin} />
 			</div>

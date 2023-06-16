@@ -25,6 +25,9 @@ const languages = {
 			phone: "Phone Number",
 			submit: "Add",
 			chooseFile: "Choose File",
+			success: "User added successfully",
+			uploading: "Uploading...",
+			fileUploadSuccess: "File uploaded successfully",
 		},
 		addAgudaMembers: {
 			header: "Add A Member",
@@ -215,6 +218,9 @@ const languages = {
 			phone: "מספר טלפון",
 			submit: "הוסף",
 			chooseFile: "בחר קובץ",
+			success: "משתמש נוסף בהצלחה",
+			uploading: "מעלה קובץ...",
+			fileUploadSuccess: "הקובץ הועלה בהצלחה",
 		},
 		addAgudaMembers: {
 			header: "הוספה לצוות האגודה",

@@ -7,23 +7,28 @@ const NavBar = (props) => {
 		{ key: "nav_link_1", name: props.languageHelper.home, path: "/" },
 		{
 			key: "nav_link_2",
-			name: props.languageHelper.manageAgudaMembers,
-			path: "/manage_aguda_members",
+			name: props.languageHelper.manageUsers,
+			path: "/manage_users",
 		},
 		{
 			key: "nav_link_3",
-			name: props.languageHelper.manageUsers,
-			path: "/add_users",
+			name: props.languageHelper.meetingRoomBookings,
+			path: "/meeting_room_bookings",
 		},
 		{
 			key: "nav_link_4",
+			name: props.languageHelper.manageMarathons,
+			path: "/manage_marathons",
+		},
+		{
+			key: "nav_link_5",
 			name: props.languageHelper.manageEvents,
 			path: "/manage_events",
 		},
 		{
-			key: "nav_link_5",
-			name: props.languageHelper.manageMarathons,
-			path: "/manage_marathons",
+			key: "nav_link_6",
+			name: props.languageHelper.manageAgudaMembers,
+			path: "/manage_aguda_members",
 		},
 	];
 

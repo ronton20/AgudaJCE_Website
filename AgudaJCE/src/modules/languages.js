@@ -101,6 +101,7 @@ const languages = {
 			manageMarathons: "Manage Marathons",
 			manageUsers: "Manage Users",
 			meetingRooms: "Manage Meeting Rooms",
+			meetingRoomBookings: "Meeting Room Bookings",
 			aguda: "Aguda",
 			actions: "Actions",
 			agudaMembers: "Aguda Team",
@@ -191,6 +192,13 @@ const languages = {
 			error_invalid_id: "Invalid ID",
 			error_exceed_limit: "Weekly booking limit exceeded",
 			success: "Room booked successfully",
+		},
+		meetingRoomBookings: {
+			header: "Meeting Room Bookings",
+			date: "Date",
+			timeFrame: "Time Frame",
+			id: "Student ID",
+			emailCheckbox: "Send confirmation email to admin",
 		},
 	},
 	he: {
@@ -294,6 +302,7 @@ const languages = {
 			manageMarathons: "ניהול מרתונים",
 			manageUsers: "ניהול משתמשים",
 			meetingRooms: "ניהול חדנים",
+			meetingRoomBookings: "חדרי ישיבות שנקבעו",
 			aguda: "האגודה",
 			actions: "פעולות",
 			agudaMembers: "צוות האגודה",
@@ -384,6 +393,13 @@ const languages = {
 			error_invalid_id: "תעודת זהות לא תקינה",
 			error_exceed_limit: "סטודנט זה עבר את המכסה השבועית",
 			success: "החדר נקבע בהצלחה!",
+		},
+		meetingRoomBookings: {
+			header: "חדרי ישיבות שנקבעו",
+			date: "תאריך",
+			timeFrame: "טווח זמנים",
+			id: "תעודת זהות",
+			emailCheckbox: "שלח אימייל אישור למנהל",
 		},
 	},
 };

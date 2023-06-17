@@ -1,0 +1,27 @@
+.room_booking {
+	--link-img-size: 25px;
+	--cell-padding: 0.5rem;
+	position: relative;
+	width: 100%;
+}
+
+.room_booking td {
+	border: 1px solid black;
+	padding: var(--cell-padding);
+}
+
+.room_booking:nth-child(odd) {
+	background-color: rgb(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 1000px) {
+	.room_booking {
+		--link-img-size: 20px;
+		--cell-padding: 1px;
+	}
+
+	.room_booking td {
+		font-size: smaller;
+		font-weight: 400;
+	}
+}

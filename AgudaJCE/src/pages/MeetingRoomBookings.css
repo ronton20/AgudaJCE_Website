@@ -1,0 +1,94 @@
+#meeting_room_bookings_page {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	overflow-y: auto;
+	background: var(--JCE-gradient-dark-gray);
+}
+
+.room_bookings_container {
+	width: 100%;
+}
+
+.room_bookings_title {
+	cursor: pointer;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: var(--JCE-gap);
+}
+
+.room_bookings_title h2 {
+	font-size: 2rem;
+	pointer-events: none;
+}
+
+.room_bookings_title img {
+	pointer-events: none;
+	width: 2rem;
+	height: 2rem;
+	transition: var(--JCE-transition);
+}
+
+.room_bookings_title img.flip {
+	transform: rotate(180deg);
+}
+
+.meeting_room_bookings_table {
+	width: 90%;
+	display: none;
+}
+
+.room_bookings_container.active .room_bookings_title img {
+	transform: rotate(-90deg);
+}
+
+.room_bookings_container.active .room_bookings_title img {
+	transform: rotate(90deg);
+}
+
+.room_bookings_container.active .meeting_room_bookings_table {
+	display: block;
+}
+
+.email_prefrences_container {
+	width: 100%;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: var(--JCE-Padding);
+}
+
+.email_prefrences_container input {
+	width: 1.5rem;
+	height: 1.5rem;
+	cursor: pointer;
+}
+
+.email_prefrences_container label {
+	cursor: pointer;
+	font-size: 1.5rem;
+}
+
+@media screen and (max-width: 1000px) {
+	.meeting_room_bookings_table {
+		width: 100%;
+	}
+}
+
+.meeting_room_bookings_table table {
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+
+@media screen and (max-width: 1000px) {
+	.meeting_room_bookings_table table {
+		table-layout: auto;
+	}
+}

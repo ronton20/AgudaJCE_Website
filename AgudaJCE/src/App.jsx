@@ -18,6 +18,7 @@ import ManageEvents from "./pages/ManageEvents.jsx";
 import ManageMarathons from "./pages/ManageMarathons.jsx";
 import MeetingRooms from "./pages/MeetingRooms.jsx";
 import Marathons from "./pages/Marathons.jsx";
+import MeetingRoomBookings from "./pages/MeetingRoomBookings.jsx";
 
 function App() {
 	const localLanguage = localStorage.getItem("language");
@@ -38,8 +39,17 @@ function App() {
 					element={<ManageAgudaMembers languageHelper={languageHelper} />}
 				/>
 				<Route
-					path="/add_users"
+					path="/manage_users"
 					element={<ManageMembers languageHelper={languageHelper} />}
+				/>
+				<Route
+					path="/meeting_room_bookings"
+					element={
+						<MeetingRoomBookings
+							languageHelper={languageHelper}
+							currentLanguage={currentLanguage}
+						/>
+					}
 				/>
 				<Route
 					path="/manage_events"

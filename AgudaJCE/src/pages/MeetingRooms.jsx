@@ -88,7 +88,6 @@ const MeetingRooms = (props) => {
 	}
 
 	const check_availability_time_frame = async (room, time_frame) => {
-		// console.log(room, "-", currentDate, "-", time_frame);
 		const docRef = doc(db, room, currentDate + "_" + time_frame);
 		const docSnap = await getDoc(docRef);
 		if (docSnap.exists()) {
@@ -153,10 +152,10 @@ const MeetingRooms = (props) => {
 		clearSubmitButton();
 	};
 
-
 	const clearSubmitButton = () => {
 		document.querySelector("#id_box .submit_button").disabled = false;
-		document.querySelector("#id_box .submit_button").innerHTML = props.languageHelper.scheduleMeetingRoom.submit;
+		document.querySelector("#id_box .submit_button").innerHTML =
+			props.languageHelper.scheduleMeetingRoom.submit;
 		document.querySelector("#id_box .submit_button").style.color = "";
 		document.querySelector("#id_box .submit_button").style.border = "";
 	};

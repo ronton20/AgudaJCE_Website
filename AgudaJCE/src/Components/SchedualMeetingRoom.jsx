@@ -2,7 +2,7 @@ import React from "react";
 import InputField from "./InputField";
 
 import { auth, db } from "../firebase.js";
-import { collection, setDoc, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
+import { collection, setDoc, getDocs, getDoc, updateDoc, doc, deleteDoc } from "firebase/firestore";
 import emailjs from "@emailjs/browser";
 
 function SchedualMeetingRoom(props) {
@@ -11,8 +11,16 @@ function SchedualMeetingRoom(props) {
 	const selectedTimeSlot = props.selectedTimeSlot;
 	const selectedTimeSlotHour = props.selectedTimeSlotHour;
 	const meetingRooms = props.meetingRooms;
+	// const adminEmail = "office.jce@gmail.com";
+	const adminEmail = "agudajce.mailbox@gmail.com";
 
-	// if a new date/room/time slot is selected, resume the original submit button
+	const localizeFormat = (date) => {
+		const dateObj = new Date(date);
+		const day = dateObj.getDate();
+		const month = dateObj.getMonth() + 1;
+		const year = dateObj.getFullYear();
+		return `${day}/${month}/${year}`;
+	};
 
 	const validateStudentId = async (studentId) => {
 		const id = studentId.value;
@@ -134,6 +142,7 @@ function SchedualMeetingRoom(props) {
 			id2: studentsIdList[1].value,
 			id3: studentsIdList[2].value,
 		});
+
 		// send confirmation mail to the current user
 		const currentUserEmail = auth.currentUser.email;
 		// send confirmation mail to the currentUserEmail
@@ -143,13 +152,36 @@ function SchedualMeetingRoom(props) {
 			{
 				to_email: currentUserEmail,
 				room_number: selectedRoom,
-				date: selectedDate,
+				date: localizeFormat(selectedDate),
 				time: selectedTimeSlotHour,
+				id1: studentsIdList[0].value,
+				id2: studentsIdList[1].value,
+				id3: studentsIdList[2].value,
 			},
 			"wdHyAazrWD5Ae01Xf"
 		);
+		//   send confirmation mail to the admin if the preference is set to true
+		const preferencesRef = doc(db, "Preferences", "sendEmailToAdminOnBook");
+		const preferencesDoc = await getDoc(preferencesRef);
+		const sendEmailToAdminOnBook = preferencesDoc.data().sendConfirmationEmail;
 
-		//   TODO: send confirmation mail to the admin
+		// if the field sendConfirmationEmail is true send the confirmation email to the admin
+		if (sendEmailToAdminOnBook) {
+			await emailjs.send(
+				"service_1b0ai8x",
+				"template_rjg6mea",
+				{
+					to_email: adminEmail,
+					room_number: selectedRoom,
+					date: localizeFormat(selectedDate),
+					time: selectedTimeSlotHour,
+					id1: studentsIdList[0].value,
+					id2: studentsIdList[1].value,
+					id3: studentsIdList[2].value,
+				},
+				"wdHyAazrWD5Ae01Xf"
+			);
+		}
 	};
 
 	// validate that the room is available for the selected date and time slot

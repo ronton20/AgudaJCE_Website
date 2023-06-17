@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { db, auth } from "../firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { collection, getDocs, getDoc, setDoc, doc, updateDoc, query, where } from "firebase/firestore";
+import {
+	collection,
+	getDocs,
+	getDoc,
+	setDoc,
+	doc,
+	updateDoc,
+	query,
+	where,
+} from "firebase/firestore";
 
 import "./MeetingRoomBookings.css";
 import dropdownArrow from "../assets/dropdown-arrow.png";
@@ -41,7 +50,6 @@ function MeetingRoomBookings(props) {
 		};
 		getPreferences();
 	}, []);
-		
 
 	useEffect(() => {
 		async function setAdmin() {
@@ -136,16 +144,13 @@ function MeetingRoomBookings(props) {
 			await setDoc(doc(db, "Preferences", "sendEmailToAdminOnBook"), {
 				sendConfirmationEmail: sendConfirmationEmail,
 			});
-		}
-		else {
+		} else {
 			// update the set "preferences" document in Firestore to true/false on sendConfirmationEmail field
 			const docRef = doc(db, "Preferences", "sendEmailToAdminOnBook");
 			await updateDoc(docRef, {
 				sendConfirmationEmail: sendConfirmationEmail,
 			});
 		}
-
-
 
 		// enable the checkbox
 		e.target.disabled = false;

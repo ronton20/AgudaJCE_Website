@@ -70,9 +70,7 @@ function UpdateUsers(props) {
 							console.error("User creation error:", error);
 						}
 						await auth.updateCurrentUser(currentUser);
-					}
-					// if the user in the CSV and in the DB already update the user and delete the user from users array
-					else {
+					} else {
 						const docId = querySnapshot.docs.find((doc) => doc.data().id === userId).id;
 						// try to update the user
 						try {
@@ -115,9 +113,7 @@ function UpdateUsers(props) {
 				uploadFile.style.color = "green";
 				uploadFile.style.border = "2px solid green";
 			},
-		}
-		);
-
+		});
 	};
 
 	return (

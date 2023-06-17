@@ -291,7 +291,7 @@
 #section_aguda_members {
 	width: 100%;
 	height: fit-content;
-	padding-block: 10rem;
+	min-height: 70vh;
 }
 
 #aguda_members_div {

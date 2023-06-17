@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db, auth } from "../firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, getDoc, setDoc, doc, updateDoc, query, where } from "firebase/firestore";
 
 import "./MeetingRoomBookings.css";
 import dropdownArrow from "../assets/dropdown-arrow.png";
@@ -29,6 +29,19 @@ function MeetingRoomBookings(props) {
 		noon: "13:00-17:00",
 		evening: "17:00-21:00",
 	};
+
+	useEffect(() => {
+		// get the preferences from firebase
+		const getPreferences = async () => {
+			const docRef = doc(db, "Preferences", "sendEmailToAdminOnBook");
+			const docSnap = await getDoc(docRef);
+			// check the box according to the preferences
+			const checkBox = document.getElementById("send_confirmation_email_checkbox");
+			checkBox.checked = docSnap.data().sendConfirmationEmail;
+		};
+		getPreferences();
+	}, []);
+		
 
 	useEffect(() => {
 		async function setAdmin() {
@@ -111,8 +124,31 @@ function MeetingRoomBookings(props) {
 		setRoomBookings(meetingRooms.room3);
 	}, []);
 
-	const toggleConfirmationEmail = (e) => {
+	const toggleConfirmationEmail = async (e) => {
 		const sendConfirmationEmail = e.target.checked;
+		// disable the checkbox
+		e.target.disabled = true;
+		// create the set "Preferences" document in Firestore if it doesn't exist
+		const collectionRef = collection(db, "Preferences");
+		const querySnapshot = await getDocs(collectionRef);
+		if (querySnapshot.empty) {
+			// create the collection "Preferences" in Firestore
+			await setDoc(doc(db, "Preferences", "sendEmailToAdminOnBook"), {
+				sendConfirmationEmail: sendConfirmationEmail,
+			});
+		}
+		else {
+			// update the set "preferences" document in Firestore to true/false on sendConfirmationEmail field
+			const docRef = doc(db, "Preferences", "sendEmailToAdminOnBook");
+			await updateDoc(docRef, {
+				sendConfirmationEmail: sendConfirmationEmail,
+			});
+		}
+
+
+
+		// enable the checkbox
+		e.target.disabled = false;
 	};
 
 	const toggleDropdown = (e) => {

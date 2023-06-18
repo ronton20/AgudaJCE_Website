@@ -250,6 +250,7 @@ button {
 	place-items: center;
 	gap: var(--JCE-gap);
 	padding: var(--JCE-gap);
+	z-index: 1;
 }
 
 .container {

@@ -5,9 +5,6 @@
 #addMembers {
 	width: 100%;
 	height: min-content;
-	/* display: flex;
-	justify-content: center;
-	align-items: center; */
 	display: grid;
 	grid-template-columns: 1fr;
 }

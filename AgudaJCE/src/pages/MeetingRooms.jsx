@@ -189,7 +189,7 @@ const MeetingRooms = (props) => {
 						</div>
 						<div className="days">
 							{days.map((day) => {
-								const fullDate = `${currentYear}-${monthNumeric}-${day}`;
+								const fullDate = `${currentYear}-${monthNumeric.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 								return (
 									<div key={day} onClick={() => setDate(fullDate)} id={fullDate}>
 										{day}

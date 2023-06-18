@@ -96,7 +96,15 @@ function MeetingRoomBookings(props) {
 	};
 
 	const sortByDate = (roomBookings) => {
-		var sortedBookings = roomBookings.sort((a, b) => {
+		// get todays date and filter out past bookings
+		const today = new Date();
+
+		var sortedBookings = roomBookings.filter((booking) => {
+			const bookingDate = new Date(booking.date);
+			return bookingDate >= today;
+		});
+
+		sortedBookings = sortedBookings.sort((a, b) => {
 			const aDate = new Date(a.date);
 			const bDate = new Date(b.date);
 			return aDate - bDate;

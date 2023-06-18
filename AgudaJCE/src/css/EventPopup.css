@@ -49,6 +49,7 @@
 	border-radius: 0 calc(var(--JCE-BR) * 2) calc(var(--JCE-BR) * 2) 0;
 	border: 2px solid var(--JCE-black);
 	padding: var(--JCE-Padding);
+	overflow-y: auto;
 }
 
 .event_popup_text > * {
